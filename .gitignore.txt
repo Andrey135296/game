@@ -1,5 +1,5 @@
 .vs/
-game/bin/
-game/obj/
+/game/bin/
+/game/obj/
 **/debug
 **/Debug
