@@ -8,5 +8,9 @@ namespace game
 {
 	class CrewMember
 	{
+		public CrewMember()
+		{
+
+		}
 	}
 }
