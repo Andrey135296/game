@@ -1,1 +1,3 @@
 .vs/
+game/bin/
+game/obj/
