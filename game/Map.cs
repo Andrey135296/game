@@ -8,5 +8,7 @@ namespace game
 {
 	class Map
 	{
+		public Node CurrentNode;
+		public List<Node> Nodes;
 	}
 }

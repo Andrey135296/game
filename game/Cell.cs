@@ -8,5 +8,14 @@ namespace game
 {
 	class Cell
 	{
+		public Neighbors neighbors;
+	}
+
+	class Neighbors
+	{
+		public Cell left;
+		public Cell right;
+		public Cell up;
+		public Cell down;
 	}
 }

@@ -8,10 +8,10 @@ namespace game
 {
 	class GameModel
 	{
-		public GameModel()
-		{
-
-		}
-
+		public Ship ship1;
+		public Ship ship2;
+		public int money;
+		public int fuel;
+		public Map map;
 	}
 }
