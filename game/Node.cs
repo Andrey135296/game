@@ -8,5 +8,8 @@ namespace game
 {
 	class Node
 	{
+		public List<Node> Neigbors;
+		public Alignment alignment;
+		public NodeType nodeType;
 	}
 }
