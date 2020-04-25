@@ -10,12 +10,10 @@ namespace game
 	{
 		public List<CrewMember> Crew;
 		public List<Room> Rooms;
-		public int HP { get; private set; }
-		public Ship(int hp)
-		{
-			Crew = new List<CrewMember>();
-			Rooms = new List<Room>();
-			HP = hp;
-		}
+		public int FullEnergy;
+		public int CurrentEnergy;
+		public List<Cell> Cells;
+		public int evasion;
+		public int HP;
 	}
 }
