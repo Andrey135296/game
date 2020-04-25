@@ -17,5 +17,13 @@ namespace game
 		public Cell right;
 		public Cell up;
 		public Cell down;
+
+		public Neighbors(Cell left, Cell up, Cell right, Cell down)
+		{
+			this.left = left;
+			this.up = up;
+			this.right = right;
+			this.down = down;
+		}
 	}
 }
