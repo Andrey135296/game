@@ -21,5 +21,13 @@ namespace game
 			this.Type = nodeType;
 			this.Coordinates = pos;
 		}
+
+		public Node(Alignment alignment, NodeType nodeType, Point pos)
+		{
+			this.neighbors = new List<Node>();
+			this.alignment = alignment;
+			this.Type = nodeType;
+			this.Coordinates = pos;
+		}
 	}
 }
