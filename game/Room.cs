@@ -21,8 +21,9 @@ namespace game
         public int EnergyLimit;
         public int CurrentEnergyLimit;
         public int CurrentEnergy;
-        public List<Cell> WorkingCells;
-        public List<CrewMember> WorkingCrewMembers;
+        public int EmptyWorkingSpaces = 2;
+        public int WorkingSpaces;
+        //public List<CrewMember> WorkingCrewMembers;
 
         public SpecialRoom(EmptyRoom emptyRoom, int energyLimit, int currentEnergyLimit)
         {
@@ -77,6 +78,7 @@ namespace game
 
     class ControlRoom : SpecialRoom
     {
+
         public ControlRoom(EmptyRoom emptyRoom, int energyLimit, int currentEnergyLimit) : base(emptyRoom, energyLimit, currentEnergyLimit)
         {
             Type = RoomType.Control;
