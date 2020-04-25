@@ -10,7 +10,7 @@ namespace game
 	{
 		public CrewMember()
 		{
-
+            var N;
 		}
 	}
 }
