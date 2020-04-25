@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,20 @@ namespace game
 	class Cell
 	{
 		public Neighbors neighbors;
+		public Point coordinates;
+		public CrewMember stationed;
+		public List<CrewMember> passing;
+
+		public Cell(Point coord)
+		{
+			coordinates = coord;
+		}
+
+		public Cell(Point coord, Neighbors neighbors)
+		{
+			coordinates = coord;
+			this.neighbors = neighbors;
+		}
 	}
 
 	class Neighbors
