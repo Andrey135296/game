@@ -63,6 +63,7 @@ namespace game
     {
         public RadarRoom(EmptyRoom emptyRoom, int energyLimit, int currentEnergyLimit) : base(emptyRoom, energyLimit, currentEnergyLimit)
         {
+            Type = RoomType.Radar;
         }
     }
 
@@ -70,7 +71,7 @@ namespace game
     {
         public WeaponRoom(EmptyRoom emptyRoom, int energyLimit, int currentEnergyLimit) : base(emptyRoom, energyLimit, currentEnergyLimit)
         {
-
+            Type = RoomType.Weapon;
         }
     }
 
@@ -78,7 +79,7 @@ namespace game
     {
         public ControlRoom(EmptyRoom emptyRoom, int energyLimit, int currentEnergyLimit) : base(emptyRoom, energyLimit, currentEnergyLimit)
         {
-
+            Type = RoomType.Control;
         }
 
     }
@@ -87,7 +88,7 @@ namespace game
     {
         public LivingRoom(EmptyRoom emptyRoom, int energyLimit, int currentEnergyLimit) : base(emptyRoom, energyLimit, currentEnergyLimit)
         {
-
+            Type = RoomType.Living;
         }
     }
 
@@ -95,7 +96,7 @@ namespace game
     {
         public EngineRoom(EmptyRoom emptyRoom, int energyLimit, int currentEnergyLimit) : base(emptyRoom, energyLimit, currentEnergyLimit)
         {
-
+            Type = RoomType.Engine;
         }
     }
 }

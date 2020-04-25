@@ -48,6 +48,7 @@
     <Compile Include="RoomType.cs" />
     <Compile Include="Ship.cs" />
     <Compile Include="Weapon.cs" />
+    <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Drawing" />
