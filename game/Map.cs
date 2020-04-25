@@ -15,7 +15,7 @@ namespace game
 
 		public Map(string data)
 		{
-			var nodes = new List<Node>();
+			Nodes = new List<Node>();
 			bool nodesDefined = false;
 			foreach (var line in data.Split('\n'))
 			{
@@ -34,16 +34,16 @@ namespace game
 					var coordinates = splitted[3].Split(',');
 					var x = int.Parse(coordinates[0]);
 					var y = int.Parse(coordinates[1]);
-					nodes.Add(new Node((Alignment)alignment, (NodeType)nodeType, new Point(x, y)));
+					Nodes.Add(new Node((Alignment)alignment, (NodeType)nodeType, new Point(x, y)));
 				}
 				else
 				{
 					var n1 = int.Parse(splitted[0]);
 					var n2 = int.Parse(splitted[1]);
-					nodes[n1].neighbors.Add(nodes[n2]);
+					Nodes[n1].neighbors.Add(Nodes[n2]);
 				}
 			}
-			CurrentNode = nodes[0];
+			CurrentNode = Nodes[0];
 		}
 	}
 }
