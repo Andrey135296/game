@@ -14,6 +14,9 @@ namespace game
 		/// Cooldown time in milliseconds
 		/// </summary>
 		public int CoolDownTime;
+		/// <summary>
+		/// Time left to Cool down in milliseconds
+		/// </summary>
 		public int TimeLeftToCoolDown;
 		public string name;
 		public bool IsOnline;
