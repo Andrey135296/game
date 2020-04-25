@@ -22,4 +22,12 @@ namespace game
             IsIntact = true;
 		}
 	}
+
+    class EngineRoom : Room
+    {
+        public EngineRoom(List<Cell> cells) : base(cells)
+        {
+
+        }
+    }
 }
