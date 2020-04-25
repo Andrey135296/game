@@ -10,6 +10,7 @@ namespace game
 	{
         public List<Cell> Cells;
         public List<CrewMember> CrewMembers;
+        public int CurrentDurability;
         public int Durability;
         public bool IsIntact;
         public RoomType Type;
@@ -21,8 +22,8 @@ namespace game
         public int EnergyLimit;
         public int CurrentEnergyLimit;
         public int CurrentEnergy;
-        public int EmptyWorkingSpaces = 2;
-        public int WorkingSpaces;
+        public int EmptyWorkingSpaces;
+        public int WorkingSpaces = 2;
         //public List<CrewMember> WorkingCrewMembers;
 
         public SpecialRoom(EmptyRoom emptyRoom, int energyLimit, int currentEnergyLimit)
@@ -30,6 +31,7 @@ namespace game
             Cells = emptyRoom.Cells;
             CrewMembers = emptyRoom.CrewMembers;
             Durability = 100;
+            CurrentDurability = Durability;
             IsIntact = true;
             //IsOnline = false;
             EnergyLimit = energyLimit;
@@ -46,6 +48,7 @@ namespace game
             Cells = cells;
             CrewMembers = cells.Select(c => c.stationed).Where(c => c != null).ToList();
             Durability = 100;
+            CurrentDurability = Durability;
             IsIntact = true;
         }
     }
