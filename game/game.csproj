@@ -49,5 +49,8 @@
     <Compile Include="Ship.cs" />
     <Compile Include="Weapon.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
