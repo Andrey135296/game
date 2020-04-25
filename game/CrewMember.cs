@@ -16,7 +16,7 @@ namespace game
         public Point Destination;
         public CrewAction Action;
         public bool IsAlive;
-        private static readonly List<string> names = new List<string> { "Kolya", "Petya" }
+        private static readonly List<string> names = new List<string> { "Kolya", "Petya" };
 
 
 		public CrewMember(Point coordinates)
@@ -33,7 +33,7 @@ namespace game
         private string GetName()
         {
             var random = new Random();
-            return names[random.Next(0, names.Count);];
+            return names[random.Next(0, names.Count)];
         }
 	}
 }
