@@ -10,21 +10,21 @@ namespace game
 	class CrewMember
 	{
         public int Speed;
-        public Point Coordinates;
+        public Cell Cell;
         public string Name;
         public int HP;
-        public Point Destination;
+        public Cell Destination;
         public CrewAction Action;
         public bool IsAlive;
         private static readonly List<string> names = new List<string> { "Kolya", "Petya" };
 
 
-		public CrewMember(Point coordinates)
+		public CrewMember(Cell cell)
 		{
             Speed = 1;
-            Coordinates = coordinates;
+            Cell = cell;
             Name = GetName();
-            Destination = coordinates;
+            Destination = cell;
             HP = 100;
             Action = 0;
             IsAlive = true;
