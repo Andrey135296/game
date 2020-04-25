@@ -35,7 +35,6 @@ namespace game
 					var x = int.Parse(coordinates[0]);
 					var y = int.Parse(coordinates[1]);
 					nodes.Add(new Node((Alignment)alignment, (NodeType)nodeType, new Point(x, y)));
-					if ((Alignment)alignment)
 				}
 				else
 				{
@@ -44,6 +43,7 @@ namespace game
 					nodes[n1].neighbors.Add(nodes[n2]);
 				}
 			}
+			CurrentNode = nodes[0];
 		}
 	}
 }
