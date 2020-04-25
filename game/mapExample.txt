@@ -1,3 +1,10 @@
-Player-empty-5-100,100-1,2
-Enemy-fight-1-200,200-5
-Neutral-shop-2-100,200-5
+//Alignment-NodeType-X,Y
+//where X,Y in percents of area size
+
+Player-empty-100,100
+Enemy-fight-50,50
+Neutral-shop-50,100
+#
+//vertices
+0-2
+0-1
