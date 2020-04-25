@@ -14,12 +14,12 @@ namespace game
 		public int fuel;
 		public Map map;
 
-		public GameModel(Ship s1)
+		public GameModel(Ship s1, string mapString)
 		{
 			ship1 = s1;
 			money = 0;
 			fuel = 20;
-			//map = new Map();
+			map = new Map(mapString);
 		}
 	}
 }
