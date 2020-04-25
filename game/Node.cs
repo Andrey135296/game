@@ -10,6 +10,13 @@ namespace game
 	{
 		public List<Node> neighbors;
 		public Alignment alignment;
-		public NodeType nodeType;
+		public NodeType Type;
+
+		public Node(Alignment alignment, NodeType nodeType, List<Node> neighbors)
+		{
+			this.neighbors = neighbors.ToList();
+			this.alignment = alignment;
+			this.Type = nodeType;
+		}
 	}
 }
