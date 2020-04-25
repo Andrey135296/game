@@ -26,7 +26,7 @@ namespace game
             Name = GetName();
             Destination = cell;
             HP = 100;
-            Action = CrewAction.Staying;
+            Action = CrewAction.Idle;
             IsAlive = true;
 		}
 

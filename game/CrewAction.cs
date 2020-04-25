@@ -2,7 +2,7 @@
 {
 	public enum CrewAction
 	{
-        Staying = 0,
+        Idle = 0,
         Moving = 1,
         Working = 2,
     }
