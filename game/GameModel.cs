@@ -13,5 +13,13 @@ namespace game
 		public int money;
 		public int fuel;
 		public Map map;
+
+		public GameModel(Ship s1)
+		{
+			ship1 = s1;
+			money = 0;
+			fuel = 20;
+			//map = new Map();
+		}
 	}
 }
