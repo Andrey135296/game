@@ -10,7 +10,7 @@ namespace game
 {
 	class Cell
 	{
-		public Neighbors neighbors;
+		public Neighbors neighbors = new Neighbors();
 		public Point coordinates;
 		public CrewMember stationed;
 		public List<CrewMember> passing;
@@ -18,6 +18,11 @@ namespace game
 		public Cell(Point coord)
 		{
 			coordinates = coord;
+		}
+
+		public Cell(int x, int y)
+		{
+			coordinates = new Point(x, y);
 		}
 
 		public Cell(Point coord, Neighbors neighbors)
@@ -33,6 +38,10 @@ namespace game
 		public Cell right;
 		public Cell up;
 		public Cell down;
+
+		public Neighbors()
+		{
+		}
 
 		public Neighbors(Cell left, Cell up, Cell right, Cell down)
 		{
