@@ -13,6 +13,7 @@ namespace game
         static void Main(string[] args)
         {
 			var a = new Titan();
+            var c = 0;
         }
     }
 }
