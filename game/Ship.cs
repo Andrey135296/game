@@ -26,6 +26,7 @@ namespace game
             GenerateRooms();
             GenerateSpecialRooms(GenerateSpecialRoomsStat());
             GenerateWeapons();
+			SpecialRoomBonusCalculator.Recalculate(this);
         }
 
         private void GenerateWeapons()
@@ -131,7 +132,8 @@ namespace game
             GenerateRooms();
             GenerateSpecialRooms(GenerateSpecialRoomsStat());
             GenerateWeapons();
-        }
+			SpecialRoomBonusCalculator.Recalculate(this);
+		}
 
         private void GenerateWeapons()
         {
