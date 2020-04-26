@@ -11,7 +11,7 @@ namespace game.Tests
 	public class CrewActionHandler_Should
 	{
 		[Test]
-		public void startsWorking()
+		public void CrewStartsWorking()
 		{
 			var ship = new Titan();
 			Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
@@ -20,7 +20,7 @@ namespace game.Tests
 		}
 
         [Test]
-        public void testShipCreation()
+        public void CrewMembersCanMove()
         {
             var ship = new TestShip();
             //Assert.AreEqual
@@ -28,7 +28,7 @@ namespace game.Tests
             CrewActionsHandler.TickCrew(ship);
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Working));
             ship.Crew[2].Destination = ship.Cells[2];
-            CrewActionsHandler.TickCrew(ship);
+			ship.Crew[2].Action = CrewAction.Moving;
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual( ship.Cells[2], ship.Crew[2].Cell);
         }
