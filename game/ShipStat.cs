@@ -12,6 +12,7 @@ namespace game
 		public int HP;
 		public int FullEnergy;
 		public int CurrentEnergy;
+        public Dictionary<RoomType, EnergyStat> EnergyConsumption;  
 
 		public ShipStat(int evasion, int hp)
 		{
@@ -19,6 +20,10 @@ namespace game
 			this.HP = hp;
 			this.FullEnergy = 0;
 			this.CurrentEnergy = FullEnergy;
+            foreach (var roomType in Enum.GetValues(typeof(RoomType)))
+            {
+                EnergyConsumption[(RoomType)roomType] = new EnergyStat(0, 0, 0);
+            }
 		}
 	}
 }

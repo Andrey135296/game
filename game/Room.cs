@@ -6,45 +6,16 @@ using System.Threading.Tasks;
 
 namespace game
 {
-	class Room
-	{
+    class Room
+    {
         public List<Cell> Cells;
         public List<CrewMember> CrewMembers;
         public int CurrentDurability;
         public int Durability;
         public bool IsIntact;
         public RoomType Type;
-	}
-
-    class SpecialRoom : Room
-    {
-        //public bool IsOnline;
-        public int EnergyLimit;
-        public int CurrentEnergyLimit;
-        public int CurrentEnergy;
-        public int EmptyWorkingSpaces;
-        public int WorkingSpaces = 2;
-        //public List<CrewMember> WorkingCrewMembers;
-
-        public SpecialRoom(EmptyRoom emptyRoom, int energyLimit, int currentEnergyLimit)
+        public Room(List<Cell> cells)
         {
-            Cells = emptyRoom.Cells;
-            CrewMembers = emptyRoom.CrewMembers;
-            Durability = 100;
-            CurrentDurability = Durability;
-            IsIntact = true;
-            //IsOnline = false;
-            EnergyLimit = energyLimit;
-            CurrentEnergyLimit = currentEnergyLimit;
-            CurrentEnergy = 0;
-        }
-    }
-
-    class EmptyRoom : Room
-    {
-        public EmptyRoom(List<Cell> cells)
-        {
-            Type = RoomType.Empty;
             Cells = cells;
             CrewMembers = cells.Select(c => c.stationed).Where(c => c != null).ToList();
             Durability = 100;
@@ -53,55 +24,88 @@ namespace game
         }
     }
 
-    class GeneratorRoom : SpecialRoom
+    class SpecialRoom : Room
     {
-        public GeneratorRoom(EmptyRoom emptyRoom, int energyLimit, int currentEnergyLimit) : base(emptyRoom, energyLimit, currentEnergyLimit)
+        //public bool IsOnline;
+        public EnergyStat RoomEnergyStat;
+        public int EmptyWorkingSpaces;
+        public int WorkingSpaces = 2;
+        //public List<CrewMember> WorkingCrewMembers;
+
+        public SpecialRoom(List<Cell> cells, RoomType roomType, EnergyStat roomEnergyStat) : base(cells)
         {
-            Type = RoomType.Generator;
-            CurrentEnergy = CurrentEnergyLimit;
+            //IsOnline = false;
+            Type = roomType;
+            RoomEnergyStat = roomEnergyStat;
         }
 
-    }
-
-    class RadarRoom : SpecialRoom
-    {
-        public RadarRoom(EmptyRoom emptyRoom, int energyLimit, int currentEnergyLimit) : base(emptyRoom, energyLimit, currentEnergyLimit)
+        public SpecialRoom(Room room, RoomType roomType, EnergyStat roomEnergyStat) : base(room.Cells)
         {
-            Type = RoomType.Radar;
-        }
-    }
 
-    class WeaponRoom : SpecialRoom
-    {
-        public WeaponRoom(EmptyRoom emptyRoom, int energyLimit, int currentEnergyLimit) : base(emptyRoom, energyLimit, currentEnergyLimit)
-        {
-            Type = RoomType.Weapon;
         }
     }
 
-    class ControlRoom : SpecialRoom
-    {
+    //class EmptyRoom : Room
+    //{
+    //    public EmptyRoom(List<Cell> cells)
+    //    {
+    //        Type = RoomType.Empty;
+    //        Cells = cells;
+    //        CrewMembers = cells.Select(c => c.stationed).Where(c => c != null).ToList();
+    //        Durability = 100;
+    //        CurrentDurability = Durability;
+    //        IsIntact = true;
+    //    }
+    //}
 
-        public ControlRoom(EmptyRoom emptyRoom, int energyLimit, int currentEnergyLimit) : base(emptyRoom, energyLimit, currentEnergyLimit)
-        {
-            Type = RoomType.Control;
-        }
+    //class GeneratorRoom : SpecialRoom
+    //{
+    //    public GeneratorRoom(EmptyRoom emptyRoom, EnergyStat roomEnergyStat) : base(emptyRoom, roomEnergyStat)
+    //    {
+    //        Type = RoomType.Generator;
+    //    }
 
-    }
+    //}
 
-    class LivingRoom : SpecialRoom
-    {
-        public LivingRoom(EmptyRoom emptyRoom, int energyLimit, int currentEnergyLimit) : base(emptyRoom, energyLimit, currentEnergyLimit)
-        {
-            Type = RoomType.Living;
-        }
-    }
+    //class RadarRoom : SpecialRoom
+    //{
+    //    public RadarRoom(EmptyRoom emptyRoom, EnergyStat roomEnergyStat) : base(emptyRoom, roomEnergyStat)
+    //    {
+    //        Type = RoomType.Radar;
+    //    }
+    //}
 
-    class EngineRoom : SpecialRoom
-    {
-        public EngineRoom(EmptyRoom emptyRoom, int energyLimit, int currentEnergyLimit) : base(emptyRoom, energyLimit, currentEnergyLimit)
-        {
-            Type = RoomType.Engine;
-        }
-    }
+    //class WeaponRoom : SpecialRoom
+    //{
+    //    public WeaponRoom(EmptyRoom emptyRoom, EnergyStat roomEnergyStat) : base(emptyRoom, roomEnergyStat)
+    //    {
+    //        Type = RoomType.Weapon;
+    //    }
+    //}
+
+    //class ControlRoom : SpecialRoom
+    //{
+
+    //    public ControlRoom(EmptyRoom emptyRoom, EnergyStat roomEnergyStat) : base(emptyRoom, roomEnergyStat)
+    //    {
+    //        Type = RoomType.Control;
+    //    }
+
+    //}
+
+    //class LivingRoom : SpecialRoom
+    //{
+    //    public LivingRoom(EmptyRoom emptyRoom, EnergyStat roomEnergyStat) : base(emptyRoom, roomEnergyStat)
+    //    {
+    //        Type = RoomType.Living;
+    //    }
+    //}
+
+    //class EngineRoom : SpecialRoom
+    //{
+    //    public EngineRoom(EmptyRoom emptyRoom, EnergyStat roomEnergyStat) : base(emptyRoom, roomEnergyStat)
+    //    {
+    //        Type = RoomType.Engine;
+    //    }
+    //}
 }
