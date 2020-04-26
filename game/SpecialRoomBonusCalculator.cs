@@ -43,9 +43,9 @@ namespace game
 						damegeMult += 0.1 * (room.RoomEnergyStat.CurrentEnergy + room.WorkingSpaces - room.EmptyWorkingSpaces);
 						energy -= room.RoomEnergyStat.CurrentEnergy;
 						break;
-
 				}
 			}
+
 		}
 	}
 }

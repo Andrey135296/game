@@ -30,7 +30,7 @@ namespace game.Tests
             ship.Crew[2].Destination = ship.Cells[2];
 			ship.Crew[2].Action = CrewAction.Moving;
             CrewActionsHandler.TickCrew(ship);
-            //CrewActionsHandler.TickCrew(ship);
+            CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[2], ship.Crew[2].Cell);
             Assert.AreEqual(CrewAction.Idle, ship.Crew[2].Action);
         }

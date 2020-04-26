@@ -47,6 +47,8 @@ namespace game
 			{
 				crewMember.Action = CrewAction.Idle;
 				crewMember.Cell.stationed = crewMember;
+				crewMember.Destination = null;
+				return;
 			}
 			crewMember.Cell = BFS(crewMember).Last();
 			if (!room.Cells.Contains(crewMember.Cell))
