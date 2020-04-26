@@ -25,7 +25,6 @@ namespace game
             Speed = 1;
             Cell = cell;
 			Destination = null;
-			cell.stationed = this;
 			Name = GetName();
             HP = 100;
             Action = CrewAction.Idle;

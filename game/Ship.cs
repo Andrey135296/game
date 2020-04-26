@@ -22,11 +22,11 @@ namespace game
 		public Titan()
 		{
 			Stats = new ShipStat(10, 20);
-            GenerateSpecialRoomsStat();
+			GenerateSpecialRoomsStat();
 			GenerateCells();
-            GenerateRooms();
+			GenerateCrew();
+			GenerateRooms();
             GenerateSpecialRooms();
-            GenerateCrew();
             GenerateWeapons();
 		}
 

@@ -37,12 +37,14 @@ namespace game
             //IsOnline = false;
             Type = roomType;
             RoomEnergyStat = roomEnergyStat;
+			EmptyWorkingSpaces = WorkingSpaces;
         }
         public SpecialRoom(Room room, RoomType roomType, EnergyStat roomEnergyStat) : base(room.Cells)
         {
             Type = roomType;
             RoomEnergyStat = roomEnergyStat;
-        }
+			EmptyWorkingSpaces = WorkingSpaces;
+		}
     }
 
     //class EmptyRoom : Room

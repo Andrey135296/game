@@ -12,27 +12,26 @@ namespace game
 		{
 			foreach (var crewMember in ship.Crew.Where(cm => cm.IsAlive))
 			{
-				var room = ship.Rooms.Where(r => r.Cells.Contains(crewMember.Cell)).First();
+				var specialRoom = ship.SpecialRooms.Where(r => r.CrewMembers.Contains(crewMember)).FirstOrDefault();
 				switch (crewMember.Action)
 				{
 					case CrewAction.Moving:
-						MoveCrewMember(ship.Cells, crewMember);
+						MoveCrewMember(ship, crewMember);
 						break;
 					case CrewAction.Idle:
-						if (room is SpecialRoom)
+						if (specialRoom != null)
 						{
-							var specRoom = (SpecialRoom)room;
-							if (specRoom.EmptyWorkingSpaces > 0)
+							if (specialRoom.EmptyWorkingSpaces > 0)
 							{
 								crewMember.Action = CrewAction.Working;
-								specRoom.EmptyWorkingSpaces--;
+								specialRoom.EmptyWorkingSpaces--;
 							}
 						}
 						break;
 					case CrewAction.Working:
-						if (room.CurrentDurability < room.Durability)
-							room.CurrentDurability+=crewMember.RepairSpeed;
-						room.CurrentDurability = Math.Min(room.CurrentDurability, room.Durability);
+						if (specialRoom.CurrentDurability < specialRoom.Durability)
+							specialRoom.CurrentDurability+=crewMember.RepairSpeed;
+						specialRoom.CurrentDurability = Math.Min(specialRoom.CurrentDurability, specialRoom.Durability);
 						break;
 					default:
 						throw new NotImplementedException("unknown crew action");
@@ -41,14 +40,21 @@ namespace game
 			}
 		}
 
-		public static void MoveCrewMember(List<Cell> map, CrewMember crewMember)
+		public static void MoveCrewMember(Ship ship, CrewMember crewMember)
 		{
+			var room = ship.Rooms.Where(r => r.CrewMembers.Contains(crewMember)).FirstOrDefault();
+			var map = ship.Cells;
 			if (crewMember.Cell == crewMember.Destination)
 			{
 				crewMember.Action = CrewAction.Idle;
 				crewMember.Cell.stationed = crewMember;
 			}
 			crewMember.Cell = BFS(map, crewMember).Last();
+			if (!room.Cells.Contains(crewMember.Cell))
+			{
+				room.CrewMembers.Remove(crewMember);
+				ship.Rooms.Where(r => r.Cells.Contains(crewMember.Cell)).FirstOrDefault().CrewMembers.Add(crewMember);
+			}
 		}
 
 		private static List<Cell> BFS(List<Cell> map, CrewMember crewMember)
