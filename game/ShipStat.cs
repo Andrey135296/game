@@ -20,6 +20,7 @@ namespace game
 			this.HP = hp;
 			this.FullEnergy = 0;
 			this.CurrentEnergy = FullEnergy;
+			this.EnergyConsumption = new Dictionary<RoomType, EnergyStat>();
             foreach (var roomType in Enum.GetValues(typeof(RoomType)))
             {
                 EnergyConsumption[(RoomType)roomType] = new EnergyStat(0, 0, 0);

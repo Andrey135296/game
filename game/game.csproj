@@ -39,6 +39,7 @@
     <Compile Include="Alignment.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="CrewAction.cs" />
+    <Compile Include="CrewActionsHandler.cs" />
     <Compile Include="CrewMember.cs" />
     <Compile Include="GameModel.cs" />
     <Compile Include="Map.cs" />

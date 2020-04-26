@@ -32,12 +32,14 @@ namespace game
 
         private void GenerateWeapons()
         {
+			Weapons = new List<Weapon>();
             Weapons.Add(new LaserM0());
             Weapons.Add(new LaserM0());
         }
 
         private void GenerateCells()
         {
+			Cells = new List<Cell>();
             for (int i = 6; i < 8; i++)
                 Cells.Add(new Cell(i, 0));
             for (int i = 4; i < 12; i++)
@@ -66,6 +68,7 @@ namespace game
 
         private void GenerateCrew()
         {
+			Crew = new List<CrewMember>();
             Crew.Add(new CrewMember(Cells[1]));
             Crew.Add(new CrewMember(Cells[7]));
             Crew.Add(new CrewMember(Cells[10]));
@@ -76,6 +79,7 @@ namespace game
 
         private void GenerateRooms()
         {
+			Rooms = new List<Room>();
             var length = Cells.Count;
             for (int i = 0; i < length; i += 2)
             {
@@ -102,6 +106,7 @@ namespace game
 
         private void GenerateSpecialRooms()
         {
+			SpecialRooms = new List<SpecialRoom>();
             SpecialRooms.Add(new SpecialRoom(Rooms[0], RoomType.Radar, Stats.EnergyConsumption[RoomType.Radar]));
             SpecialRooms.Add(new SpecialRoom(Rooms[3], RoomType.Control, Stats.EnergyConsumption[RoomType.Control]));
             SpecialRooms.Add(new SpecialRoom(Rooms[5], RoomType.Engine, Stats.EnergyConsumption[RoomType.Engine]));
