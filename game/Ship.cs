@@ -32,9 +32,11 @@ namespace game
 
         private void GenerateWeapons()
         {
-			Weapons = new List<Weapon>();
-            Weapons.Add(new LaserM0());
-            Weapons.Add(new LaserM0());
+            Weapons = new List<Weapon>
+            {
+                new LaserM0(),
+                new LaserM0()
+            };
         }
 
         private void GenerateCells()
@@ -68,11 +70,13 @@ namespace game
 
         private void GenerateCrew()
         {
-			Crew = new List<CrewMember>();
-            Crew.Add(new CrewMember(Cells[1]));
-            Crew.Add(new CrewMember(Cells[7]));
-            Crew.Add(new CrewMember(Cells[10]));
-            Crew.Add(new CrewMember(Cells[23])); 
+            Crew = new List<CrewMember>
+            {
+                new CrewMember(Cells[1]),
+                new CrewMember(Cells[7]),
+                new CrewMember(Cells[10]),
+                new CrewMember(Cells[23])
+            };
         }
 
 
@@ -108,13 +112,15 @@ namespace game
 
         private void GenerateSpecialRooms()
         {
-			SpecialRooms = new List<SpecialRoom>();
-            SpecialRooms.Add(new SpecialRoom(Rooms[0], RoomType.Radar, Stats.EnergyConsumption[RoomType.Radar]));
-            SpecialRooms.Add(new SpecialRoom(Rooms[3], RoomType.Control, Stats.EnergyConsumption[RoomType.Control]));
-            SpecialRooms.Add(new SpecialRoom(Rooms[5], RoomType.Engine, Stats.EnergyConsumption[RoomType.Engine]));
-            SpecialRooms.Add(new SpecialRoom(Rooms[7], RoomType.Generator, Stats.EnergyConsumption[RoomType.Generator]));
-            SpecialRooms.Add(new SpecialRoom(Rooms[8], RoomType.Living, Stats.EnergyConsumption[RoomType.Living]));
-            SpecialRooms.Add(new SpecialRoom(Rooms[10], RoomType.Weapon, Stats.EnergyConsumption[RoomType.Weapon]));
+            SpecialRooms = new List<SpecialRoom>
+            {
+                new SpecialRoom(Rooms[0], RoomType.Radar, Stats.EnergyConsumption[RoomType.Radar]),
+                new SpecialRoom(Rooms[3], RoomType.Control, Stats.EnergyConsumption[RoomType.Control]),
+                new SpecialRoom(Rooms[5], RoomType.Engine, Stats.EnergyConsumption[RoomType.Engine]),
+                new SpecialRoom(Rooms[7], RoomType.Generator, Stats.EnergyConsumption[RoomType.Generator]),
+                new SpecialRoom(Rooms[8], RoomType.Living, Stats.EnergyConsumption[RoomType.Living]),
+                new SpecialRoom(Rooms[10], RoomType.Weapon, Stats.EnergyConsumption[RoomType.Weapon])
+            };
         }
 
         //private void GenerateRooms()

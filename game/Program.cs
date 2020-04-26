@@ -12,7 +12,15 @@ namespace game
     {
         static void Main(string[] args)
         {
-			var a = new Titan();
+            //var a = new Titan();
+            //         var c = 0;
+            var l = new List<int>();
+            for (int i = 0; i < 10000000; i++)
+                l.Add(1);
+            for (int i  = 0; i < 10000000; i++)
+            {
+                l.Last();
+            }
         }
     }
 }
