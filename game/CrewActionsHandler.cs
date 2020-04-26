@@ -35,7 +35,6 @@ namespace game
 						break;
 					default:
 						throw new NotImplementedException("unknown crew action");
-						break;
 				}
 			}
 		}
@@ -43,13 +42,13 @@ namespace game
 		public static void MoveCrewMember(Ship ship, CrewMember crewMember)
 		{
 			var room = ship.Rooms.Where(r => r.CrewMembers.Contains(crewMember)).FirstOrDefault();
-			var map = ship.Cells;
+			//var map = ship.Cells;
 			if (crewMember.Cell == crewMember.Destination)
 			{
 				crewMember.Action = CrewAction.Idle;
 				crewMember.Cell.stationed = crewMember;
 			}
-			crewMember.Cell = BFS(map, crewMember).Last();
+			crewMember.Cell = BFS(crewMember).Last();
 			if (!room.Cells.Contains(crewMember.Cell))
 			{
 				room.CrewMembers.Remove(crewMember);
@@ -57,33 +56,33 @@ namespace game
 			}
 		}
 
-		private static List<Cell> BFS(List<Cell> map, CrewMember crewMember)
+		private static List<Cell> BFS(CrewMember crewMember)
 		{
 			var end = crewMember.Destination;
-			var q = new Queue<Cell>();
-			q.Enqueue(crewMember.Cell);
-			var d = new Dictionary<Cell, int>();
-			d[crewMember.Cell] = 0;
-			while (q.Count > 0)
+			var queue = new Queue<Cell>();
+			queue.Enqueue(crewMember.Cell);
+			var dictionary = new Dictionary<Cell, int>();
+			dictionary[crewMember.Cell] = 0;
+			while (queue.Count > 0)
 			{
-				var node = q.Dequeue();
+				var node = queue.Dequeue();
 				foreach (var n in node.neighbors)
 				{
-					if (d.ContainsKey(n))
+					if (dictionary.ContainsKey(n))
 						continue;
-					d[n] = d[node] + 1;
-					q.Enqueue(n);
+					dictionary[n] = dictionary[node] + 1;
+					queue.Enqueue(n);
 				}
 			}
-			if (!d.ContainsKey(end))
+			if (!dictionary.ContainsKey(end))
 				throw new Exception("wtf");
 			var curNode = end;
 			var path = new List<Cell>();
 			while (curNode != crewMember.Cell)
 			{
 				path.Add(curNode);
-				var min = curNode.neighbors.Min(n => d[n]);
-				curNode = curNode.neighbors.Where(n => d[n] == min).First();
+				var min = curNode.neighbors.Min(n => dictionary[n]);
+				curNode = curNode.neighbors.Where(n => dictionary[n] == min).First();
 			}
 			return path;
 		}
