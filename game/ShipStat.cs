@@ -8,15 +8,17 @@ namespace game
 {
 	class ShipStat
 	{
-		public int Evasion;
+		public int Evasion = 0;
+		public int Radar = 0;
+		public double DamageMultiplier = 1.0;
+		public int Heal = 0;
 		public int HP;
 		public int FullEnergy;
 		public int CurrentEnergy;
         public Dictionary<RoomType, EnergyStat> EnergyConsumption;  
 
-		public ShipStat(int evasion, int hp)
+		public ShipStat(int hp)
 		{
-			this.Evasion = evasion;
 			this.HP = hp;
 			this.FullEnergy = 0;
 			this.CurrentEnergy = FullEnergy;

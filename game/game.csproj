@@ -55,6 +55,7 @@
     <Compile Include="Ship.cs" />
     <Compile Include="EnergyStat.cs" />
     <Compile Include="ShipStat.cs" />
+    <Compile Include="SpecialRoomBonusCalculator.cs" />
     <Compile Include="Tests\CrewActionHandler_Should.cs" />
     <Compile Include="Weapon.cs" />
     <Compile Include="Program.cs" />
