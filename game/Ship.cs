@@ -21,7 +21,7 @@ namespace game
     {
         public Titan()
         {
-            Stats = new ShipStat(10, 20);
+            Stats = new ShipStat(2000);
             GenerateSpecialRoomsStat();
             GenerateCells();
             GenerateCrew();
@@ -178,7 +178,7 @@ namespace game
     {
         public TestShip()
         {
-            Stats = new ShipStat(10, 20);
+            Stats = new ShipStat(200);
             GenerateSpecialRoomsStat();
             GenerateCells();
             GenerateCrew();

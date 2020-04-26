@@ -40,8 +40,9 @@ namespace game
 						energy += room.RoomEnergyStat.CurrentEnergyLimit;
 						break;
 					case RoomType.Weapon:
-						damegeMult
+						//damegeMult
 						energy -= room.RoomEnergyStat.CurrentEnergy;
+						break;
 
 				}
 			}
