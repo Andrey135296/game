@@ -8,7 +8,7 @@ namespace game
 {
 	class SpecialRoomBonusCalculator
 	{
-		public void RecalculateBonuses(Ship ship)
+		public void Recalculate(Ship ship)
 		{
 			int radar = 0;
 			int evasion = 0;
