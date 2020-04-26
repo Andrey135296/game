@@ -16,6 +16,7 @@ namespace game
         public Cell Destination;
         public CrewAction Action;
         public bool IsAlive;
+		public int RepairSpeed;
         private static readonly List<string> names = new List<string> { "Kolya", "Petya" };
 
 
@@ -29,6 +30,7 @@ namespace game
             HP = 100;
             Action = CrewAction.Idle;
             IsAlive = true;
+			RepairSpeed = 1;
             cell.stationed = this;
         }
 

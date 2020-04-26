@@ -13,7 +13,7 @@ namespace game
 		public Neighbors neighbors = new Neighbors();
 		public Point coordinates;
 		public CrewMember stationed;
-		public List<CrewMember> passing;
+		//public List<CrewMember> passing;
 
 		public Cell(Point coord)
 		{
