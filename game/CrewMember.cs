@@ -23,8 +23,9 @@ namespace game
 		{
             Speed = 1;
             Cell = cell;
-            Name = GetName();
-            Destination = cell;
+			Destination = null;
+			cell.stationed = this;
+			Name = GetName();
             HP = 100;
             Action = CrewAction.Idle;
             IsAlive = true;
