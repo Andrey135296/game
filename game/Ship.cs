@@ -100,7 +100,9 @@ namespace game
             Stats.EnergyConsumption[RoomType.Control] = new EnergyStat(4, 2, 0);
             Stats.EnergyConsumption[RoomType.Engine] = new EnergyStat(4, 2, 0);
             Stats.EnergyConsumption[RoomType.Generator] = new EnergyStat(15, 5, 5);
-            Stats.EnergyConsumption[RoomType.Living] = new EnergyStat(4, 2, 0);
+			Stats.FullEnergy = Stats.EnergyConsumption[RoomType.Generator].CurrentEnergyLimit;
+			Stats.CurrentEnergy = Stats.EnergyConsumption[RoomType.Generator].CurrentEnergy;
+			Stats.EnergyConsumption[RoomType.Living] = new EnergyStat(4, 2, 0);
             Stats.EnergyConsumption[RoomType.Weapon] = new EnergyStat(5, 1, 0);
         }
 
