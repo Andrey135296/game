@@ -38,10 +38,10 @@ namespace game
             Type = roomType;
             RoomEnergyStat = roomEnergyStat;
         }
-
         public SpecialRoom(Room room, RoomType roomType, EnergyStat roomEnergyStat) : base(room.Cells)
         {
-
+            Type = roomType;
+            RoomEnergyStat = roomEnergyStat;
         }
     }
 

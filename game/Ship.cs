@@ -10,9 +10,11 @@ namespace game
 	{
 		public List<CrewMember> Crew;
 		public List<Room> Rooms;
+        public List<SpecialRoom> SpecialRooms;
         //public Cell[,] Cells;
         public List<Cell> Cells;
 		public ShipStat Stats;
+        public List<Weapon> Weapons;
 	}
 
 	class Titan : Ship
@@ -20,10 +22,19 @@ namespace game
 		public Titan()
 		{
 			Stats = new ShipStat(10, 20);
+            GenerateSpecialRoomsStat();
 			GenerateCells();
             GenerateRooms();
-
+            GenerateSpecialRooms();
+            GenerateCrew();
+            GenerateWeapons();
 		}
+
+        private void GenerateWeapons()
+        {
+            Weapons.Add(new LaserM0());
+            Weapons.Add(new LaserM0());
+        }
 
         private void GenerateCells()
         {
@@ -53,6 +64,16 @@ namespace game
             }
         }
 
+        private void GenerateCrew()
+        {
+            Crew.Add(new CrewMember(Cells[1]));
+            Crew.Add(new CrewMember(Cells[7]));
+            Crew.Add(new CrewMember(Cells[10]));
+            Crew.Add(new CrewMember(Cells[23])); 
+        }
+
+
+
         private void GenerateRooms()
         {
             var length = Cells.Count;
@@ -60,18 +81,33 @@ namespace game
             {
                 if (i == 16)
                 {
-                    Rooms.Add(new EmptyRoom(new List<Cell> { Cells[i], Cells[i + 1],
+                    Rooms.Add(new Room(new List<Cell> { Cells[i], Cells[i + 1],
                     Cells[i + 2], Cells[i + 3]}));
                     i += 2;
                 }
                 else
-                    Rooms.Add(new EmptyRoom(new List<Cell> { Cells[i], Cells[i + 1] }));
+                    Rooms.Add(new Room(new List<Cell> { Cells[i], Cells[i + 1] }));
             }
         }
-        
+
+        private void GenerateSpecialRoomsStat()
+        {
+            Stats.EnergyConsumption[RoomType.Radar] = new EnergyStat(5, 1, 0);
+            Stats.EnergyConsumption[RoomType.Control] = new EnergyStat(4, 2, 0);
+            Stats.EnergyConsumption[RoomType.Engine] = new EnergyStat(4, 2, 0);
+            Stats.EnergyConsumption[RoomType.Generator] = new EnergyStat(15, 5, 5);
+            Stats.EnergyConsumption[RoomType.Living] = new EnergyStat(4, 2, 0);
+            Stats.EnergyConsumption[RoomType.Weapon] = new EnergyStat(5, 1, 0);
+        }
+
         private void GenerateSpecialRooms()
         {
-            Rooms[0] = new SpecialRoom(Rooms[0], RoomType.Radar, Stats.EnergyConsumption[RoomType.Radar] );
+            SpecialRooms.Add(new SpecialRoom(Rooms[0], RoomType.Radar, Stats.EnergyConsumption[RoomType.Radar]));
+            SpecialRooms.Add(new SpecialRoom(Rooms[3], RoomType.Control, Stats.EnergyConsumption[RoomType.Control]));
+            SpecialRooms.Add(new SpecialRoom(Rooms[5], RoomType.Engine, Stats.EnergyConsumption[RoomType.Engine]));
+            SpecialRooms.Add(new SpecialRoom(Rooms[7], RoomType.Generator, Stats.EnergyConsumption[RoomType.Generator]));
+            SpecialRooms.Add(new SpecialRoom(Rooms[8], RoomType.Living, Stats.EnergyConsumption[RoomType.Living]));
+            SpecialRooms.Add(new SpecialRoom(Rooms[10], RoomType.Weapon, Stats.EnergyConsumption[RoomType.Weapon]));
         }
 
         //private void GenerateRooms()

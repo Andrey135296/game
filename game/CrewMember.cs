@@ -29,7 +29,8 @@ namespace game
             HP = 100;
             Action = CrewAction.Idle;
             IsAlive = true;
-		}
+            cell.stationed = this;
+        }
 
         private string GetName()
         {
