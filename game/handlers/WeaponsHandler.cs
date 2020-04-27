@@ -34,8 +34,8 @@ namespace game
 					attackedShip.alignment = Alignment.Wrekage;
 				if (attackedShip.SpecialRooms.Contains(weapon.Target))
 				{
-					var sr = (SpecialRoom)weapon.Target;
-					sr.CurrentDurability = Math.Max(0, sr.CurrentDurability - weapon.damage);
+					var specialRoom = (SpecialRoom)weapon.Target;
+					specialRoom.CurrentDurability = Math.Max(0, specialRoom.CurrentDurability - weapon.damage);
 				}
 				foreach (var c in attackedShip.Crew)
 					if (weapon.Target.Cells.Contains(c.Cell))
