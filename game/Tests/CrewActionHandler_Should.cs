@@ -183,4 +183,20 @@ namespace game
         }
 
     }
+
+    [TestFixture]
+    public class InterfaceCommands_Shold
+    {
+        [Test]
+        public void TestStartWorkingAndNotWorking()
+        {
+            var ship = new TestShip(Alignment.Player);
+            var enemyShip = new TestShip(Alignment.Enemy);
+            var gameModel = new GameModel(ship, "Player-empty-100,100");
+            gameModel.ship2 = enemyShip;
+            GameTick.Tick(gameModel);
+            Assert.AreEqual(5, gameModel.ship1.Stats.CurrentEnergy);
+            InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.ship1.SpecialRooms[0], 3, gameModel.ship1);
+        }
+    }
 }
