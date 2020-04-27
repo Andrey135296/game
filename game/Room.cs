@@ -11,15 +11,15 @@ namespace game
         public List<Cell> Cells;
         public List<CrewMember> CrewMembers;
         public int CurrentDurability;
-        public int Durability;
+        public int MaxDurability;
         public bool IsIntact;
         public RoomType Type;
         public Room(List<Cell> cells)
         {
             Cells = cells;
             CrewMembers = cells.Select(c => c.stationed).Where(c => c != null).ToList();
-            Durability = 100;
-            CurrentDurability = Durability;
+            MaxDurability = 100;
+            CurrentDurability = MaxDurability;
             IsIntact = true;
         }
     }

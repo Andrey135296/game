@@ -8,13 +8,13 @@ namespace game
 {
     class EnergyStat
     {
-        public int EnergyLimit;
+        public int MaxEnergyLimit;
         public int CurrentEnergyLimit;
         public int CurrentEnergy;
 
         public EnergyStat(int energyLimit, int currentEnergyLimit, int currentEnergy)
         {
-            EnergyLimit = energyLimit;
+            MaxEnergyLimit = energyLimit;
             CurrentEnergy = currentEnergy;
             CurrentEnergyLimit = currentEnergyLimit;
         }

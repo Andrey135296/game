@@ -29,9 +29,9 @@ namespace game
 						}
 						break;
 					case CrewAction.Working:
-						if (specialRoom.CurrentDurability < specialRoom.Durability)
+						if (specialRoom.CurrentDurability < specialRoom.MaxDurability)
 							specialRoom.CurrentDurability+=crewMember.RepairSpeed;
-						specialRoom.CurrentDurability = Math.Min(specialRoom.CurrentDurability, specialRoom.Durability);
+						specialRoom.CurrentDurability = Math.Min(specialRoom.CurrentDurability, specialRoom.MaxDurability);
 						break;
 					default:
 						throw new NotImplementedException("unknown crew action");
