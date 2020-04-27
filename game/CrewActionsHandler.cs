@@ -42,7 +42,8 @@ namespace game
 		public static void MoveCrewMember(Ship ship, CrewMember crewMember)
 		{
 			var room = ship.Rooms.Where(r => r.CrewMembers.Contains(crewMember)).FirstOrDefault();
-			//var map = ship.Cells;
+			if (room.Type == RoomType.Living)
+				crewMember.CurrentHP = Math.Min(crewMember.CurrentHP + ship.Stats.Heal, crewMember.MaxHP);
 			if (crewMember.Cell == crewMember.Destination)
 			{
 				crewMember.Action = CrewAction.Idle;

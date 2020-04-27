@@ -12,7 +12,8 @@ namespace game
         public int Speed;
         public Cell Cell;
         public string Name;
-        public int HP;
+        public int MaxHP;
+		public int CurrentHP;
         public Cell Destination;
         public CrewAction Action;
         public bool IsAlive;
@@ -26,7 +27,8 @@ namespace game
             Cell = cell;
 			Destination = null;
 			Name = GetName();
-            HP = 100;
+            MaxHP = 100;
+			CurrentHP = 100;
             Action = CrewAction.Idle;
             IsAlive = true;
 			RepairSpeed = 1;
