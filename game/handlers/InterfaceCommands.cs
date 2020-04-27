@@ -71,5 +71,18 @@ namespace game
 				}
 			}
 		}
+
+		public static void MoveOnMap(GameModel gameModel, Node node)
+		{
+			if (gameModel.map.CurrentNode.neighbors.Contains(node))
+			{
+				gameModel.map.CurrentNode = node;
+				if (node.Type == NodeType.fight)
+				{
+					gameModel.ship2 = new Titan(node.alignment);
+				}
+			}
+
+		}
 	}
 }
