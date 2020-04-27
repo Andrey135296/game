@@ -210,11 +210,11 @@ namespace game
 
 		private void GenerateSpecialRooms(Dictionary<RoomType, EnergyStat> EnergyConsumption)
 		{
-            SpecialRooms = new List<SpecialRoom>
-            {
-                new SpecialRoom(Rooms[0], RoomType.Radar, EnergyConsumption[RoomType.Radar]),
-                new SpecialRoom(Rooms[1], RoomType.Control, EnergyConsumption[RoomType.Control]),
-            };
-        }
+			SpecialRooms = new List<SpecialRoom>();
+			SpecialRooms.Add(new SpecialRoom(Rooms[0], RoomType.Radar, EnergyConsumption[RoomType.Radar]));
+			Rooms[0] = SpecialRooms[0];
+			SpecialRooms.Add(new SpecialRoom(Rooms[1], RoomType.Control, EnergyConsumption[RoomType.Control]));
+			Rooms[1] = SpecialRooms[1];
+		}
     }
 }
