@@ -28,7 +28,7 @@ namespace game
 	{
 		public LaserM0()
 		{
-			this.damage = 1;
+			this.damage = 10;
 			this.CoolDownTime = 2000;
 			this.TimeLeftToCoolDown = this.CoolDownTime;
 			this.name = "LaserM0";
@@ -42,7 +42,7 @@ namespace game
 	{
 		public LaserM1()
 		{
-			this.damage = 1;
+			this.damage = 10;
 			this.CoolDownTime = 1000;
 			this.TimeLeftToCoolDown = this.CoolDownTime;
 			this.name = "LaserM1";
@@ -56,7 +56,7 @@ namespace game
 	{
 		public LaserM2()
 		{
-			this.damage = 2;
+			this.damage = 20;
 			this.CoolDownTime = 1000;
 			this.TimeLeftToCoolDown = this.CoolDownTime;
 			this.name = "LaserM2";
