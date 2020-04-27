@@ -149,7 +149,8 @@ namespace game
             Weapons = new List<Weapon>
                 {
                     new LaserM0(),
-                    new LaserM0()
+                    new LaserM1(),
+                    new LaserM2()
                 };
         }
 
