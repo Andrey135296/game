@@ -20,31 +20,44 @@ namespace game
 			double damegeMult = 1.0;
 			foreach (var room in ship.SpecialRooms)
 			{
+				var roomLevel = 0;
 				switch (room.Type)
 				{
 					case RoomType.Radar:
-						radar += room.Stat.CurrentEnergy + room.Stat.MaxWorkingSpaces - room.Stat.EmptyWorkingSpaces;
+						roomLevel = room.Stat.CurrentEnergy + room.Stat.MaxWorkingSpaces - room.Stat.EmptyWorkingSpaces;
+						roomLevel = roomLevel * room.CurrentDurability / room.MaxDurability;
+						radar += roomLevel;
 						evasion += radar * 2;
 						energy -= room.Stat.CurrentEnergy;
 						break;
 					case RoomType.Control:
-						evasion += 5 * (room.Stat.CurrentEnergy + room.Stat.MaxWorkingSpaces - room.Stat.EmptyWorkingSpaces);
+						roomLevel = room.Stat.CurrentEnergy + room.Stat.MaxWorkingSpaces - room.Stat.EmptyWorkingSpaces;
+						roomLevel = roomLevel * room.CurrentDurability / room.MaxDurability;
+						evasion += 5 * roomLevel;
 						energy -= room.Stat.CurrentEnergy;
 						break;
 					case RoomType.Engine:
-						evasion += 5 * (room.Stat.CurrentEnergy + room.Stat.MaxWorkingSpaces - room.Stat.EmptyWorkingSpaces);
+						roomLevel = room.Stat.CurrentEnergy + room.Stat.MaxWorkingSpaces - room.Stat.EmptyWorkingSpaces;
+						roomLevel = roomLevel * room.CurrentDurability / room.MaxDurability;
+						evasion += 5 * roomLevel;
 						energy -= room.Stat.CurrentEnergy;
 						break;
 					case RoomType.Living:
-						heal += room.Stat.CurrentEnergy;
+						roomLevel = room.Stat.CurrentEnergy;
+						roomLevel = roomLevel * room.CurrentDurability / room.MaxDurability;
+						heal += roomLevel;
 						energy -= room.Stat.CurrentEnergy;
 						break;
 					case RoomType.Generator:
-						maxEnergy = room.Stat.CurrentEnergyLimit;
+						roomLevel = room.Stat.CurrentEnergyLimit;
+						roomLevel = roomLevel * room.CurrentDurability / room.MaxDurability;
+						maxEnergy += roomLevel;
 						energy += maxEnergy;
 						break;
 					case RoomType.Weapon:
-						damegeMult += 0.1 * (room.Stat.CurrentEnergy + room.Stat.MaxWorkingSpaces - room.Stat.EmptyWorkingSpaces);
+						roomLevel = room.Stat.CurrentEnergy + room.Stat.MaxWorkingSpaces - room.Stat.EmptyWorkingSpaces;
+						roomLevel = roomLevel * room.CurrentDurability / room.MaxDurability;
+						damegeMult += 0.1 * (roomLevel);
 						energy -= room.Stat.CurrentEnergy;
 						break;
 				}
