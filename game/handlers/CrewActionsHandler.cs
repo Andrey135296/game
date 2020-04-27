@@ -16,6 +16,8 @@ namespace game
 			foreach (var crewMember in ship.Crew)
 			{
 				var specialRoom = ship.SpecialRooms.Where(r => r.CrewMembers.Contains(crewMember)).FirstOrDefault();
+				if (specialRoom != null && specialRoom.Type == RoomType.Living)
+						crewMember.CurrentHP = Math.Min(crewMember.CurrentHP + ship.Stats.Heal, crewMember.MaxHP);
 				switch (crewMember.Action)
 				{
 					case CrewAction.Moving:
@@ -45,8 +47,6 @@ namespace game
 		private static void CrewMemberStep(Ship ship, CrewMember crewMember)
 		{
 			var room = ship.Rooms.Where(r => r.CrewMembers.Contains(crewMember)).FirstOrDefault();
-			if (room.Type == RoomType.Living)
-				crewMember.CurrentHP = Math.Min(crewMember.CurrentHP + ship.Stats.Heal, crewMember.MaxHP);
 			if (crewMember.Cell == crewMember.Destination)
 			{
 				crewMember.Action = CrewAction.Idle;
