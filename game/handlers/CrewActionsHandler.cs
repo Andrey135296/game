@@ -16,7 +16,7 @@ namespace game
 				switch (crewMember.Action)
 				{
 					case CrewAction.Moving:
-						MoveCrewMember(ship, crewMember);
+						CrewMemberStep(ship, crewMember);
 						break;
 					case CrewAction.Idle:
 						if (specialRoom != null)
@@ -39,7 +39,7 @@ namespace game
 			}
 		}
 
-		public static void MoveCrewMember(Ship ship, CrewMember crewMember)
+		public static void CrewMemberStep(Ship ship, CrewMember crewMember)
 		{
 			var room = ship.Rooms.Where(r => r.CrewMembers.Contains(crewMember)).FirstOrDefault();
 			if (room.Type == RoomType.Living)

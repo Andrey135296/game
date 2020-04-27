@@ -57,6 +57,7 @@
     <Compile Include="containers\ShipStat.cs" />
     <Compile Include="handlers\InterfaceCommands.cs" />
     <Compile Include="handlers\SpecialRoomBonusCalculator.cs" />
+    <Compile Include="handlers\WeaponsHandler.cs" />
     <Compile Include="Tests\CrewActionHandler_Should.cs" />
     <Compile Include="containers\Weapon.cs" />
     <Compile Include="Program.cs" />
