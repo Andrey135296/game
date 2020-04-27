@@ -10,6 +10,8 @@ namespace game
 	{
 		public static void Recalculate(Ship ship)
 		{
+			if (ship == null)
+				return;
 			int radar = 0;
 			int evasion = 0;
 			int heal = 0;

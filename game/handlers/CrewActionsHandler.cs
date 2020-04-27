@@ -10,6 +10,8 @@ namespace game
 	{
 		public static void TickCrew(Ship ship)
 		{
+			if (ship == null)
+				return;
 			foreach (var crewMember in ship.Crew.Where(cm => cm.IsAlive))
 			{
 				var specialRoom = ship.SpecialRooms.Where(r => r.CrewMembers.Contains(crewMember)).FirstOrDefault();
@@ -39,7 +41,7 @@ namespace game
 			}
 		}
 
-		public static void CrewMemberStep(Ship ship, CrewMember crewMember)
+		private static void CrewMemberStep(Ship ship, CrewMember crewMember)
 		{
 			var room = ship.Rooms.Where(r => r.CrewMembers.Contains(crewMember)).FirstOrDefault();
 			if (room.Type == RoomType.Living)

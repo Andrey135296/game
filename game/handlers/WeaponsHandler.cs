@@ -8,5 +8,11 @@ namespace game
 {
 	class WeaponsHandler
 	{
+		public static void Tick(Ship ship)
+		{
+			if (ship == null)
+				return;
+
+		}
 	}
 }

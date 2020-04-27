@@ -30,7 +30,6 @@ namespace game
 				&& ship.Stats.CurrentEnergy>=energy-room.Stat.CurrentEnergy)
 			{
 				room.Stat.CurrentEnergy = energy;
-				SpecialRoomBonusCalculator.Recalculate(ship);
 			}
 		}
 
@@ -68,7 +67,6 @@ namespace game
 				{
 					room.Stat.CurrentEnergyLimit++;
 					gameModel.money -= price;
-					SpecialRoomBonusCalculator.Recalculate(gameModel.ship1);
 				}
 			}
 		}
