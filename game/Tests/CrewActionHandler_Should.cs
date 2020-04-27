@@ -585,4 +585,19 @@ namespace game
 
         }
     }
+
+    [TestFixture]
+    public class InterfaceCommands_MapCommand_Shold
+    {
+        [Test]
+        public void TestCorrectConnectWeapon()
+        {
+            var ship = new TestShip(Alignment.Player);
+
+            Assert.IsTrue(ship.Weapons.All(c => c.IsOnline == false));
+
+            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+            Assert.AreEqual(true, ship.Weapons[0].IsOnline);
+        }
+    }
 }
