@@ -1,6 +1,5 @@
 //Alignment-NodeType-X,Y
 //where X,Y in percents of area size
-
 Player-empty-100,100
 Enemy-fight-50,50
 Neutral-shop-50,100

@@ -13,6 +13,10 @@ namespace game
 		public int money;
 		public int fuel;
 		public Map map;
+		/// <summary>
+		/// tick time in milliseconds
+		/// </summary>
+		public int tickLength = 200;
 
 		public GameModel(Ship s1, string mapString)
 		{

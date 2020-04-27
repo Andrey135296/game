@@ -29,6 +29,7 @@ namespace game
 				&& ship.alignment == Alignment.Player 
 				&& ship.Stats.CurrentEnergy>=energy-room.Stat.CurrentEnergy)
 			{
+				ship.Stats.CurrentEnergy -= energy - room.Stat.CurrentEnergy;
 				room.Stat.CurrentEnergy = energy;
 			}
 		}
