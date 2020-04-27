@@ -82,6 +82,29 @@ namespace game
         }
 
         [Test]
+        public void TestRoomStatesAfterMovingFromNotWorkingRoom()
+        {
+            var ship = new TestShip(Alignment.Player);
+            Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
+            CrewActionsHandler.TickCrew(ship);
+            Assert.AreEqual(0, ship.SpecialRooms[1].Stat.EmptyWorkingSpaces);
+            InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[11], ship);
+            CrewActionsHandler.TickCrew(ship);
+            Assert.AreEqual(0, ship.SpecialRooms[1].Stat.EmptyWorkingSpaces);
+        }
+
+        public void TestRoomStatesAfterMovingFromWorkingRoom()
+        {
+            var ship = new TestShip(Alignment.Player);
+            Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
+            CrewActionsHandler.TickCrew(ship);
+            Assert.AreEqual(0, ship.SpecialRooms[0].Stat.EmptyWorkingSpaces);
+            InterfaceCommands.MoveCrewMember(ship.Crew[1], ship.Cells[11], ship);
+            CrewActionsHandler.TickCrew(ship);
+            Assert.AreEqual(1, ship.SpecialRooms[0].Stat.EmptyWorkingSpaces);
+        }
+
+        [Test]
         public void TestRoomStatesAfterMovingToNotFullWorkingRoom()
         {
             var ship = new TestShip(Alignment.Player);
