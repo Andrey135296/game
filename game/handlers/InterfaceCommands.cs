@@ -13,6 +13,11 @@ namespace game
 			if (crewMember.alignment == Alignment.Player)
 				if (!ship.Crew.Any(c => c.Destination == cell) && cell.stationed == null)
 				{
+					if (crewMember.Action == CrewAction.Working)
+					{
+						var room = ship.SpecialRooms.Where(r => r.Cells.Contains(crewMember.Cell)).First();
+						room.Stat.EmptyWorkingSpaces++;
+					}
 					crewMember.Destination = cell;
 					crewMember.Action = CrewAction.Moving;
 				}
@@ -54,7 +59,17 @@ namespace game
 		{
 			if (room.Stat.CurrentEnergyLimit < room.Stat.MaxEnergyLimit)
 			{
-				var price = 0;
+				int price;
+				if (room.Type == RoomType.Generator)
+					price = (room.Stat.CurrentEnergyLimit + 1) * 15;
+				else
+					price = (room.Stat.CurrentEnergyLimit + 1) * 30;
+				if (price <= gameModel.money)
+				{
+					room.Stat.CurrentEnergyLimit++;
+					gameModel.money -= price;
+					SpecialRoomBonusCalculator.Recalculate(gameModel.ship1);
+				}
 			}
 		}
 	}
