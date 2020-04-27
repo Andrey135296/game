@@ -15,6 +15,10 @@ namespace game
 			//var a = new Titan();
 			//         var c = 0;
 			var m = new Map("Player-empty-100,100");
+			var a = new List<int> { 1, 2, 3 };
+			foreach (var i in a)
+				if (i == 2)
+					a.Remove(i);
         }
     }
 }

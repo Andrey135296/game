@@ -12,7 +12,8 @@ namespace game
 		{
 			if (ship == null)
 				return;
-			foreach (var crewMember in ship.Crew.Where(cm => cm.IsAlive))
+			ship.Crew = ship.Crew.Where(c => c.IsAlive).ToList();
+			foreach (var crewMember in ship.Crew)
 			{
 				var specialRoom = ship.SpecialRooms.Where(r => r.CrewMembers.Contains(crewMember)).FirstOrDefault();
 				switch (crewMember.Action)

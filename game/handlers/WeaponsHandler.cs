@@ -30,7 +30,18 @@ namespace game
 			{
 				attackedShip.Stats.HP -= weapon.damage;
 				weapon.TimeLeftToCoolDown += weapon.CoolDownTime;
-				//var a = attackedShip.
+				if (attackedShip.SpecialRooms.Contains(weapon.Target))
+				{
+					var sr = (SpecialRoom)weapon.Target;
+					sr.CurrentDurability = Math.Max(0, sr.CurrentDurability - weapon.damage);
+				}
+				foreach (var c in attackedShip.Crew)
+					if (weapon.Target.Cells.Contains(c.Cell))
+					{
+						c.CurrentHP -= weapon.damage;
+						if (c.CurrentHP <= 0)
+							c.IsAlive = false;
+					}
 			}
 		}
 	}
