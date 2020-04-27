@@ -21,16 +21,16 @@ namespace game
 				switch (room.Type)
 				{
 					case RoomType.Radar:
-						radar += room.Stat.CurrentEnergy + room.WorkingSpaces - room.EmptyWorkingSpaces;
+						radar += room.Stat.CurrentEnergy + room.Stat.MaxWorkingSpaces - room.Stat.EmptyWorkingSpaces;
 						evasion += radar * 2;
 						energy -= room.Stat.CurrentEnergy;
 						break;
 					case RoomType.Control:
-						evasion += 5 * (room.Stat.CurrentEnergy + room.WorkingSpaces - room.EmptyWorkingSpaces);
+						evasion += 5 * (room.Stat.CurrentEnergy + room.Stat.MaxWorkingSpaces - room.Stat.EmptyWorkingSpaces);
 						energy -= room.Stat.CurrentEnergy;
 						break;
 					case RoomType.Engine:
-						evasion += 5 * (room.Stat.CurrentEnergy + room.WorkingSpaces - room.EmptyWorkingSpaces);
+						evasion += 5 * (room.Stat.CurrentEnergy + room.Stat.MaxWorkingSpaces - room.Stat.EmptyWorkingSpaces);
 						energy -= room.Stat.CurrentEnergy;
 						break;
 					case RoomType.Living:
@@ -42,7 +42,7 @@ namespace game
 						energy += maxEnergy;
 						break;
 					case RoomType.Weapon:
-						damegeMult += 0.1 * (room.Stat.CurrentEnergy + room.WorkingSpaces - room.EmptyWorkingSpaces);
+						damegeMult += 0.1 * (room.Stat.CurrentEnergy + room.Stat.MaxWorkingSpaces - room.Stat.EmptyWorkingSpaces);
 						energy -= room.Stat.CurrentEnergy;
 						break;
 				}

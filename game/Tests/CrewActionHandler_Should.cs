@@ -13,7 +13,7 @@ namespace game.Tests
 		[Test]
 		public void CrewStartsWorking()
 		{
-			var ship = new Titan();
+			var ship = new Titan(Alignment.Player);
 			Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
 			CrewActionsHandler.TickCrew(ship);
 			Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Working));
@@ -22,7 +22,7 @@ namespace game.Tests
         [Test]
         public void CrewMembersCanMove()
         {
-            var ship = new TestShip();
+            var ship = new TestShip(Alignment.Player);
             //Assert.AreEqual
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
