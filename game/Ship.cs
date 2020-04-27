@@ -109,16 +109,20 @@ namespace game
 
         private void GenerateSpecialRooms(Dictionary<RoomType, EnergyStat> EnergyConsumption)
         {
-            SpecialRooms = new List<SpecialRoom>
-            {
-                new SpecialRoom(Rooms[0], RoomType.Radar, EnergyConsumption[RoomType.Radar]),
-                new SpecialRoom(Rooms[3], RoomType.Control, EnergyConsumption[RoomType.Control]),
-                new SpecialRoom(Rooms[5], RoomType.Engine, EnergyConsumption[RoomType.Engine]),
-                new SpecialRoom(Rooms[7], RoomType.Generator, EnergyConsumption[RoomType.Generator]),
-                new SpecialRoom(Rooms[8], RoomType.Living, EnergyConsumption[RoomType.Living]),
-                new SpecialRoom(Rooms[10], RoomType.Weapon, EnergyConsumption[RoomType.Weapon])
-            };
-        }
+			SpecialRooms = new List<SpecialRoom>();
+			SpecialRooms.Add(new SpecialRoom(Rooms[0], RoomType.Radar, EnergyConsumption[RoomType.Radar]));
+			Rooms[0] = SpecialRooms[0];
+			SpecialRooms.Add(new SpecialRoom(Rooms[3], RoomType.Control, EnergyConsumption[RoomType.Control]));
+			Rooms[3] = SpecialRooms[1];
+			SpecialRooms.Add(new SpecialRoom(Rooms[5], RoomType.Engine, EnergyConsumption[RoomType.Engine]));
+			Rooms[5] = SpecialRooms[2];
+			SpecialRooms.Add(new SpecialRoom(Rooms[7], RoomType.Generator, EnergyConsumption[RoomType.Generator]));
+			Rooms[7] = SpecialRooms[3];
+			SpecialRooms.Add(new SpecialRoom(Rooms[8], RoomType.Living, EnergyConsumption[RoomType.Living]));
+			Rooms[8] = SpecialRooms[4];
+			SpecialRooms.Add(new SpecialRoom(Rooms[10], RoomType.Weapon, EnergyConsumption[RoomType.Weapon]));
+			Rooms[10] = SpecialRooms[5];
+		}
     }
 
 
