@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace game.handlers
+namespace game
 {
 	static class InterfaceCommands
 	{
@@ -47,6 +47,14 @@ namespace game.handlers
 			if (ship1.alignment == Alignment.Player && ship2.alignment == Alignment.Enemy)
 			{
 				weapon.Target = target;
+			}
+		}
+
+		public static void UpgradeRoom(SpecialRoom room, GameModel gameModel)
+		{
+			if (room.Stat.CurrentEnergyLimit < room.Stat.MaxEnergyLimit)
+			{
+				var price = 0;
 			}
 		}
 	}

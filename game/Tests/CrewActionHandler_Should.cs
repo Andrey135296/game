@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using game.handlers;
 using NUnit.Framework;
 
-namespace game.Tests
+namespace game
 {
 	[TestFixture]
 	public class CrewActionHandler_Should
