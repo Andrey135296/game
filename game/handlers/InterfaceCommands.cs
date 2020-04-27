@@ -41,5 +41,13 @@ namespace game.handlers
 					weapon.IsOnline = true;
 			}
 		}
+
+		public static void TargetWeapon(Weapon weapon, Room target, Ship ship1, Ship ship2)
+		{
+			if (ship1.alignment == Alignment.Player && ship2.alignment == Alignment.Enemy)
+			{
+				weapon.Target = target;
+			}
+		}
 	}
 }
