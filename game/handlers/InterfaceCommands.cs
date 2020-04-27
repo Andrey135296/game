@@ -18,9 +18,28 @@ namespace game.handlers
 				}
 		}
 
-		public static void TrySetRoomEnergyAllocation(Room room, int energy, Ship ship)
+		public static void TrySetRoomEnergyConsumption(SpecialRoom room, int energy, Ship ship)
 		{
-			throw new NotImplementedException();
+			if (room.Stat.CurrentEnergyLimit>=energy && energy>=0 
+				&& ship.alignment == Alignment.Player 
+				&& ship.Stats.CurrentEnergy>=energy-room.Stat.CurrentEnergy)
+			{
+				room.Stat.CurrentEnergy = energy;
+				SpecialRoomBonusCalculator.Recalculate(ship);
+			}
+		}
+
+		public static void TryChangeWeaponState(Weapon weapon, Ship ship)
+		{
+			if (weapon.IsOnline)
+				weapon.IsOnline = false;
+			else
+			{
+				var weaponRoom = ship.SpecialRooms.Where(r => r.Type == RoomType.Weapon).First();
+				var spaceUsed = ship.Weapons.Sum(w => w.IsOnline ? w.EnergyPrice : 0);
+				if (weapon.EnergyPrice <= weaponRoom.Stat.CurrentEnergyLimit)
+					weapon.IsOnline = true;
+			}
 		}
 	}
 }
