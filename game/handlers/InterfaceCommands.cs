@@ -72,14 +72,14 @@ namespace game
 			}
 		}
 
-		public static void MoveOnMap(GameModel gameModel, Node node)
+		public static void MoveOnMap(GameModel gameModel, Node destination)
 		{
-			if (gameModel.map.CurrentNode.neighbors.Contains(node))
+			if (gameModel.map.CurrentNode.neighbors.Contains(destination))
 			{
-				gameModel.map.CurrentNode = node;
-				if (node.Type == NodeType.fight)
+				gameModel.map.CurrentNode = destination;
+				if (destination.Type == NodeType.fight)
 				{
-					gameModel.ship2 = new Titan(node.alignment);
+					gameModel.ship2 = new Titan(destination.alignment);
 				}
 			}
 
