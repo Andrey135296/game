@@ -7,9 +7,9 @@ using NUnit.Framework;
 
 namespace game
 {
-	[TestFixture]
-	public class CrewActionHandler_Should
-	{
+    [TestFixture]
+    public class CrewActionHandler_Should
+    {
         [Test]
         public void TestStartWorkingAndNotWorking()
         {
@@ -383,6 +383,22 @@ namespace game
 
             InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.ship1.SpecialRooms[0], 3, gameModel.ship1);
             Assert.AreEqual(3, gameModel.ship1.SpecialRooms[0].Stat.CurrentEnergyLimit);
+        }
+    }
+
+    [TestFixture]
+    public class InterfaceCommands_WeaponsCommand_Shold
+    {
+        [Test]
+        public void TestCorrectConnectWeapon()
+        {
+            var ship = new TestShip(Alignment.Player);
+
+            Assert.IsTrue(ship.Weapons.All(c => c.IsOnline == false));
+
+            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+            Assert.AreEqual(true, ship.Weapons[0].IsOnline);
+            //Assert.AreEqual(true, ship.Weapons[0].IsOnline);
         }
     }
 }
