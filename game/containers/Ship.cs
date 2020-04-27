@@ -73,10 +73,10 @@ namespace game
         {
             Crew = new List<CrewMember>
             {
-                new CrewMember(Cells[1]),
-                new CrewMember(Cells[7]),
-                new CrewMember(Cells[10]),
-                new CrewMember(Cells[23])
+                new CrewMember(Cells[1], alignment),
+                new CrewMember(Cells[7], alignment),
+                new CrewMember(Cells[10], alignment),
+                new CrewMember(Cells[23], alignment)
             };
         }
 
@@ -130,8 +130,9 @@ namespace game
 
     class TestShip : Ship
     {
-        public TestShip()
+        public TestShip(Alignment alignment)
         {
+			this.alignment = alignment;
             Stats = new ShipStat(200);
             GenerateCells();
             GenerateCrew();
@@ -182,10 +183,10 @@ namespace game
         {
             Crew = new List<CrewMember>
             {
-                new CrewMember(Cells[0]),
-                new CrewMember(Cells[1]),
-                new CrewMember(Cells[3]),
-                new CrewMember(Cells[4])
+                new CrewMember(Cells[0], alignment),
+                new CrewMember(Cells[1], alignment),
+                new CrewMember(Cells[3], alignment),
+                new CrewMember(Cells[4], alignment)
             };
         }
 
