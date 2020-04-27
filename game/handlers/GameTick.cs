@@ -10,6 +10,8 @@ namespace game
 	{
 		public static void Tick(GameModel gameModel)
 		{
+			if (gameModel.ship1.alignment != Alignment.Player)
+				throw new Exception("You are a looooooser!!!!!!");
 			CrewActionsHandler.TickCrew(gameModel.ship1);
 			CrewActionsHandler.TickCrew(gameModel.ship2);
 			if (gameModel.ship2!=null && gameModel.ship2.alignment == Alignment.Enemy)
