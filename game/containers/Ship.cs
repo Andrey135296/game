@@ -170,6 +170,8 @@ namespace game
                     new Cell(3, 3),
                     new Cell(3, 2),
                     new Cell(3, 1),
+                    new Cell(5, 0),
+                    new Cell(6, 0)
                 };
 
             foreach (var cell in Cells)
@@ -212,6 +214,7 @@ namespace game
             Rooms.Add(new Room(new List<Cell> { Cells[5], Cells[6] }));
             Rooms.Add(new Room(new List<Cell> { Cells[7], Cells[8] }));
             Rooms.Add(new Room(new List<Cell> { Cells[9], Cells[10], Cells[11] }));
+            Rooms.Add(new Room(new List<Cell> { Cells[12], Cells[13] }));
         }
 
         private Dictionary<RoomType, RoomStat> GenerateSpecialRoomsStat()
@@ -239,6 +242,8 @@ namespace game
             Rooms[3] = SpecialRooms[3];
             SpecialRooms.Add(new SpecialRoom(Rooms[4], RoomType.Engine, RoomsStat[RoomType.Engine]));
             Rooms[4] = SpecialRooms[4];
+            SpecialRooms.Add(new SpecialRoom(Rooms[5], RoomType.Weapon, RoomsStat[RoomType.Weapon]));
+            Rooms[5] = SpecialRooms[5];
         }
     }
 }
