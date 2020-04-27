@@ -30,6 +30,8 @@ namespace game
 			{
 				attackedShip.Stats.HP -= weapon.damage;
 				weapon.TimeLeftToCoolDown += weapon.CoolDownTime;
+				if (attackedShip.Stats.HP <= 0)
+					attackedShip.alignment = Alignment.Wrekage;
 				if (attackedShip.SpecialRooms.Contains(weapon.Target))
 				{
 					var sr = (SpecialRoom)weapon.Target;
