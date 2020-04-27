@@ -14,12 +14,14 @@ namespace game
         public List<Cell> Cells;
         public ShipStat Stats;
         public List<Weapon> Weapons;
+		public Alignment alignment;
     }
 
     class Titan : Ship
     {
-        public Titan()
+        public Titan(Alignment alignment)
         {
+			this.alignment = alignment;
             Stats = new ShipStat(2000);
             GenerateCells();
             GenerateCrew();
