@@ -52,7 +52,7 @@ namespace game
 
 
         [Test]
-        public void TestCrewActionsAfterMovingToFullRoom()
+        public void TestCrewActionsAfterMovingToFullWorkingRoom()
         {
             var ship = new TestShip(Alignment.Player);
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
@@ -67,7 +67,7 @@ namespace game
         }
 
         [Test]
-        public void TestCrewActionsAfterMovingToEmptyRoom()
+        public void TestCrewActionsAfterMovingToNotFullWorkingRoom()
         {
             var ship = new TestShip(Alignment.Player);
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
@@ -93,6 +93,7 @@ namespace game
             Assert.AreEqual(0, ship.SpecialRooms[1].Stat.EmptyWorkingSpaces);
         }
 
+        [Test]
         public void TestRoomStatesAfterMovingFromWorkingRoom()
         {
             var ship = new TestShip(Alignment.Player);
@@ -157,6 +158,7 @@ namespace game
             Assert.AreEqual(ship.Cells[2], ship.Crew[4].Cell);
         }
 
+        [Test]
         public void TestTwoMovingCrewMembers()
         {
             var ship = new TestShip(Alignment.Player);
