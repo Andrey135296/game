@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace game
 {
-	class CrewActionsHandler
+	static class CrewActionsHandler
 	{
 		public static void TickCrew(Ship ship)
 		{

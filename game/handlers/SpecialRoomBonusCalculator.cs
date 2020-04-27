@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace game
 {
-	class SpecialRoomBonusCalculator
+	static class SpecialRoomBonusCalculator
 	{
 		public static void Recalculate(Ship ship)
 		{
