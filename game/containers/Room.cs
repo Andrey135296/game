@@ -18,7 +18,7 @@ namespace game
         public Room(List<Cell> cells)
         {
             Cells = cells;
-            CrewMembers = cells.Select(c => c.stationed).Where(c => c != null).ToList();
+            CrewMembers = cells.Select(cell => cell.stationed).Where(crew => crew != null).ToList();
             MaxDurability = 100;
             CurrentDurability = MaxDurability;
             IsIntact = true;
@@ -43,68 +43,4 @@ namespace game
             Stat = roomStat;
 		}
     }
-
-    //class EmptyRoom : Room
-    //{
-    //    public EmptyRoom(List<Cell> cells)
-    //    {
-    //        Type = RoomType.Empty;
-    //        Cells = cells;
-    //        CrewMembers = cells.Select(c => c.stationed).Where(c => c != null).ToList();
-    //        Durability = 100;
-    //        CurrentDurability = Durability;
-    //        IsIntact = true;
-    //    }
-    //}
-
-    //class GeneratorRoom : SpecialRoom
-    //{
-    //    public GeneratorRoom(EmptyRoom emptyRoom, EnergyStat roomEnergyStat) : base(emptyRoom, roomEnergyStat)
-    //    {
-    //        Type = RoomType.Generator;
-    //    }
-
-    //}
-
-    //class RadarRoom : SpecialRoom
-    //{
-    //    public RadarRoom(EmptyRoom emptyRoom, EnergyStat roomEnergyStat) : base(emptyRoom, roomEnergyStat)
-    //    {
-    //        Type = RoomType.Radar;
-    //    }
-    //}
-
-    //class WeaponRoom : SpecialRoom
-    //{
-    //    public WeaponRoom(EmptyRoom emptyRoom, EnergyStat roomEnergyStat) : base(emptyRoom, roomEnergyStat)
-    //    {
-    //        Type = RoomType.Weapon;
-    //    }
-    //}
-
-    //class ControlRoom : SpecialRoom
-    //{
-
-    //    public ControlRoom(EmptyRoom emptyRoom, EnergyStat roomEnergyStat) : base(emptyRoom, roomEnergyStat)
-    //    {
-    //        Type = RoomType.Control;
-    //    }
-
-    //}
-
-    //class LivingRoom : SpecialRoom
-    //{
-    //    public LivingRoom(EmptyRoom emptyRoom, EnergyStat roomEnergyStat) : base(emptyRoom, roomEnergyStat)
-    //    {
-    //        Type = RoomType.Living;
-    //    }
-    //}
-
-    //class EngineRoom : SpecialRoom
-    //{
-    //    public EngineRoom(EmptyRoom emptyRoom, EnergyStat roomEnergyStat) : base(emptyRoom, roomEnergyStat)
-    //    {
-    //        Type = RoomType.Engine;
-    //    }
-    //}
 }
