@@ -47,9 +47,9 @@ namespace game
 			}
 		}
 
-		public static void TargetWeapon(Weapon weapon, Room target, Ship ship1, Ship ship2)
+		public static void TargetWeapon(Weapon weapon, Room target, Ship attacker, Ship attacked)
 		{
-			if (ship1.alignment == Alignment.Player && ship2.alignment == Alignment.Enemy)
+			if (attacker.alignment == Alignment.Player && attacked.alignment == Alignment.Enemy)
 			{
 				weapon.Target = target;
 			}
