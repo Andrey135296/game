@@ -18,10 +18,11 @@ namespace game
         public CrewAction Action;
         public bool IsAlive;
 		public int RepairSpeed;
+		public Alignment alignment;
         private static readonly List<string> names = new List<string> { "Kolya", "Petya" };
 
 
-		public CrewMember(Cell cell)
+		public CrewMember(Cell cell, Alignment alignment)
 		{
             Speed = 1;
             Cell = cell;
@@ -33,6 +34,7 @@ namespace game
             IsAlive = true;
 			RepairSpeed = 1;
             cell.stationed = this;
+			this.alignment = alignment;
         }
 
         private string GetName()
