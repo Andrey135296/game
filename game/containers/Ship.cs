@@ -150,7 +150,8 @@ namespace game
                 {
                     new LaserM0(),
                     new LaserM1(),
-                    new LaserM2()
+                    new LaserM2(),
+                    new LaserM0(),
                 };
         }
 
@@ -225,7 +226,7 @@ namespace game
             RoomsStat[RoomType.Engine] = new RoomStat(4, 2, 0, 2);
             RoomsStat[RoomType.Generator] = new RoomStat(15, 5, 5, 0);
             RoomsStat[RoomType.Living] = new RoomStat(4, 2, 0, 0);
-            RoomsStat[RoomType.Weapon] = new RoomStat(5, 1, 0, 2);
+            RoomsStat[RoomType.Weapon] = new RoomStat(5, 2, 0, 2);
             return RoomsStat;
         }
 
