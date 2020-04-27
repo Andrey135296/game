@@ -41,23 +41,23 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Alignment.cs" />
-    <Compile Include="Cell.cs" />
-    <Compile Include="CrewAction.cs" />
-    <Compile Include="CrewActionsHandler.cs" />
-    <Compile Include="CrewMember.cs" />
-    <Compile Include="GameModel.cs" />
-    <Compile Include="Map.cs" />
-    <Compile Include="Node.cs" />
-    <Compile Include="NodeType.cs" />
-    <Compile Include="Room.cs" />
-    <Compile Include="RoomType.cs" />
-    <Compile Include="Ship.cs" />
-    <Compile Include="EnergyStat.cs" />
-    <Compile Include="ShipStat.cs" />
-    <Compile Include="SpecialRoomBonusCalculator.cs" />
+    <Compile Include="containers\Alignment.cs" />
+    <Compile Include="containers\Cell.cs" />
+    <Compile Include="containers\CrewAction.cs" />
+    <Compile Include="handlers\CrewActionsHandler.cs" />
+    <Compile Include="containers\CrewMember.cs" />
+    <Compile Include="containers\GameModel.cs" />
+    <Compile Include="containers\Map.cs" />
+    <Compile Include="containers\Node.cs" />
+    <Compile Include="containers\NodeType.cs" />
+    <Compile Include="containers\Room.cs" />
+    <Compile Include="containers\RoomType.cs" />
+    <Compile Include="containers\Ship.cs" />
+    <Compile Include="containers\EnergyStat.cs" />
+    <Compile Include="containers\ShipStat.cs" />
+    <Compile Include="handlers\SpecialRoomBonusCalculator.cs" />
     <Compile Include="Tests\CrewActionHandler_Should.cs" />
-    <Compile Include="Weapon.cs" />
+    <Compile Include="containers\Weapon.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
