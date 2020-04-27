@@ -15,7 +15,7 @@ namespace game
 				{
 					if (crewMember.Action == CrewAction.Working)
 					{
-						var room = ship.SpecialRooms.Where(r => r.Cells.Contains(crewMember.Cell)).First();
+						var room = ship.SpecialRooms.First(r => r.Cells.Contains(crewMember.Cell));
 						room.Stat.EmptyWorkingSpaces++;
 					}
 					crewMember.Destination = cell;
@@ -42,7 +42,7 @@ namespace game
 			{
 				var weaponRoom = ship.SpecialRooms.Where(r => r.Type == RoomType.Weapon).First();
 				var spaceUsed = ship.Weapons.Sum(w => w.IsOnline ? w.EnergyPrice : 0);
-				if (weapon.EnergyPrice <= weaponRoom.Stat.CurrentEnergyLimit)
+				if (weapon.EnergyPrice <= weaponRoom.Stat.CurrentEnergyLimit - spaceUsed)
 					weapon.IsOnline = true;
 			}
 		}

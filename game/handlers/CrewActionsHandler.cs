@@ -15,7 +15,7 @@ namespace game
 			ship.Crew = ship.Crew.Where(c => c.IsAlive).ToList();
 			foreach (var crewMember in ship.Crew)
 			{
-				var specialRoom = ship.SpecialRooms.Where(r => r.CrewMembers.Contains(crewMember)).FirstOrDefault();
+				var specialRoom = ship.SpecialRooms.FirstOrDefault(r => r.CrewMembers.Contains(crewMember));
 				if (specialRoom != null && specialRoom.Type == RoomType.Living)
 						crewMember.CurrentHP = Math.Min(crewMember.CurrentHP + ship.Stats.Heal, crewMember.MaxHP);
 				switch (crewMember.Action)
@@ -46,7 +46,7 @@ namespace game
 
 		private static void CrewMemberStep(Ship ship, CrewMember crewMember)
 		{
-			var room = ship.Rooms.Where(r => r.CrewMembers.Contains(crewMember)).FirstOrDefault();
+			var room = ship.Rooms.FirstOrDefault(r => r.CrewMembers.Contains(crewMember));
 			if (crewMember.Cell == crewMember.Destination)
 			{
 				crewMember.Action = CrewAction.Idle;
@@ -58,7 +58,7 @@ namespace game
 			if (!room.Cells.Contains(crewMember.Cell))
 			{
 				room.CrewMembers.Remove(crewMember);
-				ship.Rooms.Where(r => r.Cells.Contains(crewMember.Cell)).FirstOrDefault().CrewMembers.Add(crewMember);
+				ship.Rooms.FirstOrDefault(r => r.Cells.Contains(crewMember.Cell)).CrewMembers.Add(crewMember);
 			}
 		}
 
@@ -67,28 +67,28 @@ namespace game
 			var end = crewMember.Destination;
 			var queue = new Queue<Cell>();
 			queue.Enqueue(crewMember.Cell);
-			var dictionary = new Dictionary<Cell, int>();
-			dictionary[crewMember.Cell] = 0;
+			var distanceFromStart = new Dictionary<Cell, int>();
+			distanceFromStart[crewMember.Cell] = 0;
 			while (queue.Count > 0)
 			{
 				var node = queue.Dequeue();
-				foreach (var n in node.neighbors)
+				foreach (var neighbor in node.neighbors)
 				{
-					if (dictionary.ContainsKey(n))
+					if (distanceFromStart.ContainsKey(neighbor))
 						continue;
-					dictionary[n] = dictionary[node] + 1;
-					queue.Enqueue(n);
+					distanceFromStart[neighbor] = distanceFromStart[node] + 1;
+					queue.Enqueue(neighbor);
 				}
 			}
-			if (!dictionary.ContainsKey(end))
-				throw new Exception("wtf");
-			var curNode = end;
+			if (!distanceFromStart.ContainsKey(end))
+				throw new Exception("cell unreachable");
+			var currentNode = end;
 			var path = new List<Cell>();
-			while (curNode != crewMember.Cell)
+			while (currentNode != crewMember.Cell)
 			{
-				path.Add(curNode);
-				var min = curNode.neighbors.Min(n => dictionary[n]);
-				curNode = curNode.neighbors.Where(n => dictionary[n] == min).First();
+				path.Add(currentNode);
+				var min = currentNode.neighbors.Min(n => distanceFromStart[n]);
+				currentNode = currentNode.neighbors.First(n => distanceFromStart[n] == min);
 			}
 			return path;
 		}
