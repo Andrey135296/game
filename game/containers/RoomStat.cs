@@ -6,17 +6,21 @@ using System.Threading.Tasks;
 
 namespace game
 {
-    class EnergyStat
+    class RoomStat
     {
         public int MaxEnergyLimit;
         public int CurrentEnergyLimit;
         public int CurrentEnergy;
+        public int MaxWorkingSpaces;
+        public int EmptyWorkingSpaces;
 
-        public EnergyStat(int energyLimit, int currentEnergyLimit, int currentEnergy)
+        public RoomStat(int energyLimit, int currentEnergyLimit, int currentEnergy, int maxWorkingSpaces)
         {
             MaxEnergyLimit = energyLimit;
             CurrentEnergy = currentEnergy;
             CurrentEnergyLimit = currentEnergyLimit;
+            MaxWorkingSpaces = maxWorkingSpaces;
+            EmptyWorkingSpaces = maxWorkingSpaces;
         }
     }
 }

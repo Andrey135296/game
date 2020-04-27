@@ -53,7 +53,7 @@
     <Compile Include="containers\Room.cs" />
     <Compile Include="containers\RoomType.cs" />
     <Compile Include="containers\Ship.cs" />
-    <Compile Include="containers\EnergyStat.cs" />
+    <Compile Include="containers\RoomStat.cs" />
     <Compile Include="containers\ShipStat.cs" />
     <Compile Include="handlers\InterfaceCommands.cs" />
     <Compile Include="handlers\SpecialRoomBonusCalculator.cs" />

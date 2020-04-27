@@ -21,29 +21,29 @@ namespace game
 				switch (room.Type)
 				{
 					case RoomType.Radar:
-						radar += room.RoomEnergyStat.CurrentEnergy + room.WorkingSpaces - room.EmptyWorkingSpaces;
+						radar += room.Stat.CurrentEnergy + room.WorkingSpaces - room.EmptyWorkingSpaces;
 						evasion += radar * 2;
-						energy -= room.RoomEnergyStat.CurrentEnergy;
+						energy -= room.Stat.CurrentEnergy;
 						break;
 					case RoomType.Control:
-						evasion += 5 * (room.RoomEnergyStat.CurrentEnergy + room.WorkingSpaces - room.EmptyWorkingSpaces);
-						energy -= room.RoomEnergyStat.CurrentEnergy;
+						evasion += 5 * (room.Stat.CurrentEnergy + room.WorkingSpaces - room.EmptyWorkingSpaces);
+						energy -= room.Stat.CurrentEnergy;
 						break;
 					case RoomType.Engine:
-						evasion += 5 * (room.RoomEnergyStat.CurrentEnergy + room.WorkingSpaces - room.EmptyWorkingSpaces);
-						energy -= room.RoomEnergyStat.CurrentEnergy;
+						evasion += 5 * (room.Stat.CurrentEnergy + room.WorkingSpaces - room.EmptyWorkingSpaces);
+						energy -= room.Stat.CurrentEnergy;
 						break;
 					case RoomType.Living:
-						heal += room.RoomEnergyStat.CurrentEnergy;
-						energy -= room.RoomEnergyStat.CurrentEnergy;
+						heal += room.Stat.CurrentEnergy;
+						energy -= room.Stat.CurrentEnergy;
 						break;
 					case RoomType.Generator:
-						maxEnergy = room.RoomEnergyStat.CurrentEnergyLimit;
+						maxEnergy = room.Stat.CurrentEnergyLimit;
 						energy += maxEnergy;
 						break;
 					case RoomType.Weapon:
-						damegeMult += 0.1 * (room.RoomEnergyStat.CurrentEnergy + room.WorkingSpaces - room.EmptyWorkingSpaces);
-						energy -= room.RoomEnergyStat.CurrentEnergy;
+						damegeMult += 0.1 * (room.Stat.CurrentEnergy + room.WorkingSpaces - room.EmptyWorkingSpaces);
+						energy -= room.Stat.CurrentEnergy;
 						break;
 				}
 			}
