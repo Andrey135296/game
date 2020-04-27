@@ -99,14 +99,16 @@ namespace game
 
         private Dictionary<RoomType, RoomStat> GenerateSpecialRoomsStat()
         {
-			var RoomsStat = new Dictionary<RoomType, RoomStat>();
-            RoomsStat[RoomType.Radar] = new RoomStat(5, 1, 0, 0);
-            RoomsStat[RoomType.Control] = new RoomStat(4, 2, 0, 2);
-            RoomsStat[RoomType.Engine] = new RoomStat(4, 2, 0, 2);
-            RoomsStat[RoomType.Generator] = new RoomStat(15, 5, 5, 0);
-            RoomsStat[RoomType.Living] = new RoomStat(4, 2, 0, 0);
-            RoomsStat[RoomType.Weapon] = new RoomStat(5, 1, 0, 2);
-			return RoomsStat;
+            var RoomsStat = new Dictionary<RoomType, RoomStat>
+            {
+                [RoomType.Radar] = new RoomStat(5, 1, 0, 0),
+                [RoomType.Control] = new RoomStat(4, 2, 0, 2),
+                [RoomType.Engine] = new RoomStat(4, 2, 0, 2),
+                [RoomType.Generator] = new RoomStat(15, 5, 5, 0),
+                [RoomType.Living] = new RoomStat(4, 2, 0, 0),
+                [RoomType.Weapon] = new RoomStat(5, 1, 0, 2)
+            };
+            return RoomsStat;
         }
 
         private void GenerateSpecialRooms(Dictionary<RoomType, RoomStat> RoomsStat)
@@ -159,8 +161,16 @@ namespace game
                     new Cell(1, 0),
                     new Cell(2, 0),
                     new Cell(3, 0),
-                    new Cell(4, 0)
+                    new Cell(4, 0),
+                    new Cell(1, 1),
+                    new Cell(1, 2),
+                    new Cell(1, 3),
+                    new Cell(2, 3),
+                    new Cell(3, 3),
+                    new Cell(3, 2),
+                    new Cell(3, 1),
                 };
+
             foreach (var cell in Cells)
             {
                 foreach (var otherCell in Cells)
@@ -186,7 +196,8 @@ namespace game
                 new CrewMember(Cells[0], alignment),
                 new CrewMember(Cells[1], alignment),
                 new CrewMember(Cells[3], alignment),
-                new CrewMember(Cells[4], alignment)
+                new CrewMember(Cells[4], alignment),
+                new CrewMember(Cells[9], alignment)
             };
         }
 
@@ -197,6 +208,9 @@ namespace game
             Rooms = new List<Room>();
             Rooms.Add(new Room(new List<Cell> { Cells[0], Cells[1], Cells[2] }));
             Rooms.Add(new Room(new List<Cell> { Cells[3], Cells[4] }));
+            Rooms.Add(new Room(new List<Cell> { Cells[5], Cells[6] }));
+            Rooms.Add(new Room(new List<Cell> { Cells[7], Cells[8] }));
+            Rooms.Add(new Room(new List<Cell> { Cells[9], Cells[10], Cells[11] }));
         }
 
         private Dictionary<RoomType, RoomStat> GenerateSpecialRoomsStat()
@@ -214,10 +228,14 @@ namespace game
         private void GenerateSpecialRooms(Dictionary<RoomType, RoomStat> RoomsStat)
 		{
 			SpecialRooms = new List<SpecialRoom>();
-			SpecialRooms.Add(new SpecialRoom(Rooms[0], RoomType.Radar, RoomsStat[RoomType.Radar]));
+			SpecialRooms.Add(new SpecialRoom(Rooms[0], RoomType.Control, RoomsStat[RoomType.Control]));
 			Rooms[0] = SpecialRooms[0];
-			SpecialRooms.Add(new SpecialRoom(Rooms[1], RoomType.Control, RoomsStat[RoomType.Control]));
+			SpecialRooms.Add(new SpecialRoom(Rooms[1], RoomType.Radar, RoomsStat[RoomType.Radar]));
 			Rooms[1] = SpecialRooms[1];
-		}
+            SpecialRooms.Add(new SpecialRoom(Rooms[2], RoomType.Living, RoomsStat[RoomType.Living]));
+            Rooms[2] = SpecialRooms[2];
+            SpecialRooms.Add(new SpecialRoom(Rooms[4], RoomType.Engine, RoomsStat[RoomType.Engine]));
+            Rooms[4] = SpecialRooms[4];
+        }
     }
 }
