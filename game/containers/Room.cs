@@ -14,6 +14,7 @@ namespace game
         public int MaxDurability;
         public bool IsIntact;
         public RoomType Type;
+
         public Room(List<Cell> cells)
         {
             Cells = cells;
@@ -27,23 +28,19 @@ namespace game
     class SpecialRoom : Room
     {
         //public bool IsOnline;
-        public EnergyStat RoomEnergyStat;
-        public int EmptyWorkingSpaces;
-        public int WorkingSpaces = 2;
+        public RoomStat Stat;
         //public List<CrewMember> WorkingCrewMembers;
 
-        public SpecialRoom(List<Cell> cells, RoomType roomType, EnergyStat roomEnergyStat) : base(cells)
+        public SpecialRoom(List<Cell> cells, RoomType roomType, RoomStat roomStat) : base(cells)
         {
             //IsOnline = false;
             Type = roomType;
-            RoomEnergyStat = roomEnergyStat;
-			EmptyWorkingSpaces = WorkingSpaces;
+            Stat = roomStat;
         }
-        public SpecialRoom(Room room, RoomType roomType, EnergyStat roomEnergyStat) : base(room.Cells)
+        public SpecialRoom(Room room, RoomType roomType, RoomStat roomStat) : base(room.Cells)
         {
             Type = roomType;
-            RoomEnergyStat = roomEnergyStat;
-			EmptyWorkingSpaces = WorkingSpaces;
+            Stat = roomStat;
 		}
     }
 
