@@ -21,10 +21,10 @@ namespace game
 					case CrewAction.Idle:
 						if (specialRoom != null)
 						{
-							if (specialRoom.EmptyWorkingSpaces > 0)
+							if (specialRoom.Stat.EmptyWorkingSpaces > 0)
 							{
 								crewMember.Action = CrewAction.Working;
-								specialRoom.EmptyWorkingSpaces--;
+								specialRoom.Stat.EmptyWorkingSpaces--;
 							}
 						}
 						break;
