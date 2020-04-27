@@ -29,6 +29,7 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
+
             InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[2], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[2], ship.Crew[2].Cell);
@@ -40,11 +41,13 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
+
             InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[2], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[2], ship.Crew[2].Cell);
             Assert.AreEqual(CrewAction.Moving, ship.Crew[2].Action);
             Assert.AreEqual(ship.Cells[2], ship.Crew[2].Destination);
+
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[2], ship.Crew[2].Cell);
             Assert.AreEqual(null, ship.Crew[2].Destination);
@@ -57,11 +60,14 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
+
             InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[2], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(CrewAction.Moving, ship.Crew[2].Action);
+
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(CrewAction.Idle, ship.Crew[2].Action);
+
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(CrewAction.Idle, ship.Crew[2].Action);
         }
@@ -72,11 +78,14 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
+
             InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[11], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(CrewAction.Moving, ship.Crew[2].Action);
+
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(CrewAction.Idle, ship.Crew[2].Action);
+
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(CrewAction.Working, ship.Crew[2].Action);
         }
@@ -87,7 +96,9 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
+
             Assert.AreEqual(0, ship.SpecialRooms[1].Stat.EmptyWorkingSpaces);
+
             InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[11], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(0, ship.SpecialRooms[1].Stat.EmptyWorkingSpaces);
@@ -99,7 +110,9 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
+
             Assert.AreEqual(0, ship.SpecialRooms[0].Stat.EmptyWorkingSpaces);
+
             InterfaceCommands.MoveCrewMember(ship.Crew[1], ship.Cells[11], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(1, ship.SpecialRooms[0].Stat.EmptyWorkingSpaces);
@@ -111,12 +124,14 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
+
             InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[11], ship);
             CrewActionsHandler.TickCrew(ship);
             CrewActionsHandler.TickCrew(ship);
-            Assert.AreEqual(1, ship.SpecialRooms[3].Stat.EmptyWorkingSpaces);
+            Assert.AreEqual(1, ship.SpecialRooms[4].Stat.EmptyWorkingSpaces);
+
             CrewActionsHandler.TickCrew(ship);
-            Assert.AreEqual(0, ship.SpecialRooms[3].Stat.EmptyWorkingSpaces);
+            Assert.AreEqual(0, ship.SpecialRooms[4].Stat.EmptyWorkingSpaces);
         }
 
         [Test]
@@ -125,19 +140,23 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
+
             InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[11], ship);
             CrewActionsHandler.TickCrew(ship);
             CrewActionsHandler.TickCrew(ship);
-            Assert.AreEqual(1, ship.SpecialRooms[3].Stat.EmptyWorkingSpaces);
+            Assert.AreEqual(1, ship.SpecialRooms[4].Stat.EmptyWorkingSpaces);
+
             CrewActionsHandler.TickCrew(ship);
-            Assert.AreEqual(0, ship.SpecialRooms[3].Stat.EmptyWorkingSpaces);
+            Assert.AreEqual(0, ship.SpecialRooms[4].Stat.EmptyWorkingSpaces);
+
             InterfaceCommands.MoveCrewMember(ship.Crew[3], ship.Cells[10], ship);
             CrewActionsHandler.TickCrew(ship);
             CrewActionsHandler.TickCrew(ship);
             CrewActionsHandler.TickCrew(ship);
-            Assert.AreEqual(0, ship.SpecialRooms[3].Stat.EmptyWorkingSpaces);
+            Assert.AreEqual(0, ship.SpecialRooms[4].Stat.EmptyWorkingSpaces);
+
             CrewActionsHandler.TickCrew(ship);
-            Assert.AreEqual(0, ship.SpecialRooms[3].Stat.EmptyWorkingSpaces);
+            Assert.AreEqual(0, ship.SpecialRooms[4].Stat.EmptyWorkingSpaces);
         }
 
         [Test]
@@ -145,15 +164,20 @@ namespace game
         {
             var ship = new TestShip(Alignment.Player);
             CrewActionsHandler.TickCrew(ship);
+
             InterfaceCommands.MoveCrewMember(ship.Crew[4], ship.Cells[2], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[10], ship.Crew[4].Cell);
+
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[11], ship.Crew[4].Cell);
+
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[3], ship.Crew[4].Cell);
+
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[2], ship.Crew[4].Cell);
+
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[2], ship.Crew[4].Cell);
         }
@@ -163,20 +187,25 @@ namespace game
         {
             var ship = new TestShip(Alignment.Player);
             CrewActionsHandler.TickCrew(ship);
+
             InterfaceCommands.MoveCrewMember(ship.Crew[4], ship.Cells[2], ship);
             InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[8], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[10], ship.Crew[4].Cell);
             Assert.AreEqual(ship.Cells[11], ship.Crew[2].Cell);
+
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[11], ship.Crew[4].Cell);
             Assert.AreEqual(ship.Cells[10], ship.Crew[2].Cell);
+
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[3], ship.Crew[4].Cell);
             Assert.AreEqual(ship.Cells[9], ship.Crew[2].Cell);
+
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[2], ship.Crew[4].Cell);
             Assert.AreEqual(ship.Cells[8], ship.Crew[2].Cell);
+
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[2], ship.Crew[4].Cell);
             Assert.AreEqual(ship.Cells[8], ship.Crew[2].Cell);
@@ -188,7 +217,22 @@ namespace game
     public class InterfaceCommands_Shold
     {
         [Test]
-        public void TestStartWorkingAndNotWorking()
+        public void TestSetCorrectEnergy()
+        {
+            var ship = new TestShip(Alignment.Player);
+            var enemyShip = new TestShip(Alignment.Enemy);
+            var gameModel = new GameModel(ship, "Player-empty-100,100");
+            gameModel.ship2 = enemyShip;
+            GameTick.Tick(gameModel);
+            Assert.AreEqual(5, gameModel.ship1.Stats.CurrentEnergy);
+            InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.ship1.SpecialRooms[0], 2, gameModel.ship1);
+            Assert.AreEqual(3, gameModel.ship1.Stats.CurrentEnergy);
+            InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.ship1.SpecialRooms[0], 1, gameModel.ship1);
+            Assert.AreEqual(4, gameModel.ship1.Stats.CurrentEnergy);
+        }
+
+        [Test]
+        public void TestSetMoreEnergyThanRoomLimit()
         {
             var ship = new TestShip(Alignment.Player);
             var enemyShip = new TestShip(Alignment.Enemy);
@@ -197,6 +241,24 @@ namespace game
             GameTick.Tick(gameModel);
             Assert.AreEqual(5, gameModel.ship1.Stats.CurrentEnergy);
             InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.ship1.SpecialRooms[0], 3, gameModel.ship1);
+            Assert.AreEqual(5, gameModel.ship1.Stats.CurrentEnergy);
+        }
+
+        [Test]
+        public void TestSetMoreEnergyThanShipLimit()
+        {
+            var ship = new TestShip(Alignment.Player);
+            var enemyShip = new TestShip(Alignment.Enemy);
+            var gameModel = new GameModel(ship, "Player-empty-100,100");
+            gameModel.ship2 = enemyShip;
+            GameTick.Tick(gameModel);
+            Assert.AreEqual(5, gameModel.ship1.Stats.CurrentEnergy);
+            InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.ship1.SpecialRooms[0], 2, gameModel.ship1);
+            Assert.AreEqual(3, gameModel.ship1.Stats.CurrentEnergy);
+            InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.ship1.SpecialRooms[4], 2, gameModel.ship1);
+            Assert.AreEqual(1, gameModel.ship1.Stats.CurrentEnergy);
+            InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.ship1.SpecialRooms[2], 2, gameModel.ship1);
+            Assert.AreEqual(1, gameModel.ship1.Stats.CurrentEnergy);
         }
     }
 }

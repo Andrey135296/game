@@ -234,8 +234,10 @@ namespace game
 			Rooms[1] = SpecialRooms[1];
             SpecialRooms.Add(new SpecialRoom(Rooms[2], RoomType.Living, RoomsStat[RoomType.Living]));
             Rooms[2] = SpecialRooms[2];
+            SpecialRooms.Add(new SpecialRoom(Rooms[3], RoomType.Generator, RoomsStat[RoomType.Generator]));
+            Rooms[3] = SpecialRooms[3];
             SpecialRooms.Add(new SpecialRoom(Rooms[4], RoomType.Engine, RoomsStat[RoomType.Engine]));
-            Rooms[4] = SpecialRooms[3];
+            Rooms[4] = SpecialRooms[4];
         }
     }
 }
