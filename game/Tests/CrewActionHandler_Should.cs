@@ -52,7 +52,7 @@ namespace game
 
 
         [Test]
-        public void TestCrewActionsAfterMovingToFullRoom()
+        public void TestCrewActionsAfterMovingToFullWorkingRoom()
         {
             var ship = new TestShip(Alignment.Player);
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
@@ -67,7 +67,7 @@ namespace game
         }
 
         [Test]
-        public void TestCrewActionsAfterMovingToEmptyRoom()
+        public void TestCrewActionsAfterMovingToNotFullWorkingRoom()
         {
             var ship = new TestShip(Alignment.Player);
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
@@ -79,6 +79,30 @@ namespace game
             Assert.AreEqual(CrewAction.Idle, ship.Crew[2].Action);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(CrewAction.Working, ship.Crew[2].Action);
+        }
+
+        [Test]
+        public void TestRoomStatesAfterMovingFromNotWorkingRoom()
+        {
+            var ship = new TestShip(Alignment.Player);
+            Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
+            CrewActionsHandler.TickCrew(ship);
+            Assert.AreEqual(0, ship.SpecialRooms[1].Stat.EmptyWorkingSpaces);
+            InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[11], ship);
+            CrewActionsHandler.TickCrew(ship);
+            Assert.AreEqual(0, ship.SpecialRooms[1].Stat.EmptyWorkingSpaces);
+        }
+
+        [Test]
+        public void TestRoomStatesAfterMovingFromWorkingRoom()
+        {
+            var ship = new TestShip(Alignment.Player);
+            Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
+            CrewActionsHandler.TickCrew(ship);
+            Assert.AreEqual(0, ship.SpecialRooms[0].Stat.EmptyWorkingSpaces);
+            InterfaceCommands.MoveCrewMember(ship.Crew[1], ship.Cells[11], ship);
+            CrewActionsHandler.TickCrew(ship);
+            Assert.AreEqual(1, ship.SpecialRooms[0].Stat.EmptyWorkingSpaces);
         }
 
         [Test]
@@ -134,6 +158,7 @@ namespace game
             Assert.AreEqual(ship.Cells[2], ship.Crew[4].Cell);
         }
 
+        [Test]
         public void TestTwoMovingCrewMembers()
         {
             var ship = new TestShip(Alignment.Player);
