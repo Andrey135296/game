@@ -44,6 +44,8 @@
     <Compile Include="containers\Alignment.cs" />
     <Compile Include="containers\Cell.cs" />
     <Compile Include="containers\CrewAction.cs" />
+    <Compile Include="containers\ships\TestShip.cs" />
+    <Compile Include="containers\ships\Titan.cs" />
     <Compile Include="handlers\CrewActionsHandler.cs" />
     <Compile Include="containers\CrewMember.cs" />
     <Compile Include="containers\GameModel.cs" />
