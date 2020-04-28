@@ -16,8 +16,8 @@ namespace game
 			CrewActionsHandler.TickCrew(gameModel.Ship2);
 			if (gameModel.Ship2!=null && gameModel.Ship2.Alignment == Alignment.Enemy)
 			{
-				WeaponsHandler.Tick(gameModel.Ship1, gameModel.Ship2, gameModel.TickLength);
-				WeaponsHandler.Tick(gameModel.Ship2, gameModel.Ship1, gameModel.TickLength);
+				WeaponsHandler.Tick(gameModel.Ship1, gameModel.Ship2, gameModel.TickLength, gameModel.Ship1.Stats.DamageMultiplier);
+				WeaponsHandler.Tick(gameModel.Ship2, gameModel.Ship1, gameModel.TickLength, gameModel.Ship1.Stats.DamageMultiplier);
 			}
 			SpecialRoomBonusCalculator.Recalculate(gameModel.Ship1);
 			SpecialRoomBonusCalculator.Recalculate(gameModel.Ship2);
