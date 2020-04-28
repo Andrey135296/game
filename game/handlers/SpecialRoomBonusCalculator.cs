@@ -8,6 +8,8 @@ namespace game
 {
 	public static class SpecialRoomBonusCalculator
 	{
+		private readonly static Random random = new Random();
+
 		public static void Recalculate(Ship ship)
 		{
 			if (ship == null)
@@ -61,6 +63,18 @@ namespace game
 						energy -= room.Stat.CurrentEnergy;
 						break;
 				}
+			}
+			if (energy < 0)
+			{
+				while (energy < 0)
+				{
+					var vr = ship.SpecialRooms.Where(r => r.Stat.CurrentEnergy > 0 && r.Type != RoomType.Generator).ToList();
+					var room = vr[random.Next(0, vr.Count)];
+					InterfaceCommands.TrySetRoomEnergyConsumption(room, room.Stat.CurrentEnergy - 1, ship);
+					energy++;
+				}
+				Recalculate(ship);
+				return;
 			}
 			ship.Stats.CurrentEnergy = energy;
 			ship.Stats.DamageMultiplier = damegeMult;

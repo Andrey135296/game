@@ -8,14 +8,14 @@ namespace game
 {
 	public class WeaponsHandler
 	{
-		private static Random random = new Random();
+		private readonly static Random random = new Random();
 
-		public static void Tick(Ship attackingShip, Ship attackedShip, int time, double damageMultplier)
+		public static void Tick(Ship attackingShip, Ship attackedShip, int time)
 		{
 			if (attackingShip == null || attackedShip == null)
 				return;
 			Reload(attackingShip.Weapons, time);
-			Fire(attackingShip.Weapons, attackedShip, damageMultplier);
+			Fire(attackingShip.Weapons, attackedShip, attackingShip.Stats.DamageMultiplier);
 		}
 
 		private static void Reload(List<Weapon> weapons, int time)
