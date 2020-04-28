@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -590,17 +591,53 @@ namespace game
     public class InterfaceCommands_MapCommand_Shold
     {
         [Test]
-        public void TestCorrectConnectWeapon()
+        public void TestCorrectMove()
         {
             var ship = new TestShip(Alignment.Player);
-            var map = Map.LoadFromFile(@"maps\mapExample.txt");
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"maps\mapExample.txt");
+            var map = Map.LoadFromFile(path);
 
             var gameModel = new GameModel(ship, map);
 
-            Assert.AreEqual(0, gameModel.map.CurrentNode);
+            Assert.AreEqual(gameModel.map.Nodes[0], gameModel.map.CurrentNode);
 
             InterfaceCommands.MoveOnMap(gameModel, gameModel.map.Nodes[1]);
-            Assert.AreEqual(1, gameModel.map.CurrentNode);
+            Assert.AreEqual(gameModel.map.Nodes[1], gameModel.map.CurrentNode);
+        }
+
+        [Test]
+        public void TestMoveToNotNeighbors()
+        {
+            var ship = new TestShip(Alignment.Player);
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"maps\mapExample.txt");
+            var map = Map.LoadFromFile(path);
+
+            var gameModel = new GameModel(ship, map);
+
+            Assert.AreEqual(gameModel.map.Nodes[0], gameModel.map.CurrentNode);
+
+            InterfaceCommands.MoveOnMap(gameModel, gameModel.map.Nodes[1]);
+            Assert.AreEqual(gameModel.map.Nodes[1], gameModel.map.CurrentNode);
+
+            InterfaceCommands.MoveOnMap(gameModel, gameModel.map.Nodes[2]);
+            Assert.AreEqual(gameModel.map.Nodes[1], gameModel.map.CurrentNode);
+        }
+
+        [Test]
+        public void TestMoveToFight()
+        {
+            var ship = new TestShip(Alignment.Player);
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"maps\mapExample.txt");
+            var map = Map.LoadFromFile(path);
+
+            var gameModel = new GameModel(ship, map);
+
+            Assert.AreEqual(gameModel.map.Nodes[0], gameModel.map.CurrentNode);
+            Assert.AreEqual(Alignment.Enemy, gameModel.map.Nodes[1].alignment);
+
+            InterfaceCommands.MoveOnMap(gameModel, gameModel.map.Nodes[1]);
+            Assert.AreEqual(gameModel.map.Nodes[1], gameModel.map.CurrentNode);
+            Assert.AreEqual(new Titan(Alignment.Enemy), gameModel.ship2);
         }
     }
 }
