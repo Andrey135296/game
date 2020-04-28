@@ -212,5 +212,45 @@ namespace game
             Assert.AreEqual(ship.Cells[8], ship.Crew[2].Cell);
         }
 
+        [Test]
+        public void TestTwoMovingCrewMembersToOneCell()
+        {
+            var ship = new TestShip(Alignment.Player);
+            CrewActionsHandler.TickCrew(ship);
+
+            InterfaceCommands.MoveCrewMember(ship.Crew[4], ship.Cells[2], ship);
+            InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[2], ship);
+            CrewActionsHandler.TickCrew(ship);
+            Assert.AreEqual(ship.Cells[10], ship.Crew[4].Cell);
+            Assert.AreEqual(ship.Cells[3], ship.Crew[2].Cell);
+
+            CrewActionsHandler.TickCrew(ship);
+            Assert.AreEqual(ship.Cells[11], ship.Crew[4].Cell);
+            Assert.AreEqual(ship.Cells[3], ship.Crew[2].Cell);
+
+            CrewActionsHandler.TickCrew(ship);
+            Assert.AreEqual(ship.Cells[3], ship.Crew[4].Cell);
+            Assert.AreEqual(ship.Cells[3], ship.Crew[2].Cell);
+
+            CrewActionsHandler.TickCrew(ship);
+            Assert.AreEqual(ship.Cells[2], ship.Crew[4].Cell);
+            Assert.AreEqual(ship.Cells[3], ship.Crew[2].Cell);
+
+            CrewActionsHandler.TickCrew(ship);
+            Assert.AreEqual(ship.Cells[2], ship.Crew[4].Cell);
+            Assert.AreEqual(ship.Cells[3], ship.Crew[2].Cell);
+        }
+
+        [Test]
+        public void TestMoveTwoToSmbCell()
+        {
+            var ship = new TestShip(Alignment.Player);
+            CrewActionsHandler.TickCrew(ship);
+
+            InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[0], ship);
+            CrewActionsHandler.TickCrew(ship);
+            Assert.AreEqual(ship.Cells[3], ship.Crew[2].Cell);
+        }
+
     }
 }
