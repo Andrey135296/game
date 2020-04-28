@@ -21,7 +21,7 @@ namespace game
 			Assert.AreEqual(s.Stats.Heal, 0);
 			Assert.AreEqual(s.Stats.Radar, 0);
 			InterfaceCommands.TrySetRoomEnergyConsumption(s.SpecialRooms[0], 1, s);
-			Assert.AreEqual
+			Assert.AreEqual(s.Stats.Radar, 0);
 		}
 	}
 }
