@@ -96,14 +96,14 @@ namespace game
 
 		private Dictionary<RoomType, RoomStat> GenerateSpecialRoomsStat()
 		{
-			var RoomsStat = new Dictionary<RoomType, RoomStat>();
-			RoomsStat[RoomType.Radar] = new RoomStat(5, 1, 0, 0);
-			RoomsStat[RoomType.Control] = new RoomStat(4, 2, 0, 2);
-			RoomsStat[RoomType.Engine] = new RoomStat(4, 2, 0, 2);
-			RoomsStat[RoomType.Generator] = new RoomStat(15, 5, 5, 0);
-			RoomsStat[RoomType.Living] = new RoomStat(4, 2, 0, 0);
-			RoomsStat[RoomType.Weapon] = new RoomStat(5, 2, 0, 2);
-			return RoomsStat;
+			var roomsStat = new Dictionary<RoomType, RoomStat>();
+			roomsStat[RoomType.Radar] = new RoomStat(5, 1, 0, 0);
+			roomsStat[RoomType.Control] = new RoomStat(4, 2, 0, 2);
+			roomsStat[RoomType.Engine] = new RoomStat(4, 2, 0, 2);
+			roomsStat[RoomType.Generator] = new RoomStat(15, 5, 5, 0);
+			roomsStat[RoomType.Living] = new RoomStat(4, 2, 0, 0);
+			roomsStat[RoomType.Weapon] = new RoomStat(5, 2, 0, 2);
+			return roomsStat;
 		}
 
 		private void GenerateSpecialRooms(Dictionary<RoomType, RoomStat> RoomsStat)

@@ -37,10 +37,5 @@ namespace game
             cell.Stationed = this;
 			this.Alignment = alignment;
         }
-
-        //private string GetName()
-        //{
-        //    return names[random.Next(0, names.Count)];
-        //}
 	}
 }
