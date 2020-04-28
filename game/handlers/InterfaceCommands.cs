@@ -27,7 +27,8 @@ namespace game
 		{
 			if (room.Stat.CurrentEnergyLimit>=energy && energy>=0 
 				&& ship.Alignment == Alignment.Player 
-				&& ship.Stats.CurrentEnergy>=energy-room.Stat.CurrentEnergy)
+				&& ship.Stats.CurrentEnergy>=energy-room.Stat.CurrentEnergy
+				&& room.Type != RoomType.Generator)
 			{
 				ship.Stats.CurrentEnergy -= energy - room.Stat.CurrentEnergy;
 				room.Stat.CurrentEnergy = energy;

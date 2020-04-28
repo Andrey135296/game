@@ -138,6 +138,7 @@ namespace game
         {
             var ship = new TestTitan(Alignment.Player);
             ship.SpecialRooms[3].Stat.CurrentEnergyLimit = 4;
+			SpecialRoomBonusCalculator.Recalculate(ship);
             for (var i = 0; i < ship.SpecialRooms.Count; i++)
             {
                 if (ship.SpecialRooms[i].Type != RoomType.Generator)
@@ -146,9 +147,9 @@ namespace game
             InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 1, ship);
             SpecialRoomBonusCalculator.Recalculate(ship);
             var energy = 0;
-            foreach (var room in ship.SpecialRooms)
+            foreach (var room in ship.SpecialRooms.Where(room => room.Type!=RoomType.Generator))
                 energy += room.Stat.CurrentEnergy;
-            Assert.AreEqual(ship.Stats.CurrentEnergy, energy);
+            Assert.AreEqual(ship.Stats.FullEnergy - ship.Stats.CurrentEnergy, energy);
         }
     }
 }
