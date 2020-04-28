@@ -1,0 +1,6 @@
+﻿Player-empty-,100
+Enemy-fight-50,50
+Neutral-shop-50,100
+#
+0-2
+0-1
