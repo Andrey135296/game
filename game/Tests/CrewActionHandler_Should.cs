@@ -642,5 +642,21 @@ namespace game
             Assert.AreEqual(gameModel.map.Nodes[1], gameModel.map.CurrentNode);
             Assert.IsTrue(gameModel.ship2 is Titan);
         }
+
+        [Test]
+        public void TestMoveToNotFight()
+        {
+            var ship = new TestShip(Alignment.Player);
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"maps\mapExample.txt");
+            var map = Map.LoadFromFile(path);
+
+            var gameModel = new GameModel(ship, map);
+
+            Assert.AreEqual(gameModel.map.Nodes[0], gameModel.map.CurrentNode);
+
+            InterfaceCommands.MoveOnMap(gameModel, gameModel.map.Nodes[2]);
+            Assert.AreEqual(gameModel.map.Nodes[2], gameModel.map.CurrentNode);
+            Assert.IsTrue(gameModel.ship2 is null);
+        }
     }
 }
