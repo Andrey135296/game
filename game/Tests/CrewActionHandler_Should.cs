@@ -593,11 +593,14 @@ namespace game
         public void TestCorrectConnectWeapon()
         {
             var ship = new TestShip(Alignment.Player);
+            var map = Map.LoadFromFile(@"maps\mapExample.txt");
 
-            Assert.IsTrue(ship.Weapons.All(c => c.IsOnline == false));
+            var gameModel = new GameModel(ship, map);
 
-            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
-            Assert.AreEqual(true, ship.Weapons[0].IsOnline);
+            Assert.AreEqual(0, gameModel.map.CurrentNode);
+
+            InterfaceCommands.MoveOnMap(gameModel, gameModel.map.Nodes[1]);
+            Assert.AreEqual(1, gameModel.map.CurrentNode);
         }
     }
 }
