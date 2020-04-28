@@ -160,24 +160,6 @@ namespace game
             Assert.AreEqual(200, enemyShip.Stats.HP);
             Assert.AreEqual(-1000, ship.Weapons[0].TimeLeftToCoolDown);
         }
-
-        [Test]
-        public void TestForAndrey()
-        {
-            var ship = new TestShip(Alignment.Player);
-            Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
-            CrewActionsHandler.TickCrew(ship);
-
-            InterfaceCommands.MoveCrewMember(ship.Crew[1], ship.Cells[5], ship);
-            CrewActionsHandler.TickCrew(ship);
-            Assert.AreEqual(ship.Cells[5], ship.Crew[1].Cell);
-
-            InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 2, ship);
-            SpecialRoomBonusCalculator.Recalculate(ship);
-            ship.Crew[1].CurrentHP = 10;
-            CrewActionsHandler.TickCrew(ship);
-            Assert.AreEqual(12, ship.Crew[1].CurrentHP);
-        }
     }
 
 }

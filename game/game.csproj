@@ -61,9 +61,10 @@
     <Compile Include="handlers\InterfaceCommands.cs" />
     <Compile Include="handlers\SpecialRoomBonusCalculator.cs" />
     <Compile Include="handlers\WeaponsHandler.cs" />
+    <Compile Include="Tests\HealingCrewMembersTests.cs" />
     <Compile Include="Tests\MoveCrewMember_Should.cs" />
     <Compile Include="Tests\MapCommand_Should.cs" />
-    <Compile Include="Tests\.cs" />
+    <Compile Include="Tests\WeaponsHandler_Should.cs" />
     <Compile Include="Tests\WeaponsCommand_Should.cs" />
     <Compile Include="Tests\UpgradeRoom_Shold.cs" />
     <Compile Include="Tests\TrySetEnergy_Shold.cs" />
