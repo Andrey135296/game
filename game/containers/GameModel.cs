@@ -25,5 +25,13 @@ namespace game
 			fuel = 20;
 			map = new Map(mapString);
 		}
+
+		public GameModel(Ship s1, Map map)
+		{
+			ship1 = s1;
+			money = 0;
+			fuel = 20;
+			this.map = map;
+		}
 	}
 }

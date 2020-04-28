@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.IO;
 
 namespace game
 {
@@ -21,7 +22,7 @@ namespace game
 			{
 				if (line.StartsWith("//"))
 					continue;
-				if (line == "#")
+				if (line.StartsWith("#"))
 				{
 					nodesDefined = true;
 					continue;
@@ -45,6 +46,22 @@ namespace game
 				}
 			}
 			CurrentNode = Nodes[0];
+		}
+
+		public static Map LoadFromFile(string filename)
+		{
+			if (File.Exists(filename))
+			{
+				try
+				{
+					return new Map(File.ReadAllText(filename));
+				}
+				catch
+				{
+					throw new Exception("wrong file format");
+				}
+			}
+			throw new Exception("no such file");
 		}
 	}
 }
