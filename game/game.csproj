@@ -64,6 +64,7 @@
     <Compile Include="Tests\HealingCrewMembersTests.cs" />
     <Compile Include="Tests\MoveCrewMember_Should.cs" />
     <Compile Include="Tests\MapCommand_Should.cs" />
+    <Compile Include="Tests\SpecialRoomStatsRecalculationShould.cs" />
     <Compile Include="Tests\WeaponsHandler_Should.cs" />
     <Compile Include="Tests\WeaponsCommand_Should.cs" />
     <Compile Include="Tests\UpgradeRoom_Shold.cs" />

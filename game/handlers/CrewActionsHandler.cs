@@ -26,6 +26,9 @@ namespace game
 					case CrewAction.Idle:
 						if (specialRoom != null)
 						{
+							if (specialRoom.CurrentDurability < specialRoom.MaxDurability)
+								specialRoom.CurrentDurability += crewMember.RepairSpeed;
+							specialRoom.CurrentDurability = Math.Min(specialRoom.CurrentDurability, specialRoom.MaxDurability);
 							if (specialRoom.Stat.EmptyWorkingSpaces > 0)
 							{
 								crewMember.Action = CrewAction.Working;
