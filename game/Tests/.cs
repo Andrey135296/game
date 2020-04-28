@@ -1,0 +1,183 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using NUnit.Framework;
+
+namespace game
+{
+
+    [TestFixture]
+    public class WeaponsHandler_Shold
+    {
+        [Test]
+        public void TestFireWithAllCoolDownWeapon()
+        {
+            var ship = new TestShip(Alignment.Player);
+            var enemyShip = new TestShip(Alignment.Enemy);
+
+            InterfaceCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
+            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+
+            Assert.AreEqual(2000, ship.Weapons[0].TimeLeftToCoolDown);
+
+            WeaponsHandler.Tick(ship, enemyShip, 500);
+            Assert.AreEqual(1500, ship.Weapons[0].TimeLeftToCoolDown);
+
+            WeaponsHandler.Tick(ship, enemyShip, 500);
+            Assert.AreEqual(1000, ship.Weapons[0].TimeLeftToCoolDown);
+
+            WeaponsHandler.Tick(ship, enemyShip, 500);
+            Assert.AreEqual(500, ship.Weapons[0].TimeLeftToCoolDown);
+
+            WeaponsHandler.Tick(ship, enemyShip, 500);
+            Assert.AreEqual(2000, ship.Weapons[0].TimeLeftToCoolDown);
+
+        }
+
+        [Test]
+        public void TestStatsAfterFireWeapon()
+        {
+            var ship = new TestShip(Alignment.Player);
+            var enemyShip = new TestShip(Alignment.Enemy);
+
+            InterfaceCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
+
+            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+
+            Assert.AreEqual(100, enemyShip.Rooms[0].CurrentDurability);
+            Assert.AreEqual(100, enemyShip.SpecialRooms[0].CurrentDurability);
+            Assert.AreEqual(200, enemyShip.Stats.HP);
+            Assert.AreEqual(100, enemyShip.Crew[0].CurrentHP);
+            Assert.AreEqual(100, enemyShip.Crew[1].CurrentHP);
+            Assert.AreEqual(2000, ship.Weapons[0].TimeLeftToCoolDown);
+
+            WeaponsHandler.Tick(ship, enemyShip, 1000);
+            Assert.AreEqual(100, enemyShip.Rooms[0].CurrentDurability);
+            Assert.AreEqual(100, enemyShip.SpecialRooms[0].CurrentDurability);
+            Assert.AreEqual(200, enemyShip.Stats.HP);
+            Assert.AreEqual(100, enemyShip.Crew[0].CurrentHP);
+            Assert.AreEqual(100, enemyShip.Crew[1].CurrentHP);
+            Assert.AreEqual(1000, ship.Weapons[0].TimeLeftToCoolDown);
+
+            WeaponsHandler.Tick(ship, enemyShip, 1000);
+            Assert.AreEqual(90, enemyShip.Rooms[0].CurrentDurability);
+            Assert.AreEqual(90, enemyShip.SpecialRooms[0].CurrentDurability);
+            Assert.AreEqual(190, enemyShip.Stats.HP);
+            Assert.AreEqual(90, enemyShip.Crew[0].CurrentHP);
+            Assert.AreEqual(90, enemyShip.Crew[1].CurrentHP);
+            Assert.AreEqual(2000, ship.Weapons[0].TimeLeftToCoolDown);
+
+        }
+
+        [Test]
+        public void TestFireWithOverFlowCoolDownWeapon()
+        {
+            var ship = new TestShip(Alignment.Player);
+            var enemyShip = new TestShip(Alignment.Enemy);
+
+            InterfaceCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
+            Assert.AreEqual(enemyShip.Rooms[0], ship.Weapons[0].Target);
+
+            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+            Assert.AreEqual(true, ship.Weapons[0].IsOnline);
+
+            WeaponsHandler.Tick(ship, enemyShip, 2001);
+            Assert.AreEqual(90, enemyShip.Rooms[0].CurrentDurability);
+            Assert.AreEqual(90, enemyShip.SpecialRooms[0].CurrentDurability);
+            Assert.AreEqual(190, enemyShip.Stats.HP);
+            Assert.AreEqual(1999, ship.Weapons[0].TimeLeftToCoolDown);
+        }
+
+        [Test]
+        public void TestFireWithOfflineWeapon()
+        {
+            var ship = new TestShip(Alignment.Player);
+            var enemyShip = new TestShip(Alignment.Enemy);
+
+            InterfaceCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
+
+            WeaponsHandler.Tick(ship, enemyShip, 2000);
+            Assert.AreEqual(100, enemyShip.Rooms[0].CurrentDurability);
+            Assert.AreEqual(100, enemyShip.SpecialRooms[0].CurrentDurability);
+            Assert.AreEqual(200, enemyShip.Stats.HP);
+            Assert.AreEqual(2000, ship.Weapons[0].TimeLeftToCoolDown);
+        }
+
+        [Test]
+        public void TestFireWithNoTargetOnlineWeapon()
+        {
+            var ship = new TestShip(Alignment.Player);
+            var enemyShip = new TestShip(Alignment.Enemy);
+
+            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+
+            WeaponsHandler.Tick(ship, enemyShip, 1000);
+            Assert.AreEqual(100, enemyShip.Rooms[0].CurrentDurability);
+            Assert.AreEqual(100, enemyShip.SpecialRooms[0].CurrentDurability);
+            Assert.AreEqual(200, enemyShip.Stats.HP);
+            Assert.AreEqual(1000, ship.Weapons[0].TimeLeftToCoolDown);
+
+            WeaponsHandler.Tick(ship, enemyShip, 1000);
+            Assert.AreEqual(100, enemyShip.Rooms[0].CurrentDurability);
+            Assert.AreEqual(100, enemyShip.SpecialRooms[0].CurrentDurability);
+            Assert.AreEqual(200, enemyShip.Stats.HP);
+            Assert.AreEqual(0, ship.Weapons[0].TimeLeftToCoolDown);
+        }
+
+        [Test]
+        public void TestFireWithNoTargetOfflineWeapon()
+        {
+            var ship = new TestShip(Alignment.Player);
+            var enemyShip = new TestShip(Alignment.Enemy);
+
+            WeaponsHandler.Tick(ship, enemyShip, 1000);
+            Assert.AreEqual(100, enemyShip.Rooms[0].CurrentDurability);
+            Assert.AreEqual(100, enemyShip.SpecialRooms[0].CurrentDurability);
+            Assert.AreEqual(200, enemyShip.Stats.HP);
+            Assert.AreEqual(2000, ship.Weapons[0].TimeLeftToCoolDown);
+
+            WeaponsHandler.Tick(ship, enemyShip, 1000);
+            Assert.AreEqual(100, enemyShip.Rooms[0].CurrentDurability);
+            Assert.AreEqual(100, enemyShip.SpecialRooms[0].CurrentDurability);
+            Assert.AreEqual(200, enemyShip.Stats.HP);
+            Assert.AreEqual(2000, ship.Weapons[0].TimeLeftToCoolDown);
+        }
+
+        [Test]
+        public void TestFireWithNoTargetOnlineWeaponOwerflowCooldown()
+        {
+            var ship = new TestShip(Alignment.Player);
+            var enemyShip = new TestShip(Alignment.Enemy);
+
+            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+
+            WeaponsHandler.Tick(ship, enemyShip, 3000);
+            Assert.AreEqual(100, enemyShip.Rooms[0].CurrentDurability);
+            Assert.AreEqual(100, enemyShip.SpecialRooms[0].CurrentDurability);
+            Assert.AreEqual(200, enemyShip.Stats.HP);
+            Assert.AreEqual(-1000, ship.Weapons[0].TimeLeftToCoolDown);
+        }
+
+        [Test]
+        public void TestForAndrey()
+        {
+            var ship = new TestShip(Alignment.Player);
+            Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
+            CrewActionsHandler.TickCrew(ship);
+
+            InterfaceCommands.MoveCrewMember(ship.Crew[1], ship.Cells[5], ship);
+            CrewActionsHandler.TickCrew(ship);
+            Assert.AreEqual(ship.Cells[5], ship.Crew[1].Cell);
+
+            InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 2, ship);
+            SpecialRoomBonusCalculator.Recalculate(ship);
+            ship.Crew[1].CurrentHP = 10;
+            CrewActionsHandler.TickCrew(ship);
+            Assert.AreEqual(12, ship.Crew[1].CurrentHP);
+        }
+    }
+
+}
