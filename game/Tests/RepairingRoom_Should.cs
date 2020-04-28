@@ -22,11 +22,10 @@ namespace game
             //CrewActionsHandler.TickCrew(ship);
             //Assert.AreEqual(ship.Cells[5], ship.Crew[1].Cell);
 
-            InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 2, ship);
-            SpecialRoomBonusCalculator.Recalculate(ship);
-            ship.Crew[1].CurrentHP = 10;
+            ship.Rooms[0].CurrentDurability = 10;
             CrewActionsHandler.TickCrew(ship);
-            Assert.AreEqual(12, ship.Crew[1].CurrentHP);
+            Assert.AreEqual(12, ship.Rooms[0].CurrentDurability);
+            Assert.AreEqual(12, ship.SpecialRooms[0].CurrentDurability);
         }
     }
 }

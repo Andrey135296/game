@@ -24,10 +24,10 @@ namespace game
 		{
 			Weapons = new List<Weapon>
 				{
-					new LaserM0(),
-					new LaserM1(),
-					new LaserM2(),
-					new LaserM0(),
+					new TestLaserM0(),
+					new TestLaserM1(),
+					new TestLaserM2(),
+					new TestLaserM0(),
 				};
 		}
 
