@@ -19,9 +19,11 @@ namespace game
             CrewActionsHandler.TickCrew(ship);
 
             ship.Rooms[0].CurrentDurability = 10;
+            ship.Stats.HP = 10;
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(12, ship.Rooms[0].CurrentDurability);
             Assert.AreEqual(12, ship.SpecialRooms[0].CurrentDurability);
+            Assert.AreEqual(10, ship.Stats.HP);
         }
 
         [Test]
