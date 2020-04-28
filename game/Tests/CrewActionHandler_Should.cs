@@ -637,7 +637,8 @@ namespace game
 
             InterfaceCommands.MoveOnMap(gameModel, gameModel.map.Nodes[1]);
             Assert.AreEqual(gameModel.map.Nodes[1], gameModel.map.CurrentNode);
-            Assert.AreEqual(new Titan(Alignment.Enemy), gameModel.ship2);
+            var n = new Titan(Alignment.Enemy);
+            Assert.AreEqual(n, gameModel.ship2);
         }
     }
 }
