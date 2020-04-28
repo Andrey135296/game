@@ -19,7 +19,8 @@ namespace game
         public bool IsAlive;
 		public int RepairSpeed;
 		public Alignment alignment;
-        private static readonly List<string> names = new List<string> { "Kolya", "Petya" };
+        private static readonly List<string> names = new List<string> { "Kolya", "Petya", "Vasya" };
+        private static readonly Random random = new Random();
 
 
 		public CrewMember(Cell cell, Alignment alignment)
@@ -27,7 +28,7 @@ namespace game
             Speed = 1;
             Cell = cell;
 			Destination = null;
-			Name = GetName();
+			Name = names[random.Next(0, names.Count)];
             MaxHP = 100;
 			CurrentHP = 100;
             Action = CrewAction.Idle;
@@ -37,10 +38,9 @@ namespace game
 			this.alignment = alignment;
         }
 
-        private string GetName()
-        {
-            var random = new Random();
-            return names[random.Next(0, names.Count)];
-        }
+        //private string GetName()
+        //{
+        //    return names[random.Next(0, names.Count)];
+        //}
 	}
 }
