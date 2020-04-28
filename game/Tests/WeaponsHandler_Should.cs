@@ -79,16 +79,37 @@ namespace game
             var enemyShip = new TestShip(Alignment.Enemy);
 
             InterfaceCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
-            Assert.AreEqual(enemyShip.Rooms[0], ship.Weapons[0].Target);
 
             InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
-            Assert.AreEqual(true, ship.Weapons[0].IsOnline);
 
             WeaponsHandler.Tick(ship, enemyShip, 2001);
             Assert.AreEqual(90, enemyShip.Rooms[0].CurrentDurability);
             Assert.AreEqual(90, enemyShip.SpecialRooms[0].CurrentDurability);
             Assert.AreEqual(190, enemyShip.Stats.HP);
             Assert.AreEqual(1999, ship.Weapons[0].TimeLeftToCoolDown);
+        }
+
+        [Test]
+        public void TestFireWithDamageOverFlow()
+        {
+            var ship = new TestShip(Alignment.Player);
+            var enemyShip = new TestShip(Alignment.Enemy);
+
+            InterfaceCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
+
+            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+            enemyShip.Rooms[0].CurrentDurability = 5;
+            enemyShip.Stats.HP = 5;
+            enemyShip.Crew[0].CurrentHP = 5;
+            enemyShip.Crew[1].CurrentHP = 15;
+
+            WeaponsHandler.Tick(ship, enemyShip, 2000);
+            Assert.AreEqual(0, enemyShip.Rooms[0].CurrentDurability);
+            Assert.AreEqual(0, enemyShip.SpecialRooms[0].CurrentDurability);
+            Assert.AreEqual(0, enemyShip.Stats.HP);
+            Assert.AreEqual(0, enemyShip.Crew[0].CurrentHP);
+            Assert.AreEqual(5, enemyShip.Crew[1].CurrentHP);
+            Assert.AreEqual(2000, ship.Weapons[0].TimeLeftToCoolDown);
         }
 
         [Test]

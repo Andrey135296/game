@@ -61,7 +61,8 @@
     <Compile Include="handlers\InterfaceCommands.cs" />
     <Compile Include="handlers\SpecialRoomBonusCalculator.cs" />
     <Compile Include="handlers\WeaponsHandler.cs" />
-    <Compile Include="Tests\HealingCrewMembersTests.cs" />
+    <Compile Include="Tests\RepairingRoom_Should.cs" />
+    <Compile Include="Tests\HealingCrewMembers_Should.cs" />
     <Compile Include="Tests\MoveCrewMember_Should.cs" />
     <Compile Include="Tests\MapCommand_Should.cs" />
     <Compile Include="Tests\WeaponsHandler_Should.cs" />
