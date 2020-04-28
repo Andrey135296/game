@@ -14,7 +14,7 @@ namespace game
     {
         static void Main(string[] args)
         {
-			var map = Map.LoadFromFile(@"maps\mapExample.txt");
+			var map = Map.LoadFromFile(@"maps\map1.txt");
 			var g = new GameModel(new Titan(Alignment.Player), map);
 			var t = new Timer();
 			t.Interval = g.tickLength;
