@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace game
 {
-    class RoomStat
+    public class RoomStat
     {
         public int MaxEnergyLimit;
         public int CurrentEnergyLimit;

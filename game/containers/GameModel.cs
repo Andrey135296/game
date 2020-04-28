@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace game
 {
-	class GameModel
+	public class GameModel
 	{
 		public Ship ship1;
 		public Ship ship2;

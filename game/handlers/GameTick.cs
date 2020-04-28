@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace game
 {
-	class GameTick
+	public static class GameTick
 	{
 		public static void Tick(GameModel gameModel)
 		{

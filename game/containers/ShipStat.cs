@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace game
 {
-	class ShipStat
+	public class ShipStat
 	{
 		public int Evasion = 0;
 		public int Radar = 0;

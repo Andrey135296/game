@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace game
 {
-	class WeaponsHandler
+	public class WeaponsHandler
 	{
 		public static void Tick(Ship attackingShip, Ship attackedShip, int time)
 		{

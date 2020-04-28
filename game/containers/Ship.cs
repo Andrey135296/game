@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace game
 {
-    abstract class Ship
+    public abstract class Ship
     {
         public List<CrewMember> Crew;
         public List<Room> Rooms;
@@ -17,7 +17,7 @@ namespace game
 		public Alignment alignment;
     }
 
-    class Titan : Ship
+    public class Titan : Ship
     {
         public Titan(Alignment alignment)
         {
@@ -130,7 +130,7 @@ namespace game
     }
 
 
-    class TestShip : Ship
+    public class TestShip : Ship
     {
         public TestShip(Alignment alignment)
         {

@@ -8,7 +8,7 @@ using System.IO;
 
 namespace game
 {
-	class Map
+	public class Map
 	{
 		public Node CurrentNode;
 		public List<Node> Nodes;

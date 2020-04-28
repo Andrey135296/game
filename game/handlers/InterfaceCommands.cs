@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace game
 {
-	static class InterfaceCommands
+	public static class InterfaceCommands
 	{
 		public static void MoveCrewMember(CrewMember crewMember, Cell cell, Ship ship)
 		{

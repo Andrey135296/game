@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace game
 {
-	class CrewMember
+	public class CrewMember
 	{
         public int Speed;
         public Cell Cell;

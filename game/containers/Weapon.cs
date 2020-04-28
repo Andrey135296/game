@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace game
 {
-	abstract class Weapon
+	public abstract class Weapon
 	{
 		public Room Target;
 		public int damage;
@@ -24,7 +24,7 @@ namespace game
 		public int Price;
 	}
 
-	class LaserM0 : Weapon
+	public class LaserM0 : Weapon
 	{
 		public LaserM0()
 		{
@@ -38,7 +38,7 @@ namespace game
 		}
 	}
 
-	class LaserM1 : Weapon
+	public class LaserM1 : Weapon
 	{
 		public LaserM1()
 		{
@@ -52,7 +52,7 @@ namespace game
 		}
 	}
 
-	class LaserM2 : Weapon
+	public class LaserM2 : Weapon
 	{
 		public LaserM2()
 		{

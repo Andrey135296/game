@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace game
 {
-	class Node
+	public class Node
 	{
 		public List<Node> neighbors;
 		public Alignment alignment;

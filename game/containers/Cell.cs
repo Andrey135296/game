@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace game
 {
-	class Cell
+	public class Cell
 	{
 		public Neighbors neighbors = new Neighbors();
 		public Point coordinates;
 		public CrewMember stationed;
-		//public List<CrewMember> passing;
 
 		public Cell(Point coord)
 		{
@@ -32,7 +31,7 @@ namespace game
 		}
 	}
 
-	class Neighbors : IEnumerable<Cell>
+	public class Neighbors : IEnumerable<Cell>
 	{
 		public Cell left;
 		public Cell right;

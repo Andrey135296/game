@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace game
 {
-    class Room
+    public class Room
     {
         public List<Cell> Cells;
         public List<CrewMember> CrewMembers;
@@ -25,7 +25,7 @@ namespace game
         }
     }
 
-    class SpecialRoom : Room
+    public class SpecialRoom : Room
     {
         //public bool IsOnline;
         public RoomStat Stat;
