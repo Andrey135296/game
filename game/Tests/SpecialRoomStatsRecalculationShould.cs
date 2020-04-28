@@ -82,5 +82,45 @@ namespace game
 			Assert.AreEqual(0, ship.Stats.Heal);
 			Assert.AreEqual(0, ship.Stats.Radar);
 		}
+
+		[Test]
+		public static void ControlIsRecalculated()
+		{
+			var ship = new Titan(Alignment.Player);
+			InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[1], 1, ship);
+			Assert.AreEqual(1.0, ship.Stats.DamageMultiplier, 0.001);
+			Assert.AreEqual(4, ship.Stats.CurrentEnergy);
+			Assert.AreEqual(0, ship.Stats.Evasion);
+			Assert.AreEqual(5, ship.Stats.FullEnergy);
+			Assert.AreEqual(0, ship.Stats.Heal);
+			Assert.AreEqual(0, ship.Stats.Radar);
+			SpecialRoomBonusCalculator.Recalculate(ship);
+			Assert.AreEqual(4, ship.Stats.CurrentEnergy);
+			Assert.AreEqual(1.0, ship.Stats.DamageMultiplier, 0.001);
+			Assert.AreEqual(5, ship.Stats.Evasion);
+			Assert.AreEqual(5, ship.Stats.FullEnergy);
+			Assert.AreEqual(0, ship.Stats.Heal);
+			Assert.AreEqual(0, ship.Stats.Radar);
+		}
+
+		[Test]
+		public static void EngineIsRecalculated()
+		{
+			var ship = new Titan(Alignment.Player);
+			InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 1, ship);
+			Assert.AreEqual(1.0, ship.Stats.DamageMultiplier, 0.001);
+			Assert.AreEqual(4, ship.Stats.CurrentEnergy);
+			Assert.AreEqual(0, ship.Stats.Evasion);
+			Assert.AreEqual(5, ship.Stats.FullEnergy);
+			Assert.AreEqual(0, ship.Stats.Heal);
+			Assert.AreEqual(0, ship.Stats.Radar);
+			SpecialRoomBonusCalculator.Recalculate(ship);
+			Assert.AreEqual(4, ship.Stats.CurrentEnergy);
+			Assert.AreEqual(1.0, ship.Stats.DamageMultiplier, 0.001);
+			Assert.AreEqual(5, ship.Stats.Evasion);
+			Assert.AreEqual(5, ship.Stats.FullEnergy);
+			Assert.AreEqual(0, ship.Stats.Heal);
+			Assert.AreEqual(0, ship.Stats.Radar);
+		}
 	}
 }
