@@ -593,7 +593,10 @@ namespace game
         [Test]
         public void TestCorrectMove()
         {
-            var ship = new TestShip(Alignment.Player);
+			//var ship = new TestShip(Alignment.Player);
+			//var map = Map.LoadFromFile(@"maps\mapExample.txt");
+			//bad test
+			var ship = new TestShip(Alignment.Player);
             var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"maps\mapExample.txt");
             var map = Map.LoadFromFile(path);
 
@@ -637,8 +640,7 @@ namespace game
 
             InterfaceCommands.MoveOnMap(gameModel, gameModel.map.Nodes[1]);
             Assert.AreEqual(gameModel.map.Nodes[1], gameModel.map.CurrentNode);
-            var n = new Titan(Alignment.Enemy);
-            Assert.AreEqual(n, gameModel.ship2);
+            Assert.IsTrue(gameModel.ship2 is Titan);
         }
     }
 }

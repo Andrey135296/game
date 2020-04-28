@@ -1,4 +1,4 @@
-//text after double slash is not interpreted
+//line starting with double slash is not interpreted
 //Alignment-NodeType-X,Y
 //where X,Y in percents of area size
 Player-empty-100,100
