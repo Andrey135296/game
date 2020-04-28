@@ -593,9 +593,10 @@ namespace game
         [Test]
         public void TestCorrectMove()
         {
-			//var ship = new TestShip(Alignment.Player);
-			//var map = Map.LoadFromFile(@"maps\mapExample.txt");
-			//bad test
+			//var p = Path.GetFullPath(@"maps\mapExample.txt");
+			//var s = new TestShip(Alignment.Player);
+			//var m = Map.LoadFromFile(@"maps\mapExample.txt");
+			////bad test
 			var ship = new TestShip(Alignment.Player);
             var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"maps\mapExample.txt");
             var map = Map.LoadFromFile(path);
