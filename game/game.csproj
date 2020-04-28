@@ -45,6 +45,7 @@
     <Compile Include="containers\Cell.cs" />
     <Compile Include="containers\CrewAction.cs" />
     <Compile Include="containers\ships\TestShip.cs" />
+    <Compile Include="containers\ships\TestTitanShip.cs" />
     <Compile Include="containers\ships\Titan.cs" />
     <Compile Include="containers\TestWeapons.cs" />
     <Compile Include="handlers\CrewActionsHandler.cs" />
