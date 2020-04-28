@@ -10,7 +10,7 @@ namespace game
 	{
 		public TestShip(Alignment alignment)
 		{
-			this.alignment = alignment;
+			this.Alignment = alignment;
 			Stats = new ShipStat(200);
 			GenerateCells();
 			GenerateCrew();
@@ -55,16 +55,16 @@ namespace game
 			{
 				foreach (var otherCell in Cells)
 				{
-					var dx = otherCell.coordinates.X - cell.coordinates.X;
-					var dy = otherCell.coordinates.Y - cell.coordinates.Y;
+					var dx = otherCell.Coordinates.X - cell.Coordinates.X;
+					var dy = otherCell.Coordinates.Y - cell.Coordinates.Y;
 					if (dx == 1 && dy == 0)
-						cell.neighbors.right = otherCell;
+						cell.Neighbors.Right = otherCell;
 					if (dx == -1 && dy == 0)
-						cell.neighbors.left = otherCell;
+						cell.Neighbors.Left = otherCell;
 					if (dx == 0 && dy == 1)
-						cell.neighbors.down = otherCell;
+						cell.Neighbors.Down = otherCell;
 					if (dx == 0 && dy == -1)
-						cell.neighbors.up = otherCell;
+						cell.Neighbors.Up = otherCell;
 				}
 			}
 		}
@@ -73,11 +73,11 @@ namespace game
 		{
 			Crew = new List<CrewMember>
 			{
-				new CrewMember(Cells[0], alignment),
-				new CrewMember(Cells[1], alignment),
-				new CrewMember(Cells[3], alignment),
-				new CrewMember(Cells[4], alignment),
-				new CrewMember(Cells[9], alignment)
+				new CrewMember(Cells[0], Alignment),
+				new CrewMember(Cells[1], Alignment),
+				new CrewMember(Cells[3], Alignment),
+				new CrewMember(Cells[4], Alignment),
+				new CrewMember(Cells[9], Alignment)
 			};
 		}
 

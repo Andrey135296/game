@@ -2,10 +2,10 @@
 {
 	public enum NodeType
 	{
-		empty,
-		fight,
-		shop,
-		story,
-		transition
+		Empty,
+		Fight,
+		Shop,
+		Story,
+		Transition
 	}
 }

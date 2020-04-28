@@ -41,8 +41,8 @@ namespace game
 				{
 					var n1 = int.Parse(splitted[0]);
 					var n2 = int.Parse(splitted[1]);
-					Nodes[n1].neighbors.Add(Nodes[n2]);
-					Nodes[n2].neighbors.Add(Nodes[n1]);
+					Nodes[n1].Neighbors.Add(Nodes[n2]);
+					Nodes[n2].Neighbors.Add(Nodes[n1]);
 				}
 			}
 			CurrentNode = Nodes[0];

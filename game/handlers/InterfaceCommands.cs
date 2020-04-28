@@ -10,8 +10,8 @@ namespace game
 	{
 		public static void MoveCrewMember(CrewMember crewMember, Cell cell, Ship ship)
 		{
-			if (crewMember.alignment == Alignment.Player)
-				if (!ship.Crew.Any(c => c.Destination == cell) && cell.stationed == null)
+			if (crewMember.Alignment == Alignment.Player)
+				if (!ship.Crew.Any(c => c.Destination == cell) && cell.Stationed == null)
 				{
 					if (crewMember.Action == CrewAction.Working)
 					{
@@ -26,7 +26,7 @@ namespace game
 		public static void TrySetRoomEnergyConsumption(SpecialRoom room, int energy, Ship ship)
 		{
 			if (room.Stat.CurrentEnergyLimit>=energy && energy>=0 
-				&& ship.alignment == Alignment.Player 
+				&& ship.Alignment == Alignment.Player 
 				&& ship.Stats.CurrentEnergy>=energy-room.Stat.CurrentEnergy)
 			{
 				ship.Stats.CurrentEnergy -= energy - room.Stat.CurrentEnergy;
@@ -49,7 +49,7 @@ namespace game
 
 		public static void TargetWeapon(Weapon weapon, Room target, Ship attacker, Ship attacked)
 		{
-			if (attacker.alignment == Alignment.Player && attacked.alignment == Alignment.Enemy)
+			if (attacker.Alignment == Alignment.Player && attacked.Alignment == Alignment.Enemy)
 			{
 				weapon.Target = target;
 			}
@@ -64,22 +64,22 @@ namespace game
 					price = (room.Stat.CurrentEnergyLimit + 1) * 15;
 				else
 					price = (room.Stat.CurrentEnergyLimit + 1) * 30;
-				if (price <= gameModel.money)
+				if (price <= gameModel.Money)
 				{
 					room.Stat.CurrentEnergyLimit++;
-					gameModel.money -= price;
+					gameModel.Money -= price;
 				}
 			}
 		}
 
 		public static void MoveOnMap(GameModel gameModel, Node destination)
 		{
-			if (gameModel.map.CurrentNode.neighbors.Contains(destination))
+			if (gameModel.Map.CurrentNode.Neighbors.Contains(destination))
 			{
-				gameModel.map.CurrentNode = destination;
-				if (destination.Type == NodeType.fight)
+				gameModel.Map.CurrentNode = destination;
+				if (destination.Type == NodeType.Fight)
 				{
-					gameModel.ship2 = new Titan(destination.alignment);
+					gameModel.Ship2 = new Titan(destination.Alignment);
 				}
 			}
 

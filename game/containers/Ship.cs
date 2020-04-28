@@ -14,6 +14,6 @@ namespace game
 		public List<Cell> Cells;
 		public ShipStat Stats;
 		public List<Weapon> Weapons;
-		public Alignment alignment;
+		public Alignment Alignment;
 	}
 }

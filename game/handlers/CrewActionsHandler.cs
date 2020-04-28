@@ -50,7 +50,7 @@ namespace game
 			if (crewMember.Cell == crewMember.Destination)
 			{
 				crewMember.Action = CrewAction.Idle;
-				crewMember.Cell.stationed = crewMember;
+				crewMember.Cell.Stationed = crewMember;
 				crewMember.Destination = null;
 				return;
 			}
@@ -72,7 +72,7 @@ namespace game
 			while (queue.Count > 0)
 			{
 				var node = queue.Dequeue();
-				foreach (var neighbor in node.neighbors)
+				foreach (var neighbor in node.Neighbors)
 				{
 					if (distanceFromStart.ContainsKey(neighbor))
 						continue;
@@ -87,8 +87,8 @@ namespace game
 			while (currentNode != crewMember.Cell)
 			{
 				path.Add(currentNode);
-				var min = currentNode.neighbors.Min(n => distanceFromStart[n]);
-				currentNode = currentNode.neighbors.First(n => distanceFromStart[n] == min);
+				var min = currentNode.Neighbors.Min(n => distanceFromStart[n]);
+				currentNode = currentNode.Neighbors.First(n => distanceFromStart[n] == min);
 			}
 			return path;
 		}

@@ -9,7 +9,7 @@ namespace game
 	public abstract class Weapon
 	{
 		public Room Target;
-		public int damage;
+		public int Damage;
 		/// <summary>
 		/// Cooldown time in milliseconds
 		/// </summary>
@@ -18,7 +18,7 @@ namespace game
 		/// Time left to Cool down in milliseconds
 		/// </summary>
 		public int TimeLeftToCoolDown;
-		public string name;
+		public string Name;
 		public bool IsOnline;
 		public int EnergyPrice;
 		public int Price;
@@ -28,10 +28,10 @@ namespace game
 	{
 		public LaserM0()
 		{
-			this.damage = 10;
+			this.Damage = 10;
 			this.CoolDownTime = 2000;
 			this.TimeLeftToCoolDown = this.CoolDownTime;
-			this.name = "LaserM0";
+			this.Name = "LaserM0";
 			this.IsOnline = false;
 			this.EnergyPrice = 1;
 			this.Price = 25;
@@ -42,10 +42,10 @@ namespace game
 	{
 		public LaserM1()
 		{
-			this.damage = 10;
+			this.Damage = 10;
 			this.CoolDownTime = 1000;
 			this.TimeLeftToCoolDown = this.CoolDownTime;
-			this.name = "LaserM1";
+			this.Name = "LaserM1";
 			this.IsOnline = false;
 			this.EnergyPrice = 2;
 			this.Price = 75;
@@ -56,10 +56,10 @@ namespace game
 	{
 		public LaserM2()
 		{
-			this.damage = 20;
+			this.Damage = 20;
 			this.CoolDownTime = 1000;
 			this.TimeLeftToCoolDown = this.CoolDownTime;
-			this.name = "LaserM2";
+			this.Name = "LaserM2";
 			this.IsOnline = false;
 			this.EnergyPrice = 3;
 			this.Price = 200;

@@ -10,33 +10,33 @@ namespace game
 {
 	public class Cell
 	{
-		public Neighbors neighbors = new Neighbors();
-		public Point coordinates;
-		public CrewMember stationed;
+		public Neighbors Neighbors = new Neighbors();
+		public Point Coordinates;
+		public CrewMember Stationed;
 
 		public Cell(Point coord)
 		{
-			coordinates = coord;
+			Coordinates = coord;
 		}
 
 		public Cell(int x, int y)
 		{
-			coordinates = new Point(x, y);
+			Coordinates = new Point(x, y);
 		}
 
 		public Cell(Point coord, Neighbors neighbors)
 		{
-			coordinates = coord;
-			this.neighbors = neighbors;
+			Coordinates = coord;
+			this.Neighbors = neighbors;
 		}
 	}
 
 	public class Neighbors : IEnumerable<Cell>
 	{
-		public Cell left;
-		public Cell right;
-		public Cell up;
-		public Cell down;
+		public Cell Left;
+		public Cell Right;
+		public Cell Up;
+		public Cell Down;
 
 		public Neighbors()
 		{
@@ -44,22 +44,22 @@ namespace game
 
 		public Neighbors(Cell left, Cell up, Cell right, Cell down)
 		{
-			this.left = left;
-			this.up = up;
-			this.right = right;
-			this.down = down;
+			this.Left = left;
+			this.Up = up;
+			this.Right = right;
+			this.Down = down;
 		}
 
 		public IEnumerator<Cell> GetEnumerator()
 		{
-			if (left!=null)
-				yield return left;
-			if (up != null)
-				yield return up;
-			if (right != null)
-				yield return right;
-			if (down != null)
-				yield return down;
+			if (Left!=null)
+				yield return Left;
+			if (Up != null)
+				yield return Up;
+			if (Right != null)
+				yield return Right;
+			if (Down != null)
+				yield return Down;
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()

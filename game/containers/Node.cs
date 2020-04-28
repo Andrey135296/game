@@ -9,23 +9,23 @@ namespace game
 {
 	public class Node
 	{
-		public List<Node> neighbors;
-		public Alignment alignment;
+		public List<Node> Neighbors;
+		public Alignment Alignment;
 		public NodeType Type;
 		public Point Coordinates;
 
 		public Node(Alignment alignment, NodeType nodeType, List<Node> neighbors, Point pos)
 		{
-			this.neighbors = neighbors.ToList();
-			this.alignment = alignment;
+			this.Neighbors = neighbors.ToList();
+			this.Alignment = alignment;
 			this.Type = nodeType;
 			this.Coordinates = pos;
 		}
 
 		public Node(Alignment alignment, NodeType nodeType, Point pos)
 		{
-			this.neighbors = new List<Node>();
-			this.alignment = alignment;
+			this.Neighbors = new List<Node>();
+			this.Alignment = alignment;
 			this.Type = nodeType;
 			this.Coordinates = pos;
 		}

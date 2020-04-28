@@ -1,9 +1,9 @@
-﻿Player-empty-10,10
-Neutral-fight-45,20
-Enemy-fight-15,70
-Wrekage-fight-45,90
-Ally-fight-55,55
-Enemy-fight-90,60
+﻿Player-Empty-10,10
+Neutral-Fight-45,20
+Enemy-Fight-15,70
+Wrekage-Fight-45,90
+Ally-Fight-55,55
+Enemy-Fight-90,60
 #
 0-1
 0-2

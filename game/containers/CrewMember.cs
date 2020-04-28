@@ -18,7 +18,7 @@ namespace game
         public CrewAction Action;
         public bool IsAlive;
 		public int RepairSpeed;
-		public Alignment alignment;
+		public Alignment Alignment;
         private static readonly List<string> names = new List<string> { "Kolya", "Petya", "Vasya" };
         private static readonly Random random = new Random();
 
@@ -34,8 +34,8 @@ namespace game
             Action = CrewAction.Idle;
             IsAlive = true;
 			RepairSpeed = 1;
-            cell.stationed = this;
-			this.alignment = alignment;
+            cell.Stationed = this;
+			this.Alignment = alignment;
         }
 
         //private string GetName()

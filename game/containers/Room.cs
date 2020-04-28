@@ -18,7 +18,7 @@ namespace game
         public Room(List<Cell> cells)
         {
             Cells = cells;
-            CrewMembers = cells.Select(cell => cell.stationed).Where(crew => crew != null).ToList();
+            CrewMembers = cells.Select(cell => cell.Stationed).Where(crew => crew != null).ToList();
             MaxDurability = 100;
             CurrentDurability = MaxDurability;
             IsIntact = true;

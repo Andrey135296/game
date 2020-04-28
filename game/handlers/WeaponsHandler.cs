@@ -28,19 +28,19 @@ namespace game
 		{
 			foreach (var weapon in weapons.Where(w => w.IsOnline && w.TimeLeftToCoolDown <= 0 && w.Target!=null))
 			{
-				attackedShip.Stats.HP -= weapon.damage;
+				attackedShip.Stats.HP -= weapon.Damage;
 				weapon.TimeLeftToCoolDown += weapon.CoolDownTime;
 				if (attackedShip.Stats.HP <= 0)
-					attackedShip.alignment = Alignment.Wrekage;
+					attackedShip.Alignment = Alignment.Wrekage;
 				if (attackedShip.SpecialRooms.Contains(weapon.Target))
 				{
 					var specialRoom = (SpecialRoom)weapon.Target;
-					specialRoom.CurrentDurability = Math.Max(0, specialRoom.CurrentDurability - weapon.damage);
+					specialRoom.CurrentDurability = Math.Max(0, specialRoom.CurrentDurability - weapon.Damage);
 				}
 				foreach (var c in attackedShip.Crew)
 					if (weapon.Target.Cells.Contains(c.Cell))
 					{
-						c.CurrentHP -= weapon.damage;
+						c.CurrentHP -= weapon.Damage;
 						if (c.CurrentHP <= 0)
 							c.IsAlive = false;
 					}
