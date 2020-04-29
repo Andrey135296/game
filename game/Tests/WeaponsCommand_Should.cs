@@ -19,7 +19,7 @@ namespace game
 
             Assert.IsTrue(ship.Weapons.All(c => c.IsOnline == false));
 
-            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+            PlayerCommands.TryChangeWeaponState(ship.Weapons[0], ship);
             Assert.AreEqual(true, ship.Weapons[0].IsOnline);
         }
 
@@ -30,7 +30,7 @@ namespace game
 
             Assert.IsTrue(ship.Weapons.All(c => c.IsOnline == false));
 
-            InterfaceCommands.TryChangeWeaponState(ship.Weapons[1], ship);
+            PlayerCommands.TryChangeWeaponState(ship.Weapons[1], ship);
             Assert.AreEqual(true, ship.Weapons[1].IsOnline);
         }
 
@@ -41,11 +41,11 @@ namespace game
 
             Assert.IsTrue(ship.Weapons.All(c => c.IsOnline == false));
 
-            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+            PlayerCommands.TryChangeWeaponState(ship.Weapons[0], ship);
             Assert.AreEqual(true, ship.Weapons[0].IsOnline);
             Assert.AreEqual(false, ship.Weapons[3].IsOnline);
 
-            InterfaceCommands.TryChangeWeaponState(ship.Weapons[3], ship);
+            PlayerCommands.TryChangeWeaponState(ship.Weapons[3], ship);
             Assert.AreEqual(true, ship.Weapons[0].IsOnline);
             Assert.AreEqual(true, ship.Weapons[3].IsOnline);
         }
@@ -57,10 +57,10 @@ namespace game
 
             Assert.IsTrue(ship.Weapons.All(c => c.IsOnline == false));
 
-            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+            PlayerCommands.TryChangeWeaponState(ship.Weapons[0], ship);
             Assert.AreEqual(true, ship.Weapons[0].IsOnline);
 
-            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+            PlayerCommands.TryChangeWeaponState(ship.Weapons[0], ship);
             Assert.IsTrue(ship.Weapons.All(c => c.IsOnline == false));
         }
 
@@ -71,19 +71,19 @@ namespace game
 
             Assert.IsTrue(ship.Weapons.All(c => c.IsOnline == false));
 
-            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+            PlayerCommands.TryChangeWeaponState(ship.Weapons[0], ship);
             Assert.AreEqual(true, ship.Weapons[0].IsOnline);
             Assert.AreEqual(false, ship.Weapons[3].IsOnline);
 
-            InterfaceCommands.TryChangeWeaponState(ship.Weapons[3], ship);
+            PlayerCommands.TryChangeWeaponState(ship.Weapons[3], ship);
             Assert.AreEqual(true, ship.Weapons[0].IsOnline);
             Assert.AreEqual(true, ship.Weapons[3].IsOnline);
 
-            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+            PlayerCommands.TryChangeWeaponState(ship.Weapons[0], ship);
             Assert.AreEqual(false, ship.Weapons[0].IsOnline);
             Assert.AreEqual(true, ship.Weapons[3].IsOnline);
 
-            InterfaceCommands.TryChangeWeaponState(ship.Weapons[3], ship);
+            PlayerCommands.TryChangeWeaponState(ship.Weapons[3], ship);
             Assert.IsTrue(ship.Weapons.All(c => c.IsOnline == false));
         }
 
@@ -94,7 +94,7 @@ namespace game
 
             Assert.IsTrue(ship.Weapons.All(c => c.IsOnline == false));
 
-            InterfaceCommands.TryChangeWeaponState(ship.Weapons[2], ship);
+            PlayerCommands.TryChangeWeaponState(ship.Weapons[2], ship);
             Assert.AreEqual(false, ship.Weapons[2].IsOnline);
         }
 
@@ -105,10 +105,10 @@ namespace game
 
             Assert.IsTrue(ship.Weapons.All(c => c.IsOnline == false));
 
-            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+            PlayerCommands.TryChangeWeaponState(ship.Weapons[0], ship);
             Assert.AreEqual(true, ship.Weapons[0].IsOnline);
 
-            InterfaceCommands.TryChangeWeaponState(ship.Weapons[1], ship);
+            PlayerCommands.TryChangeWeaponState(ship.Weapons[1], ship);
             Assert.AreEqual(false, ship.Weapons[1].IsOnline);
         }
 
@@ -120,7 +120,7 @@ namespace game
 
             Assert.IsTrue(ship.Weapons.All(c => c.Target == null));
 
-            InterfaceCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
+            PlayerCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
             Assert.AreEqual(enemyShip.Rooms[0], ship.Weapons[0].Target);
         }
 
@@ -132,7 +132,7 @@ namespace game
 
             Assert.IsTrue(ship.Weapons.All(c => c.Target == null));
 
-            InterfaceCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
+            PlayerCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
             Assert.AreEqual(null, ship.Weapons[0].Target);
         }
 
@@ -144,11 +144,11 @@ namespace game
 
             Assert.IsTrue(ship.Weapons.All(c => c.Target == null));
 
-            InterfaceCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
+            PlayerCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
             Assert.AreEqual(enemyShip.Rooms[0], ship.Weapons[0].Target);
             Assert.AreEqual(null, ship.Weapons[1].Target);
 
-            InterfaceCommands.TargetWeapon(ship.Weapons[1], enemyShip.Rooms[0], ship, enemyShip);
+            PlayerCommands.TargetWeapon(ship.Weapons[1], enemyShip.Rooms[0], ship, enemyShip);
             Assert.AreEqual(enemyShip.Rooms[0], ship.Weapons[0].Target);
             Assert.AreEqual(enemyShip.Rooms[0], ship.Weapons[1].Target);
         }
@@ -161,11 +161,11 @@ namespace game
 
             Assert.IsTrue(ship.Weapons.All(c => c.Target == null));
 
-            InterfaceCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
+            PlayerCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
             Assert.AreEqual(enemyShip.Rooms[0], ship.Weapons[0].Target);
             Assert.AreEqual(null, ship.Weapons[1].Target);
 
-            InterfaceCommands.TargetWeapon(ship.Weapons[1], enemyShip.Rooms[1], ship, enemyShip);
+            PlayerCommands.TargetWeapon(ship.Weapons[1], enemyShip.Rooms[1], ship, enemyShip);
             Assert.AreEqual(enemyShip.Rooms[0], ship.Weapons[0].Target);
             Assert.AreEqual(enemyShip.Rooms[1], ship.Weapons[1].Target);
         }
@@ -178,10 +178,10 @@ namespace game
 
             Assert.IsTrue(ship.Weapons.All(c => c.Target == null));
 
-            InterfaceCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
+            PlayerCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
             Assert.AreEqual(enemyShip.Rooms[0], ship.Weapons[0].Target);
 
-            InterfaceCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[1], ship, enemyShip);
+            PlayerCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[1], ship, enemyShip);
             Assert.AreEqual(enemyShip.Rooms[1], ship.Weapons[0].Target);
         }
 
@@ -194,15 +194,15 @@ namespace game
             Assert.IsTrue(ship.Weapons.All(c => c.Target == null));
             Assert.IsTrue(ship.Weapons.All(c => c.IsOnline == false));
 
-            InterfaceCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
+            PlayerCommands.TargetWeapon(ship.Weapons[0], enemyShip.Rooms[0], ship, enemyShip);
             Assert.AreEqual(enemyShip.Rooms[0], ship.Weapons[0].Target);
             Assert.AreEqual(false, ship.Weapons[0].IsOnline);
 
-            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+            PlayerCommands.TryChangeWeaponState(ship.Weapons[0], ship);
             Assert.AreEqual(enemyShip.Rooms[0], ship.Weapons[0].Target);
             Assert.AreEqual(true, ship.Weapons[0].IsOnline);
 
-            InterfaceCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+            PlayerCommands.TryChangeWeaponState(ship.Weapons[0], ship);
             Assert.AreEqual(enemyShip.Rooms[0], ship.Weapons[0].Target);
             Assert.AreEqual(false, ship.Weapons[0].IsOnline);
 

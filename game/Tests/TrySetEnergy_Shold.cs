@@ -17,16 +17,16 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             var enemyShip = new TestShip(Alignment.Enemy);
             var gameModel = new GameModel(ship, "Player-Empty-100,100");
-            gameModel.Ship2 = enemyShip;
+            gameModel.OtherShip = enemyShip;
             GameTick.Tick(gameModel);
 
-            Assert.AreEqual(5, gameModel.Ship1.Stats.CurrentEnergy);
+            Assert.AreEqual(5, gameModel.PlayerShip.Stats.CurrentEnergy);
 
-            InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.Ship1.SpecialRooms[0], 2, gameModel.Ship1);
-            Assert.AreEqual(3, gameModel.Ship1.Stats.CurrentEnergy);
+            PlayerCommands.TrySetRoomEnergyConsumption(gameModel.PlayerShip.SpecialRooms[0], 2, gameModel.PlayerShip);
+            Assert.AreEqual(3, gameModel.PlayerShip.Stats.CurrentEnergy);
 
-            InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.Ship1.SpecialRooms[0], 1, gameModel.Ship1);
-            Assert.AreEqual(4, gameModel.Ship1.Stats.CurrentEnergy);
+            PlayerCommands.TrySetRoomEnergyConsumption(gameModel.PlayerShip.SpecialRooms[0], 1, gameModel.PlayerShip);
+            Assert.AreEqual(4, gameModel.PlayerShip.Stats.CurrentEnergy);
         }
 
         [Test]
@@ -35,13 +35,13 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             var enemyShip = new TestShip(Alignment.Enemy);
             var gameModel = new GameModel(ship, "Player-Empty-100,100");
-            gameModel.Ship2 = enemyShip;
+            gameModel.OtherShip = enemyShip;
             GameTick.Tick(gameModel);
 
-            Assert.AreEqual(5, gameModel.Ship1.Stats.CurrentEnergy);
+            Assert.AreEqual(5, gameModel.PlayerShip.Stats.CurrentEnergy);
 
-            InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.Ship1.SpecialRooms[0], 3, gameModel.Ship1);
-            Assert.AreEqual(5, gameModel.Ship1.Stats.CurrentEnergy);
+            PlayerCommands.TrySetRoomEnergyConsumption(gameModel.PlayerShip.SpecialRooms[0], 3, gameModel.PlayerShip);
+            Assert.AreEqual(5, gameModel.PlayerShip.Stats.CurrentEnergy);
         }
 
         [Test]
@@ -50,19 +50,19 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             var enemyShip = new TestShip(Alignment.Enemy);
             var gameModel = new GameModel(ship, "Player-Empty-100,100");
-            gameModel.Ship2 = enemyShip;
+            gameModel.OtherShip = enemyShip;
             GameTick.Tick(gameModel);
 
-            Assert.AreEqual(5, gameModel.Ship1.Stats.CurrentEnergy);
+            Assert.AreEqual(5, gameModel.PlayerShip.Stats.CurrentEnergy);
 
-            InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.Ship1.SpecialRooms[0], 2, gameModel.Ship1);
-            Assert.AreEqual(3, gameModel.Ship1.Stats.CurrentEnergy);
+            PlayerCommands.TrySetRoomEnergyConsumption(gameModel.PlayerShip.SpecialRooms[0], 2, gameModel.PlayerShip);
+            Assert.AreEqual(3, gameModel.PlayerShip.Stats.CurrentEnergy);
 
-            InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.Ship1.SpecialRooms[4], 2, gameModel.Ship1);
-            Assert.AreEqual(1, gameModel.Ship1.Stats.CurrentEnergy);
+            PlayerCommands.TrySetRoomEnergyConsumption(gameModel.PlayerShip.SpecialRooms[4], 2, gameModel.PlayerShip);
+            Assert.AreEqual(1, gameModel.PlayerShip.Stats.CurrentEnergy);
 
-            InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.Ship1.SpecialRooms[2], 2, gameModel.Ship1);
-            Assert.AreEqual(1, gameModel.Ship1.Stats.CurrentEnergy);
+            PlayerCommands.TrySetRoomEnergyConsumption(gameModel.PlayerShip.SpecialRooms[2], 2, gameModel.PlayerShip);
+            Assert.AreEqual(1, gameModel.PlayerShip.Stats.CurrentEnergy);
         }
 
         [Test]
@@ -71,13 +71,13 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             var enemyShip = new TestShip(Alignment.Enemy);
             var gameModel = new GameModel(ship, "Player-Empty-100,100");
-            gameModel.Ship2 = enemyShip;
+            gameModel.OtherShip = enemyShip;
             GameTick.Tick(gameModel);
 
-            Assert.AreEqual(5, gameModel.Ship1.Stats.CurrentEnergy);
+            Assert.AreEqual(5, gameModel.PlayerShip.Stats.CurrentEnergy);
 
-            InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.Ship1.SpecialRooms[0], -1, gameModel.Ship1);
-            Assert.AreEqual(5, gameModel.Ship1.Stats.CurrentEnergy);
+            PlayerCommands.TrySetRoomEnergyConsumption(gameModel.PlayerShip.SpecialRooms[0], -1, gameModel.PlayerShip);
+            Assert.AreEqual(5, gameModel.PlayerShip.Stats.CurrentEnergy);
         }
 
         [Test]
@@ -86,16 +86,16 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             var enemyShip = new TestShip(Alignment.Enemy);
             var gameModel = new GameModel(ship, "Player-Empty-100,100");
-            gameModel.Ship2 = enemyShip;
+            gameModel.OtherShip = enemyShip;
             GameTick.Tick(gameModel);
 
-            Assert.AreEqual(5, gameModel.Ship1.Stats.CurrentEnergy);
+            Assert.AreEqual(5, gameModel.PlayerShip.Stats.CurrentEnergy);
 
-            InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.Ship1.SpecialRooms[0], 2, gameModel.Ship1);
-            Assert.AreEqual(3, gameModel.Ship1.Stats.CurrentEnergy);
+            PlayerCommands.TrySetRoomEnergyConsumption(gameModel.PlayerShip.SpecialRooms[0], 2, gameModel.PlayerShip);
+            Assert.AreEqual(3, gameModel.PlayerShip.Stats.CurrentEnergy);
 
-            InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.Ship1.SpecialRooms[0], 0, gameModel.Ship1);
-            Assert.AreEqual(5, gameModel.Ship1.Stats.CurrentEnergy);
+            PlayerCommands.TrySetRoomEnergyConsumption(gameModel.PlayerShip.SpecialRooms[0], 0, gameModel.PlayerShip);
+            Assert.AreEqual(5, gameModel.PlayerShip.Stats.CurrentEnergy);
 
         }
     }

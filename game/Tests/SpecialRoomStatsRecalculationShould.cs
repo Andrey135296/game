@@ -27,7 +27,7 @@ namespace game
 		public static void RadarIsRecalculated()
 		{
 			var ship = new TestTitan(Alignment.Player);
-			InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[0], 1, ship);
+			PlayerCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[0], 1, ship);
 			
             Assert.AreEqual(1.0, ship.Stats.DamageMultiplier, 0.001);
 			Assert.AreEqual(4, ship.Stats.CurrentEnergy);
@@ -49,7 +49,7 @@ namespace game
 		public static void HealIsRecalculated()
 		{
 			var ship = new TestTitan(Alignment.Player);
-			InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[4], 1, ship);
+			PlayerCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[4], 1, ship);
 	
             Assert.AreEqual(1.0, ship.Stats.DamageMultiplier, 0.001);
 			Assert.AreEqual(4, ship.Stats.CurrentEnergy);
@@ -71,7 +71,7 @@ namespace game
 		public static void DamageMultIsRecalculated()
 		{
 			var ship = new TestTitan(Alignment.Player);
-			InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[5], 1, ship);
+			PlayerCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[5], 1, ship);
 
 			Assert.AreEqual(1.0, ship.Stats.DamageMultiplier, 0.001);
 			Assert.AreEqual(4, ship.Stats.CurrentEnergy);
@@ -93,7 +93,7 @@ namespace game
 		public static void ControlIsRecalculated()
 		{
 			var ship = new TestTitan(Alignment.Player);
-			InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[1], 1, ship);
+			PlayerCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[1], 1, ship);
 
 			Assert.AreEqual(1.0, ship.Stats.DamageMultiplier, 0.001);
 			Assert.AreEqual(4, ship.Stats.CurrentEnergy);
@@ -115,7 +115,7 @@ namespace game
 		public static void EngineIsRecalculated()
 		{
 			var ship = new TestTitan(Alignment.Player);
-			InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 1, ship);
+			PlayerCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 1, ship);
 
 			Assert.AreEqual(1.0, ship.Stats.DamageMultiplier, 0.001);
 			Assert.AreEqual(4, ship.Stats.CurrentEnergy);
@@ -142,9 +142,9 @@ namespace game
             for (var i = 0; i < ship.SpecialRooms.Count; i++)
             {
                 if (ship.SpecialRooms[i].Type != RoomType.Generator)
-                    InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[i], 2, ship);
+                    PlayerCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[i], 2, ship);
             }
-            InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 1, ship);
+            PlayerCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 1, ship);
             SpecialRoomBonusCalculator.Recalculate(ship);
             var energy = 0;
             foreach (var room in ship.SpecialRooms.Where(room => room.Type!=RoomType.Generator))

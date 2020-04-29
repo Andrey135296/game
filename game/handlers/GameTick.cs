@@ -10,17 +10,17 @@ namespace game
 	{
 		public static void Tick(GameModel gameModel)
 		{
-			if (gameModel.Ship1.Alignment != Alignment.Player)
+			if (gameModel.PlayerShip.Alignment != Alignment.Player)
 				throw new Exception("You are a looooooser!!!!!!");
-			CrewActionsHandler.TickCrew(gameModel.Ship1);
-			CrewActionsHandler.TickCrew(gameModel.Ship2);
-			if (gameModel.Ship2!=null && gameModel.Ship2.Alignment == Alignment.Enemy)
+			CrewActionsHandler.TickCrew(gameModel.PlayerShip);
+			CrewActionsHandler.TickCrew(gameModel.OtherShip);
+			if (gameModel.OtherShip!=null && gameModel.OtherShip.Alignment == Alignment.Enemy)
 			{
-				WeaponsHandler.Tick(gameModel.Ship1, gameModel.Ship2, gameModel.TickLength);
-				WeaponsHandler.Tick(gameModel.Ship2, gameModel.Ship1, gameModel.TickLength);
+				WeaponsHandler.Tick(gameModel.PlayerShip, gameModel.OtherShip, gameModel.TickLength);
+				WeaponsHandler.Tick(gameModel.OtherShip, gameModel.PlayerShip, gameModel.TickLength);
 			}
-			SpecialRoomBonusCalculator.Recalculate(gameModel.Ship1);
-			SpecialRoomBonusCalculator.Recalculate(gameModel.Ship2);
+			SpecialRoomBonusCalculator.Recalculate(gameModel.PlayerShip);
+			SpecialRoomBonusCalculator.Recalculate(gameModel.OtherShip);
 		}
 	}
 }

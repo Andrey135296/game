@@ -26,7 +26,7 @@ namespace game
 
             Assert.AreEqual(gameModel.Map.Nodes[0], gameModel.Map.CurrentNode);
 
-            InterfaceCommands.MoveOnMap(gameModel, gameModel.Map.Nodes[1]);
+            PlayerCommands.MoveOnMap(gameModel, gameModel.Map.Nodes[1]);
             Assert.AreEqual(gameModel.Map.Nodes[1], gameModel.Map.CurrentNode);
         }
 
@@ -41,10 +41,10 @@ namespace game
 
             Assert.AreEqual(gameModel.Map.Nodes[0], gameModel.Map.CurrentNode);
 
-            InterfaceCommands.MoveOnMap(gameModel, gameModel.Map.Nodes[1]);
+            PlayerCommands.MoveOnMap(gameModel, gameModel.Map.Nodes[1]);
             Assert.AreEqual(gameModel.Map.Nodes[1], gameModel.Map.CurrentNode);
 
-            InterfaceCommands.MoveOnMap(gameModel, gameModel.Map.Nodes[2]);
+            PlayerCommands.MoveOnMap(gameModel, gameModel.Map.Nodes[2]);
             Assert.AreEqual(gameModel.Map.Nodes[1], gameModel.Map.CurrentNode);
         }
 
@@ -60,9 +60,9 @@ namespace game
             Assert.AreEqual(gameModel.Map.Nodes[0], gameModel.Map.CurrentNode);
             Assert.AreEqual(Alignment.Enemy, gameModel.Map.Nodes[1].Alignment);
 
-            InterfaceCommands.MoveOnMap(gameModel, gameModel.Map.Nodes[1]);
+            PlayerCommands.MoveOnMap(gameModel, gameModel.Map.Nodes[1]);
             Assert.AreEqual(gameModel.Map.Nodes[1], gameModel.Map.CurrentNode);
-            Assert.IsTrue(gameModel.Ship2 is Titan);
+            Assert.IsTrue(gameModel.OtherShip is Titan);
         }
 
         [Test]
@@ -76,9 +76,9 @@ namespace game
 
             Assert.AreEqual(gameModel.Map.Nodes[0], gameModel.Map.CurrentNode);
 
-            InterfaceCommands.MoveOnMap(gameModel, gameModel.Map.Nodes[2]);
+            PlayerCommands.MoveOnMap(gameModel, gameModel.Map.Nodes[2]);
             Assert.AreEqual(gameModel.Map.Nodes[2], gameModel.Map.CurrentNode);
-            Assert.IsTrue(gameModel.Ship2 is null);
+            Assert.IsTrue(gameModel.OtherShip is null);
         }
     }
 }

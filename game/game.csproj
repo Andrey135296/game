@@ -60,7 +60,7 @@
     <Compile Include="containers\RoomStat.cs" />
     <Compile Include="containers\ShipStat.cs" />
     <Compile Include="handlers\GameTick.cs" />
-    <Compile Include="handlers\InterfaceCommands.cs" />
+    <Compile Include="handlers\PlayerCommands.cs" />
     <Compile Include="handlers\SpecialRoomBonusCalculator.cs" />
     <Compile Include="handlers\WeaponsHandler.cs" />
     <Compile Include="Tests\RepairingRoom_Should.cs" />

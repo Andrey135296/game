@@ -70,7 +70,7 @@ namespace game
 				{
 					var vr = ship.SpecialRooms.Where(r => r.Stat.CurrentEnergy > 0 && r.Type != RoomType.Generator).ToList();
 					var room = vr[random.Next(0, vr.Count)];
-					InterfaceCommands.TrySetRoomEnergyConsumption(room, room.Stat.CurrentEnergy - 1, ship);
+					PlayerCommands.TrySetRoomEnergyConsumption(room, room.Stat.CurrentEnergy - 1, ship);
 					energy++;
 				}
 				Recalculate(ship);

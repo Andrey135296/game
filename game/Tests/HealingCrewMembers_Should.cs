@@ -18,11 +18,11 @@ namespace game
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[1], ship.Cells[5], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[1], ship.Cells[5], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[5], ship.Crew[1].Cell);
 
-            InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 2, ship);
+            PlayerCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 2, ship);
             SpecialRoomBonusCalculator.Recalculate(ship);
             ship.Crew[1].CurrentHP = 10;
             CrewActionsHandler.TickCrew(ship);
@@ -36,7 +36,7 @@ namespace game
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[1], ship.Cells[5], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[1], ship.Cells[5], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[5], ship.Crew[1].Cell);
 
@@ -54,11 +54,11 @@ namespace game
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[1], ship.Cells[5], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[1], ship.Cells[5], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[5], ship.Crew[1].Cell);
 
-            InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 2, ship);
+            PlayerCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 2, ship);
             SpecialRoomBonusCalculator.Recalculate(ship);
             ship.Crew[1].CurrentHP = 99;
             CrewActionsHandler.TickCrew(ship);
@@ -72,14 +72,14 @@ namespace game
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[1], ship.Cells[6], ship);
-            InterfaceCommands.MoveCrewMember(ship.Crew[0], ship.Cells[5], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[1], ship.Cells[6], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[0], ship.Cells[5], ship);
             CrewActionsHandler.TickCrew(ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[6], ship.Crew[1].Cell);
             Assert.AreEqual(ship.Cells[5], ship.Crew[0].Cell);
 
-            InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 2, ship);
+            PlayerCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 2, ship);
             SpecialRoomBonusCalculator.Recalculate(ship);
             ship.Crew[1].CurrentHP = 10;
             ship.Crew[0].CurrentHP = 20;
@@ -95,14 +95,14 @@ namespace game
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[1], ship.Cells[6], ship);
-            InterfaceCommands.MoveCrewMember(ship.Crew[0], ship.Cells[5], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[1], ship.Cells[6], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[0], ship.Cells[5], ship);
             CrewActionsHandler.TickCrew(ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[6], ship.Crew[1].Cell);
             Assert.AreEqual(ship.Cells[5], ship.Crew[0].Cell);
 
-            InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 2, ship);
+            PlayerCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 2, ship);
             SpecialRoomBonusCalculator.Recalculate(ship);
             ship.Crew[1].CurrentHP = 10;
             ship.Crew[0].CurrentHP = 100;
@@ -118,7 +118,7 @@ namespace game
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
 
-            InterfaceCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 2, ship);
+            PlayerCommands.TrySetRoomEnergyConsumption(ship.SpecialRooms[2], 2, ship);
             SpecialRoomBonusCalculator.Recalculate(ship);
             foreach (var crew in ship.Crew)
                 crew.CurrentHP = 10;

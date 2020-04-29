@@ -51,7 +51,7 @@ namespace game
             Assert.AreEqual(12, ship.Rooms[0].CurrentDurability);
             Assert.AreEqual(12, ship.SpecialRooms[0].CurrentDurability);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[0], ship.Cells[5], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[0], ship.Cells[5], ship);
             Assert.AreEqual(12, ship.Rooms[0].CurrentDurability);
             Assert.AreEqual(12, ship.SpecialRooms[0].CurrentDurability);
 

@@ -18,13 +18,13 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             var enemyShip = new TestShip(Alignment.Enemy);
             var gameModel = new GameModel(ship, "Player-Empty-100,100");
-            gameModel.Ship2 = enemyShip;
+            gameModel.OtherShip = enemyShip;
             GameTick.Tick(gameModel);
 
-            Assert.AreEqual(2, gameModel.Ship1.SpecialRooms[0].Stat.CurrentEnergyLimit);
+            Assert.AreEqual(2, gameModel.PlayerShip.SpecialRooms[0].Stat.CurrentEnergyLimit);
 
-            InterfaceCommands.UpgradeRoom(gameModel.Ship1.SpecialRooms[0], gameModel);
-            Assert.AreEqual(2, gameModel.Ship1.SpecialRooms[0].Stat.CurrentEnergyLimit);
+            PlayerCommands.UpgradeRoom(gameModel.PlayerShip.SpecialRooms[0], gameModel);
+            Assert.AreEqual(2, gameModel.PlayerShip.SpecialRooms[0].Stat.CurrentEnergyLimit);
             Assert.AreEqual(0, gameModel.Money);
         }
 
@@ -34,14 +34,14 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             var enemyShip = new TestShip(Alignment.Enemy);
             var gameModel = new GameModel(ship, "Player-Empty-100,100");
-            gameModel.Ship2 = enemyShip;
+            gameModel.OtherShip = enemyShip;
             gameModel.Money = 1000;
             GameTick.Tick(gameModel);
 
-            Assert.AreEqual(2, gameModel.Ship1.SpecialRooms[0].Stat.CurrentEnergyLimit);
+            Assert.AreEqual(2, gameModel.PlayerShip.SpecialRooms[0].Stat.CurrentEnergyLimit);
 
-            InterfaceCommands.UpgradeRoom(gameModel.Ship1.SpecialRooms[0], gameModel);
-            Assert.AreEqual(3, gameModel.Ship1.SpecialRooms[0].Stat.CurrentEnergyLimit);
+            PlayerCommands.UpgradeRoom(gameModel.PlayerShip.SpecialRooms[0], gameModel);
+            Assert.AreEqual(3, gameModel.PlayerShip.SpecialRooms[0].Stat.CurrentEnergyLimit);
             Assert.AreEqual(910, gameModel.Money);
         }
 
@@ -51,22 +51,22 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             var enemyShip = new TestShip(Alignment.Enemy);
             var gameModel = new GameModel(ship, "Player-Empty-100,100");
-            gameModel.Ship2 = enemyShip;
+            gameModel.OtherShip = enemyShip;
             gameModel.Money = 1000;
             GameTick.Tick(gameModel);
 
-            Assert.AreEqual(2, gameModel.Ship1.SpecialRooms[0].Stat.CurrentEnergyLimit);
+            Assert.AreEqual(2, gameModel.PlayerShip.SpecialRooms[0].Stat.CurrentEnergyLimit);
 
-            InterfaceCommands.UpgradeRoom(gameModel.Ship1.SpecialRooms[0], gameModel);
-            Assert.AreEqual(3, gameModel.Ship1.SpecialRooms[0].Stat.CurrentEnergyLimit);
+            PlayerCommands.UpgradeRoom(gameModel.PlayerShip.SpecialRooms[0], gameModel);
+            Assert.AreEqual(3, gameModel.PlayerShip.SpecialRooms[0].Stat.CurrentEnergyLimit);
             Assert.AreEqual(910, gameModel.Money);
 
-            InterfaceCommands.UpgradeRoom(gameModel.Ship1.SpecialRooms[0], gameModel);
-            Assert.AreEqual(4, gameModel.Ship1.SpecialRooms[0].Stat.CurrentEnergyLimit);
+            PlayerCommands.UpgradeRoom(gameModel.PlayerShip.SpecialRooms[0], gameModel);
+            Assert.AreEqual(4, gameModel.PlayerShip.SpecialRooms[0].Stat.CurrentEnergyLimit);
             Assert.AreEqual(790, gameModel.Money);
 
-            InterfaceCommands.UpgradeRoom(gameModel.Ship1.SpecialRooms[0], gameModel);
-            Assert.AreEqual(4, gameModel.Ship1.SpecialRooms[0].Stat.CurrentEnergyLimit);
+            PlayerCommands.UpgradeRoom(gameModel.PlayerShip.SpecialRooms[0], gameModel);
+            Assert.AreEqual(4, gameModel.PlayerShip.SpecialRooms[0].Stat.CurrentEnergyLimit);
             Assert.AreEqual(790, gameModel.Money);
         }
 
@@ -76,17 +76,17 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             var enemyShip = new TestShip(Alignment.Enemy);
             var gameModel = new GameModel(ship, "Player-Empty-100,100");
-            gameModel.Ship2 = enemyShip;
+            gameModel.OtherShip = enemyShip;
             gameModel.Money = 1000;
             GameTick.Tick(gameModel);
 
-            Assert.AreEqual(2, gameModel.Ship1.SpecialRooms[0].Stat.CurrentEnergyLimit);
+            Assert.AreEqual(2, gameModel.PlayerShip.SpecialRooms[0].Stat.CurrentEnergyLimit);
 
-            InterfaceCommands.UpgradeRoom(gameModel.Ship1.SpecialRooms[0], gameModel);
-            Assert.AreEqual(3, gameModel.Ship1.SpecialRooms[0].Stat.CurrentEnergyLimit);
+            PlayerCommands.UpgradeRoom(gameModel.PlayerShip.SpecialRooms[0], gameModel);
+            Assert.AreEqual(3, gameModel.PlayerShip.SpecialRooms[0].Stat.CurrentEnergyLimit);
 
-            InterfaceCommands.TrySetRoomEnergyConsumption(gameModel.Ship1.SpecialRooms[0], 3, gameModel.Ship1);
-            Assert.AreEqual(3, gameModel.Ship1.SpecialRooms[0].Stat.CurrentEnergyLimit);
+            PlayerCommands.TrySetRoomEnergyConsumption(gameModel.PlayerShip.SpecialRooms[0], 3, gameModel.PlayerShip);
+            Assert.AreEqual(3, gameModel.PlayerShip.SpecialRooms[0].Stat.CurrentEnergyLimit);
         }
     }
 }

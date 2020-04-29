@@ -31,7 +31,7 @@ namespace game
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[2], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[2], ship.Cells[2], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[2], ship.Crew[2].Cell);
         }
@@ -43,7 +43,7 @@ namespace game
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[2], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[2], ship.Cells[2], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[2], ship.Crew[2].Cell);
             Assert.AreEqual(CrewAction.Moving, ship.Crew[2].Action);
@@ -62,7 +62,7 @@ namespace game
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[2], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[2], ship.Cells[2], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(CrewAction.Moving, ship.Crew[2].Action);
 
@@ -80,7 +80,7 @@ namespace game
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[11], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[2], ship.Cells[11], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(CrewAction.Moving, ship.Crew[2].Action);
 
@@ -100,7 +100,7 @@ namespace game
 
             Assert.AreEqual(0, ship.SpecialRooms[1].Stat.EmptyWorkingSpaces);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[11], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[2], ship.Cells[11], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(0, ship.SpecialRooms[1].Stat.EmptyWorkingSpaces);
         }
@@ -114,7 +114,7 @@ namespace game
 
             Assert.AreEqual(0, ship.SpecialRooms[0].Stat.EmptyWorkingSpaces);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[1], ship.Cells[11], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[1], ship.Cells[11], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(1, ship.SpecialRooms[0].Stat.EmptyWorkingSpaces);
         }
@@ -126,7 +126,7 @@ namespace game
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[11], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[2], ship.Cells[11], ship);
             CrewActionsHandler.TickCrew(ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(1, ship.SpecialRooms[4].Stat.EmptyWorkingSpaces);
@@ -142,7 +142,7 @@ namespace game
             Assert.IsTrue(ship.Crew.All(c => c.Action == CrewAction.Idle));
             CrewActionsHandler.TickCrew(ship);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[11], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[2], ship.Cells[11], ship);
             CrewActionsHandler.TickCrew(ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(1, ship.SpecialRooms[4].Stat.EmptyWorkingSpaces);
@@ -150,7 +150,7 @@ namespace game
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(0, ship.SpecialRooms[4].Stat.EmptyWorkingSpaces);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[3], ship.Cells[10], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[3], ship.Cells[10], ship);
             CrewActionsHandler.TickCrew(ship);
             CrewActionsHandler.TickCrew(ship);
             CrewActionsHandler.TickCrew(ship);
@@ -166,7 +166,7 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             CrewActionsHandler.TickCrew(ship);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[4], ship.Cells[2], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[4], ship.Cells[2], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[10], ship.Crew[4].Cell);
 
@@ -189,8 +189,8 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             CrewActionsHandler.TickCrew(ship);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[4], ship.Cells[2], ship);
-            InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[8], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[4], ship.Cells[2], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[2], ship.Cells[8], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[10], ship.Crew[4].Cell);
             Assert.AreEqual(ship.Cells[11], ship.Crew[2].Cell);
@@ -218,8 +218,8 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             CrewActionsHandler.TickCrew(ship);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[4], ship.Cells[2], ship);
-            InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[2], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[4], ship.Cells[2], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[2], ship.Cells[2], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[10], ship.Crew[4].Cell);
             Assert.AreEqual(ship.Cells[3], ship.Crew[2].Cell);
@@ -247,7 +247,7 @@ namespace game
             var ship = new TestShip(Alignment.Player);
             CrewActionsHandler.TickCrew(ship);
 
-            InterfaceCommands.MoveCrewMember(ship.Crew[2], ship.Cells[0], ship);
+            PlayerCommands.MoveCrewMember(ship.Crew[2], ship.Cells[0], ship);
             CrewActionsHandler.TickCrew(ship);
             Assert.AreEqual(ship.Cells[3], ship.Crew[2].Cell);
         }

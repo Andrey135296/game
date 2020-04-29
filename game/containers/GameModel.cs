@@ -8,8 +8,8 @@ namespace game
 {
 	public class GameModel
 	{
-		public Ship Ship1;
-		public Ship Ship2;
+		public Ship PlayerShip;
+		public Ship OtherShip;
 		public int Money;
 		public int Fuel;
 		public Map Map;
@@ -20,7 +20,7 @@ namespace game
 
 		public GameModel(Ship ship1, string mapString)
 		{
-			Ship1 = ship1;
+			PlayerShip = ship1;
 			Money = 0;
 			Fuel = 20;
 			Map = new Map(mapString);
@@ -28,7 +28,7 @@ namespace game
 
 		public GameModel(Ship ship, Map map)
 		{
-			Ship1 = ship;
+			PlayerShip = ship;
 			Money = 0;
 			Fuel = 20;
 			this.Map = map;

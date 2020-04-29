@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace game
 {
-	public static class InterfaceCommands
+	public static class PlayerCommands
 	{
 		public static void MoveCrewMember(CrewMember crewMember, Cell cell, Ship ship)
 		{
@@ -80,7 +80,7 @@ namespace game
 				gameModel.Map.CurrentNode = destination;
 				if (destination.Type == NodeType.Fight)
 				{
-					gameModel.Ship2 = new Titan(destination.Alignment);
+					gameModel.OtherShip = new Titan(destination.Alignment);
 				}
 			}
 
