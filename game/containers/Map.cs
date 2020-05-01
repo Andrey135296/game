@@ -58,10 +58,11 @@ namespace game
 				}
 				catch
 				{
-					throw new Exception("wrong file format");
+					Console.Error.WriteLine("error while parsing map");
+					throw;
 				}
 			}
-			throw new Exception("no such file");
+			throw new Exception("no such file: " + filename);
 		}
 	}
 }
