@@ -63,11 +63,17 @@
     <Compile Include="handlers\PlayerCommands.cs" />
     <Compile Include="handlers\SpecialRoomBonusCalculator.cs" />
     <Compile Include="handlers\WeaponsHandler.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tests\RepairingRoom_Should.cs" />
     <Compile Include="Tests\HealingCrewMembers_Should.cs" />
     <Compile Include="Tests\MoveCrewMember_Should.cs" />
     <Compile Include="Tests\MapCommand_Should.cs" />
-    <Compile Include="Tests\SpecialRoomStatsRecalculationShould.cs" />
+    <Compile Include="Tests\SpecialRoomStatsRecalculation_Should.cs" />
     <Compile Include="Tests\WeaponsHandler_Should.cs" />
     <Compile Include="Tests\WeaponsCommand_Should.cs" />
     <Compile Include="Tests\UpgradeRoom_Shold.cs" />
@@ -80,7 +86,10 @@
       <HintPath>..\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="maps\mapExample.txt">
