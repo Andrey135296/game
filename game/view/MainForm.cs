@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace game
 {
@@ -74,8 +75,12 @@ namespace game
 			var exitButton = new Button();
 			exitButton.Text = "Выход";
 			exitButton.Dock = DockStyle.Fill;
-			exitButton.Click += (s, e) => Application.Exit();
-			otherGrid.Controls.Add(exitButton, 0, 1);
+            exitButton.Click += (s, e) =>
+            {
+                var result = MessageBox.Show("Вы действительно хотите выйти?", "", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes) Application.Exit();
+            };
+            otherGrid.Controls.Add(exitButton, 0, 1);
 
 			return mainGrid;
 		}
