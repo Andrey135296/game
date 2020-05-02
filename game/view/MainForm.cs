@@ -128,6 +128,20 @@ namespace game
             backButton.Dock = DockStyle.Fill;
             optionsScreen.Controls.Add(backButton, 2, 0);
 
+            var logo = new Label();
+            logo.Text = "DTSb";
+            logo.Dock = DockStyle.Fill;
+            logo.BackColor = Color.Transparent;
+            logo.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
+            optionsScreen.Controls.Add(logo, 0, 0);
+
+            var options = new Label();
+            options.Text = "Настройки";
+            options.Dock = DockStyle.Fill;
+            options.BackColor = Color.Transparent;
+            options.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
+            optionsScreen.Controls.Add(options, 1, 0);
+
             return optionsScreen;
 		}
 
