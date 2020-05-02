@@ -12,29 +12,30 @@ namespace game
 {
 	public partial class MainForm : Form
 	{
+		public TableLayoutPanel mainMenuGrid;
 		public MainForm()
 		{
 			InitializeComponent();
-			var mainMenuGrid = GenerateMainMenu();
+			mainMenuGrid = GenerateMainMenu();
 			Controls.Add(mainMenuGrid);
 		}
 
 		public static TableLayoutPanel GenerateMainMenu()
 		{
-			var mainMenuGrid = new TableLayoutPanel();
-			mainMenuGrid.ColumnCount = 3;
-			mainMenuGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
-			mainMenuGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200));
-			mainMenuGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
-			mainMenuGrid.RowCount = 5;
-			mainMenuGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
-			mainMenuGrid.RowStyles.Add(new RowStyle(SizeType.Absolute, 100));
-			mainMenuGrid.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
-			mainMenuGrid.RowStyles.Add(new RowStyle(SizeType.Absolute, 100));
-			mainMenuGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
-			mainMenuGrid.Dock = DockStyle.Fill;
-			mainMenuGrid.BackgroundImage = new Bitmap("images/MenuBackground.png");
-			mainMenuGrid.BackgroundImageLayout = ImageLayout.Stretch;
+			var mainGrid = new TableLayoutPanel();
+			mainGrid.ColumnCount = 3;
+			mainGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+			mainGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200));
+			mainGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+			mainGrid.RowCount = 5;
+			mainGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+			mainGrid.RowStyles.Add(new RowStyle(SizeType.Absolute, 100));
+			mainGrid.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
+			mainGrid.RowStyles.Add(new RowStyle(SizeType.Absolute, 100));
+			mainGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+			mainGrid.Dock = DockStyle.Fill;
+			mainGrid.BackgroundImage = new Bitmap("images/MenuBackground.png");
+			mainGrid.BackgroundImageLayout = ImageLayout.Stretch;
 
 			var playGrid = new TableLayoutPanel();
 			playGrid.Dock = DockStyle.Fill;
@@ -43,7 +44,7 @@ namespace game
 			playGrid.RowCount = 2;
 			playGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
 			playGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
-			mainMenuGrid.Controls.Add(playGrid, 1, 1);
+			mainGrid.Controls.Add(playGrid, 1, 1);
 
 			var continueButton = new Button();
 			continueButton.Text = "Продолжить";
@@ -63,7 +64,7 @@ namespace game
 			otherGrid.RowCount = 2;
 			otherGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
 			otherGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
-			mainMenuGrid.Controls.Add(otherGrid, 1, 3);
+			mainGrid.Controls.Add(otherGrid, 1, 3);
 
 			var optionsButton = new Button();
 			optionsButton.Text = "Настройки";
@@ -73,9 +74,10 @@ namespace game
 			var exitButton = new Button();
 			exitButton.Text = "Выход";
 			exitButton.Dock = DockStyle.Fill;
+			exitButton.Click += (s, e) => Application.Exit();
 			otherGrid.Controls.Add(exitButton, 0, 1);
 
-			return mainMenuGrid;
+			return mainGrid;
 		}
 	}
 }
