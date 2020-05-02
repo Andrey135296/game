@@ -47,6 +47,13 @@ namespace game
 			mainGrid.BackgroundImage = new Bitmap("images/MenuBackground.png");
 			mainGrid.BackgroundImageLayout = ImageLayout.Stretch;
 
+			var logo = new Label();
+			logo.Text = "DTSb";
+			logo.Dock = DockStyle.Fill;
+			logo.BackColor = Color.Transparent;
+			logo.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
+			mainGrid.Controls.Add(logo, 0, 0);
+
 			var playGrid = new TableLayoutPanel();
 			playGrid.Dock = DockStyle.Fill;
 			playGrid.ColumnCount = 1;
