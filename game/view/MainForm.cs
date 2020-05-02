@@ -22,6 +22,7 @@ namespace game
 
 		public MainForm()
 		{
+            DoubleBuffered = true;
 			InitializeComponent();
 
 			MainMenuGrid = GenerateMainMenu();
@@ -126,6 +127,7 @@ namespace game
             var backButton = new Button();
             backButton.Text = "Назад";
             backButton.Dock = DockStyle.Fill;
+            backButton.Click += (e, a) => this.TransitionTo(Screen.Menu);
             optionsScreen.Controls.Add(backButton, 2, 0);
 
             var logo = new Label();
