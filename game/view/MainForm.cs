@@ -74,6 +74,7 @@ namespace game
 			var newGameButton = new Button();
 			newGameButton.Text = "Новая Игра";
 			newGameButton.Dock = DockStyle.Fill;
+			newGameButton.Click += (e, a) => TransitionTo(Screen.Start);
 			playGrid.Controls.Add(newGameButton, 0, 1);
 
 
