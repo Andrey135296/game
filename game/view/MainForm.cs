@@ -32,8 +32,9 @@ namespace game
 			OptionsGrid = GenerateOptionsMenu();
 			Controls.Add(OptionsGrid);
 			AllGrids.Add(OptionsGrid);
-			FormBorderStyle = FormBorderStyle.None;
-			WindowState = FormWindowState.Maximized;
+			//FormBorderStyle = FormBorderStyle.None;
+			//WindowState = FormWindowState.Maximized;
+			Size = new Size(1280, 720);
 		}
 
 		public TableLayoutPanel GenerateMainMenu()
