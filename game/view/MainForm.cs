@@ -33,6 +33,8 @@ namespace game
 			mainMenuGrid.RowStyles.Add(new RowStyle(SizeType.Absolute, 100));
 			mainMenuGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
 			mainMenuGrid.Dock = DockStyle.Fill;
+			mainMenuGrid.BackgroundImage = new Bitmap("images/MenuBackground.png");
+			mainMenuGrid.BackgroundImageLayout = ImageLayout.Stretch;
 
 			var playGrid = new TableLayoutPanel();
 			playGrid.Dock = DockStyle.Fill;
