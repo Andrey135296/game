@@ -63,6 +63,7 @@
     <Compile Include="handlers\PlayerCommands.cs" />
     <Compile Include="handlers\SpecialRoomBonusCalculator.cs" />
     <Compile Include="handlers\WeaponsHandler.cs" />
+    <Compile Include="view\ScreenEnum.cs" />
     <Compile Include="view\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

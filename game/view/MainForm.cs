@@ -13,14 +13,23 @@ namespace game
 	public partial class MainForm : Form
 	{
 		public TableLayoutPanel mainMenuGrid;
+		public TableLayoutPanel optionsGrid;
+		public List<TableLayoutPanel> allGrids = new List<TableLayoutPanel>();
+
 		public MainForm()
 		{
 			InitializeComponent();
+
 			mainMenuGrid = GenerateMainMenu();
 			Controls.Add(mainMenuGrid);
+			allGrids.Add(mainMenuGrid);
+
+			optionsGrid = GenerateOptionsMenu();
+			Controls.Add(optionsGrid);
+			allGrids.Add(optionsGrid);
 		}
 
-		public static TableLayoutPanel GenerateMainMenu()
+		public TableLayoutPanel GenerateMainMenu()
 		{
 			var mainGrid = new TableLayoutPanel();
 			mainGrid.ColumnCount = 3;
@@ -69,6 +78,7 @@ namespace game
 			var optionsButton = new Button();
 			optionsButton.Text = "Настройки";
 			optionsButton.Dock = DockStyle.Fill;
+			optionsButton.Click += (e, a) => this.TransitionTo(Screen.Options);
 			otherGrid.Controls.Add(optionsButton, 0, 0);
 
 			var exitButton = new Button();
@@ -78,6 +88,31 @@ namespace game
 			otherGrid.Controls.Add(exitButton, 0, 1);
 
 			return mainGrid;
+		}
+
+		public TableLayoutPanel GenerateOptionsMenu()
+		{
+			var optionsScreen = new TableLayoutPanel();
+			//TODO - generate options
+
+			return optionsScreen;
+		}
+
+		public void TransitionTo(Screen screen)
+		{
+			foreach (var p in allGrids)
+				p.Visible = false;
+			switch (screen)
+			{
+				case Screen.Menu:
+					mainMenuGrid.Visible = true;
+					break;
+				case Screen.Options:
+					optionsGrid.Visible = true;
+					break;
+				default:
+					throw new Exception("Unknown screen type");
+			}
 		}
 	}
 }
