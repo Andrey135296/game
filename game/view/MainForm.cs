@@ -98,9 +98,27 @@ namespace game
 		public TableLayoutPanel GenerateOptionsMenu()
 		{
 			var optionsScreen = new TableLayoutPanel();
-			//TODO - generate options
+            //TODO - generate options
+            optionsScreen.ColumnCount = 3;
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20));
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60));
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20));
+            optionsScreen.RowCount = 2;
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 20));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 80));
+            //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
+            //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 100));
+            //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+            optionsScreen.Dock = DockStyle.Fill;
+            optionsScreen.BackgroundImage = new Bitmap("images/MenuBackground.png");
+            optionsScreen.BackgroundImageLayout = ImageLayout.Stretch;
 
-			return optionsScreen;
+            var backButton = new Button();
+            backButton.Text = "Назад";
+            backButton.Dock = DockStyle.Fill;
+            optionsScreen.Controls.Add(backButton, 2, 0);
+
+            return optionsScreen;
 		}
 
 		public void TransitionTo(Screen screen)
