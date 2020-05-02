@@ -73,6 +73,7 @@ namespace game
 			var continueButton = new Button();
 			continueButton.Text = "Продолжить";
 			continueButton.Dock = DockStyle.Fill;
+			continueButton.Enabled = false;
 			playGrid.Controls.Add(continueButton, 0, 0);
 
 			var newGameButton = new Button();
