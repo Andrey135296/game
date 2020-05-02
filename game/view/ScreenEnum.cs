@@ -3,6 +3,9 @@
 	public enum Screen
 	{
 		Menu,
-		Options
+		Options,
+		Start,
+		Map,
+		Fight
 	}
 }

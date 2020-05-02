@@ -13,21 +13,24 @@ namespace game
 {
 	public partial class MainForm : Form
 	{
-		public TableLayoutPanel mainMenuGrid;
-		public TableLayoutPanel optionsGrid;
-		public List<TableLayoutPanel> allGrids = new List<TableLayoutPanel>();
+		public TableLayoutPanel MainMenuGrid;
+		public TableLayoutPanel OptionsGrid;
+		public TableLayoutPanel StartGrid;
+		public TableLayoutPanel MapGrid;
+		public TableLayoutPanel FightGrid;
+		public List<TableLayoutPanel> AllGrids = new List<TableLayoutPanel>();
 
 		public MainForm()
 		{
 			InitializeComponent();
 
-			mainMenuGrid = GenerateMainMenu();
-			Controls.Add(mainMenuGrid);
-			allGrids.Add(mainMenuGrid);
+			MainMenuGrid = GenerateMainMenu();
+			Controls.Add(MainMenuGrid);
+			AllGrids.Add(MainMenuGrid);
 
-			optionsGrid = GenerateOptionsMenu();
-			Controls.Add(optionsGrid);
-			allGrids.Add(optionsGrid);
+			OptionsGrid = GenerateOptionsMenu();
+			Controls.Add(OptionsGrid);
+			AllGrids.Add(OptionsGrid);
 		}
 
 		public TableLayoutPanel GenerateMainMenu()
@@ -46,6 +49,13 @@ namespace game
 			mainGrid.Dock = DockStyle.Fill;
 			mainGrid.BackgroundImage = new Bitmap("images/MenuBackground.png");
 			mainGrid.BackgroundImageLayout = ImageLayout.Stretch;
+
+			var logo = new Label();
+			logo.Text = "DTSb";
+			logo.Dock = DockStyle.Fill;
+			logo.BackColor = Color.Transparent;
+			logo.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
+			mainGrid.Controls.Add(logo, 0, 0);
 
 			var playGrid = new TableLayoutPanel();
 			playGrid.Dock = DockStyle.Fill;
@@ -123,15 +133,24 @@ namespace game
 
 		public void TransitionTo(Screen screen)
 		{
-			foreach (var p in allGrids)
+			foreach (var p in AllGrids)
 				p.Visible = false;
 			switch (screen)
 			{
 				case Screen.Menu:
-					mainMenuGrid.Visible = true;
+					MainMenuGrid.Visible = true;
 					break;
 				case Screen.Options:
-					optionsGrid.Visible = true;
+					OptionsGrid.Visible = true;
+					break;
+				case Screen.Start:
+					StartGrid.Visible = true;
+					break;
+				case Screen.Map:
+					MapGrid.Visible = true;
+					break;
+				case Screen.Fight:
+					FightGrid.Visible = true;
 					break;
 				default:
 					throw new Exception("Unknown screen type");
