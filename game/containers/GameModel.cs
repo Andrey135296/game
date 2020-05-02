@@ -10,9 +10,10 @@ namespace game
 	{
 		public Ship PlayerShip;
 		public Ship OtherShip;
-		public int Money;
-		public int Fuel;
+		public int Money = 0;
+		public int Fuel = 20;
 		public Map Map;
+		public bool IsRunning = false;
 		/// <summary>
 		/// tick time in milliseconds
 		/// </summary>
@@ -21,16 +22,12 @@ namespace game
 		public GameModel(Ship ship1, string mapString)
 		{
 			PlayerShip = ship1;
-			Money = 0;
-			Fuel = 20;
 			Map = new Map(mapString);
 		}
 
 		public GameModel(Ship ship, Map map)
 		{
 			PlayerShip = ship;
-			Money = 0;
-			Fuel = 20;
 			this.Map = map;
 		}
 	}

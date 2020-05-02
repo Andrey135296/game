@@ -19,6 +19,7 @@ namespace game
 		public TableLayoutPanel MapGrid;
 		public TableLayoutPanel FightGrid;
 		public List<TableLayoutPanel> AllGrids = new List<TableLayoutPanel>();
+		public GameModel gameModel = null;
 
 		public MainForm()
 		{
@@ -32,8 +33,6 @@ namespace game
 			OptionsGrid = GenerateOptionsMenu();
 			Controls.Add(OptionsGrid);
 			AllGrids.Add(OptionsGrid);
-			//FormBorderStyle = FormBorderStyle.None;
-			//WindowState = FormWindowState.Maximized;
 			Size = new Size(1280, 720);
 		}
 
