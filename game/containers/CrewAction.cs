@@ -2,8 +2,8 @@
 {
 	public enum CrewAction
 	{
-        Idle = 0,
-        Moving = 1,
-        Working = 2,
+        Idle,
+        Moving,
+        Working,
     }
 }

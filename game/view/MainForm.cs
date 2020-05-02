@@ -109,9 +109,41 @@ namespace game
 		public TableLayoutPanel GenerateOptionsMenu()
 		{
 			var optionsScreen = new TableLayoutPanel();
-			//TODO - generate options
+            //TODO - generate options
+            optionsScreen.ColumnCount = 3;
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20));
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60));
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20));
+            optionsScreen.RowCount = 2;
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 20));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 80));
+            //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
+            //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 100));
+            //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+            optionsScreen.Dock = DockStyle.Fill;
+            optionsScreen.BackgroundImage = new Bitmap("images/MenuBackground.png");
+            optionsScreen.BackgroundImageLayout = ImageLayout.Stretch;
 
-			return optionsScreen;
+            var backButton = new Button();
+            backButton.Text = "Назад";
+            backButton.Dock = DockStyle.Fill;
+            optionsScreen.Controls.Add(backButton, 2, 0);
+
+            var logo = new Label();
+            logo.Text = "DTSb";
+            logo.Dock = DockStyle.Fill;
+            logo.BackColor = Color.Transparent;
+            logo.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
+            optionsScreen.Controls.Add(logo, 0, 0);
+
+            var options = new Label();
+            options.Text = "Настройки";
+            options.Dock = DockStyle.Fill;
+            options.BackColor = Color.Transparent;
+            options.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
+            optionsScreen.Controls.Add(options, 1, 0);
+
+            return optionsScreen;
 		}
 
 		public void TransitionTo(Screen screen)
