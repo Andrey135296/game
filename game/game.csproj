@@ -68,11 +68,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="view\CrewMember.cs">
+    <Compile Include="view\Human.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="view\CrewMember.Designer.cs">
-      <DependentUpon>CrewMember.cs</DependentUpon>
+    <Compile Include="view\Human.Designer.cs">
+      <DependentUpon>Human.cs</DependentUpon>
     </Compile>
     <Compile Include="view\ScreenEnum.cs" />
     <Compile Include="view\MainForm.cs">
@@ -125,8 +125,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="view\CrewMember.resx">
-      <DependentUpon>CrewMember.cs</DependentUpon>
+    <EmbeddedResource Include="view\Human.resx">
+      <DependentUpon>Human.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

@@ -153,12 +153,16 @@ namespace game
             logo.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
             optionsScreen.Controls.Add(logo, 0, 0);
 
-            var options = new Label();
-            options.Text = "Настройки";
-            options.Dock = DockStyle.Fill;
-            options.BackColor = Color.Transparent;
-            options.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
-            optionsScreen.Controls.Add(options, 1, 0);
+            var optionsLabel = new Label();
+            optionsLabel.Text = "Настройки";
+            optionsLabel.Dock = DockStyle.Fill;
+            optionsLabel.BackColor = Color.Transparent;
+            optionsLabel.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
+            optionsScreen.Controls.Add(optionsLabel, 1, 0);
+
+			var optGrid = new Panel();
+			optGrid.BackColor = Color.FromArgb(230, 255, 255, 255);
+			optionsScreen.Controls.Add(optGrid, 1, 1);
 
             return optionsScreen;
 		}

@@ -12,6 +12,7 @@ namespace game
 {
 	public partial class Human : UserControl
 	{
+		public CrewMember crewMember;
 		public Human()
 		{
 			InitializeComponent();
