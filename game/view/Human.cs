@@ -16,7 +16,7 @@ namespace game
 		public Human()
 		{
 			InitializeComponent();
-			BackgroundImage = new Bitmap("images/Human.png");
+			BackgroundImage = new Bitmap("images/opt.png");
 			BackgroundImageLayout = ImageLayout.Stretch;
 			Size = new Size(20, 60);
 			BackColor = Color.Transparent;
