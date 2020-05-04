@@ -18,7 +18,9 @@ namespace game
 			BackgroundImage = new Bitmap("images/Human.png");
 			BackgroundImageLayout = ImageLayout.Stretch;
 			Size = new Size(20, 60);
-			this.Click += (s, e) => this.Top=100;
+			BackColor = Color.Transparent;
+			//Click += (s, e) => this.Top=100;
+
 		}
 	}
 }
