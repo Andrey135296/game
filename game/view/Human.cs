@@ -23,5 +23,11 @@ namespace game
 			//Click += (s, e) => this.Top=100;
 
 		}
+
+		protected override void OnPaint(PaintEventArgs e)
+		{
+			base.OnPaint(e);
+			e.Graphics.DrawLine(new Pen(Color.Red), 0, 0, 100, 100);
+		}
 	}
 }
