@@ -34,6 +34,32 @@ namespace game
 			Controls.Add(OptionsGrid);
 			AllGrids.Add(OptionsGrid);
 			Size = new Size(1280, 720);
+
+			StartGrid = GenerateStartScreen();
+			Controls.Add(StartGrid);
+			AllGrids.Add(StartGrid);
+
+			var rect = new Rectangle(5, 5, 200, 200);
+			Paint += (s, e) => e.Graphics.DrawRectangle(new Pen(Color.Red), rect);
+
+		}
+
+		protected override void OnPaint(PaintEventArgs e)
+		{
+			var graphics = e.Graphics;
+
+			graphics.DrawLine(new Pen(Color.Red, 5), new Point(0, 0), new Point(50, 100));
+			e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+			graphics.DrawLine(new Pen(Color.Green, 5), 0, 0, 100, 50);
+			graphics.FillRectangle(Brushes.Green, 100, 100, 100, 100);
+			graphics.DrawString("Some text here", new Font("Arial", 16), Brushes.Black, new Point(0, 250));
+			graphics.DrawString(
+				"Some very long text",
+				new Font("Arial", 16),
+				Brushes.White,
+				new Rectangle(100, 100, 100, 100),
+				new StringFormat { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center, FormatFlags = StringFormatFlags.FitBlackBox }
+				);
 		}
 
 		public TableLayoutPanel GenerateMainMenu()
@@ -107,6 +133,9 @@ namespace game
             };
             otherGrid.Controls.Add(exitButton, 0, 1);
 
+			var human = new Human();
+			mainGrid.Controls.Add(human, 1, 0);
+
 			return mainGrid;
 		}
 
@@ -149,6 +178,24 @@ namespace game
             optionsScreen.Controls.Add(options, 1, 0);
 
             return optionsScreen;
+		}
+
+		public TableLayoutPanel GenerateStartScreen()
+		{
+			var startScreen = new TableLayoutPanel();
+			startScreen.Dock = DockStyle.Fill;
+			startScreen.BackgroundImage = new Bitmap("images/StartBackground.jpg");
+			startScreen.BackgroundImageLayout = ImageLayout.Stretch;
+
+			var backButton = new Button();
+			backButton.Text = "Назад";
+			backButton.Dock = DockStyle.Right;
+			backButton.Click += (e, a) => this.TransitionTo(Screen.Menu);
+			startScreen.Controls.Add(backButton, 2, 0);
+
+			//var human = new CrewMember
+
+			return startScreen;
 		}
 
 		public void TransitionTo(Screen screen)

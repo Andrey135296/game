@@ -63,6 +63,17 @@
     <Compile Include="handlers\PlayerCommands.cs" />
     <Compile Include="handlers\SpecialRoomBonusCalculator.cs" />
     <Compile Include="handlers\WeaponsHandler.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="view\CrewMember.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="view\CrewMember.Designer.cs">
+      <DependentUpon>CrewMember.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\ScreenEnum.cs" />
     <Compile Include="view\MainForm.cs">
       <SubType>Form</SubType>
@@ -93,7 +104,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\Human.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\MenuBackground.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\StartBackground.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="maps\mapExample.txt">
@@ -104,6 +121,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\CrewMember.resx">
+      <DependentUpon>CrewMember.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
