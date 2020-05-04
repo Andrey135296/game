@@ -161,7 +161,9 @@ namespace game
             optionsScreen.Controls.Add(optionsLabel, 1, 0);
 
 			var optGrid = new Panel();
-			optGrid.BackColor = Color.FromArgb(230, 255, 255, 255);
+            optGrid.BackgroundImage = new Bitmap("images/opt.png");
+            //optGrid.BackColor = Color.FromArgb(230, 255, 255, 255);
+            optGrid.BackColor = Color.Transparent;
 			optionsScreen.Controls.Add(optGrid, 1, 1);
 
             return optionsScreen;
