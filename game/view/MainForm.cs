@@ -165,7 +165,6 @@ namespace game
             //optGrid.BackColor = Color.FromArgb(230, 255, 255, 255);
             optGrid.BackColor = Color.Transparent;
 			optionsScreen.Controls.Add(optGrid, 1, 1);
-
             return optionsScreen;
 		}
 
