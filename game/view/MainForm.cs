@@ -214,6 +214,23 @@ namespace game
 			crewPanel.Left = 50;
 			startScreen.Controls.Add(crewPanel);
 
+			var ec = new EnergyCell();
+			ec.Top = 10;
+			ec.Left = 10;
+			startScreen.Controls.Add(ec);
+			ec.Click += (s, a) =>
+			{
+				ec.state = (ec.state + 1) % 3;
+				ec.Invalidate();
+			};
+			//ec.Invalidate();
+
+			var ship = new Titan(Alignment.Player);
+			var room = ship.SpecialRooms.Where(r => r.Type == RoomType.Engine).First();
+			var eb = new EnergyBar(room, ship) { Size = new Size(200, 30) };
+			eb.Top = 300;
+			eb.Left = 20;
+			startScreen.Controls.Add(eb);
 
 			var ans = new TableLayoutPanel();
 			ans.RowCount = 1;

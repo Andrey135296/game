@@ -51,6 +51,18 @@
     <Compile Include="containers\ships\TestTitanShip.cs" />
     <Compile Include="containers\ships\Titan.cs" />
     <Compile Include="containers\TestWeapons.cs" />
+    <Compile Include="view\EnergyCell.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="view\EnergyCell.Designer.cs">
+      <DependentUpon>EnergyCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\EnergyBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="view\EnergyBar.Designer.cs">
+      <DependentUpon>EnergyBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="handlers\CrewActionsHandler.cs" />
     <Compile Include="containers\CrewMember.cs" />
     <Compile Include="containers\GameModel.cs" />

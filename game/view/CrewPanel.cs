@@ -69,10 +69,5 @@ namespace game
 		{
 			base.OnPaint(e);
 		}
-
-		protected override void OnSizeChanged(EventArgs e)
-		{
-			base.OnSizeChanged(e);
-		}
 	}
 }
