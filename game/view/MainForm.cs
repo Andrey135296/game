@@ -116,12 +116,6 @@ namespace game
             };
             otherGrid.Controls.Add(exitButton, 0, 1);
 
-			var human = new Human();
-			var cell = new Cell(0, 0);
-			var crewMember = new CrewMember(cell, Alignment.Player);
-			human.crewMember = crewMember;
-			mainGrid.Controls.Add(human, 1, 0);
-
 			return mainGrid;
 		}
 
@@ -199,7 +193,7 @@ namespace game
 
 		public TableLayoutPanel GenerateStartScreen()
 		{
-			var startScreen = new TableLayoutPanel();
+			var startScreen = new Panel();
 			startScreen.Dock = DockStyle.Fill;
 			startScreen.BackgroundImage = new Bitmap("images/StartBackground.jpg");
 			startScreen.BackgroundImageLayout = ImageLayout.Stretch;
@@ -208,11 +202,25 @@ namespace game
 			backButton.Text = "Назад";
 			backButton.Dock = DockStyle.Right;
 			backButton.Click += (e, a) => this.TransitionTo(Screen.Menu);
-			startScreen.Controls.Add(backButton, 2, 0);
+			startScreen.Controls.Add(backButton);
 
-			//var human = new CrewMember
+			var l = new List<CrewMember>();
+			for (int i = 0; i < 8; i++)
+			{
+				l.Add(new CrewMember(null, Alignment.Player));
+			}
+			var crewPanel = new CrewPanel(l);
+			crewPanel.Top = 50;
+			crewPanel.Left = 50;
+			startScreen.Controls.Add(crewPanel);
 
-			return startScreen;
+
+			var ans = new TableLayoutPanel();
+			ans.RowCount = 1;
+			ans.ColumnCount = 1;
+			ans.Dock = DockStyle.Fill;
+			ans.Controls.Add(startScreen);
+			return ans;
 		}
 
 		public void TransitionTo(Screen screen)

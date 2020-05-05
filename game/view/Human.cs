@@ -20,12 +20,13 @@ namespace game
 			BackgroundImageLayout = ImageLayout.Stretch;
 			Size = new Size(20, 60);
 			BackColor = Color.Transparent;
-			Click += (s, a) =>
-			{
-				crewMember.CurrentHP-=10;
-				Invalidate();
-			};
 		}
+
+		public Human(CrewMember crewMember) : this()
+		{
+			this.crewMember = crewMember;
+		}
+
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
@@ -33,7 +34,7 @@ namespace game
 			var cl = Color.FromArgb(0, 255, 0, 0);
 			if (!(crewMember is null))
 				cl = Color.FromArgb(255-255*crewMember.CurrentHP / crewMember.MaxHP, 255, 0, 0);
-			e.Graphics.FillEllipse(new SolidBrush(cl), 1, 0, 15, 14);
+			e.Graphics.FillEllipse(new SolidBrush(cl), (int)(Size.Width*1.5/20), 0, Size.Width*15/20, Size.Height*14/60);
 		}
 	}
 }
