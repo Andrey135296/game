@@ -7,7 +7,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A49D6800-64A4-4996-8C7A-7D2D79674382}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>game</RootNamespace>
     <AssemblyName>game</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -35,6 +35,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -67,6 +70,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="view\CrewPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="view\CrewPanel.Designer.cs">
+      <DependentUpon>CrewPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="view\Human.cs">
       <SubType>UserControl</SubType>
@@ -127,6 +136,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\CrewPanel.resx">
+      <DependentUpon>CrewPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Human.resx">
       <DependentUpon>Human.cs</DependentUpon>

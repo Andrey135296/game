@@ -34,7 +34,8 @@ namespace game
             Action = CrewAction.Idle;
             IsAlive = true;
 			RepairSpeed = 1;
-            cell.Stationed = this;
+			if (cell != null)
+				cell.Stationed = this;
 			this.Alignment = alignment;
         }
 	}
