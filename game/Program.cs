@@ -25,7 +25,8 @@ namespace game
 			//t.Start();
 			//GC.KeepAlive(t);
 			//Console.ReadLine();
-			Application.Run(new MainForm());
+			var mf = new MainForm();
+			Application.Run(mf);
 		}
     }
 }

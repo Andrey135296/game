@@ -185,16 +185,16 @@ namespace game
 				l.Add(new CrewMember(null, Alignment.Player));
 			}
 			var crewPanel = new CrewPanel(l);
-			//crewPanel.Dock = DockStyle.Fill;
 			crewPanel.Top = 50;
+			crewPanel.Left = 50;
 			startScreen.Controls.Add(crewPanel);
 
 
 			var ans = new TableLayoutPanel();
 			ans.RowCount = 1;
 			ans.ColumnCount = 1;
-			ans.Controls.Add(startScreen);
 			ans.Dock = DockStyle.Fill;
+			ans.Controls.Add(startScreen);
 			return ans;
 		}
 

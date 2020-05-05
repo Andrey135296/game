@@ -12,12 +12,12 @@ namespace game
 {
 	public partial class CrewPanel : UserControl
 	{
-		//TableLayoutPanel t;
 		public CrewPanel(CrewMember[] crew)
 		{
-			this.Size = new Size(300, 200);
-			this.BackColor = Color.Transparent;
 			InitializeComponent();
+			this.Size = new Size(300, 200);
+			this.BackColor = Color.White;
+			
 			var t = new TableLayoutPanel();
 			t.RowCount = 2;
 			for (int i = 0; i < 2; i++)
@@ -29,19 +29,25 @@ namespace game
 			for (int i = 0; i < 8; i++)
 			{
 				var panel = new Panel();
+				panel.BackColor = Color.White;
+				panel.Dock = DockStyle.Fill;
+
 				var human = new Human(crew[i]);
+				human.Size = new Size(20, 60);
+				human.Left = 25;
+				panel.Controls.Add(human);
+
 				var label = new Label();
 				label.Text = crew[i].Name;
-				panel.Controls.Add(human);
-				human.Size = new Size(20, 60);
-				panel.Controls.Add(label);
 				label.Size = new Size(60, 20);
 				label.Top = 60;
-				panel.Dock = DockStyle.Fill;
-				panel.Size = new Size(t.Size.Width / 4, t.Size.Height / 2);
+				label.TextAlign = ContentAlignment.MiddleCenter;
+				panel.Controls.Add(label);
+
 				t.Controls.Add(panel, i % 4, i / 4);
 			}
 			t.Top = 30;
+			t.BackColor = Color.Black;
 			this.Controls.Add(t);
 			var label2 = new Label();
 			label2.Text = "Комманда";
