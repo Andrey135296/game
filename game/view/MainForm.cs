@@ -117,6 +117,9 @@ namespace game
             otherGrid.Controls.Add(exitButton, 0, 1);
 
 			var human = new Human();
+			var cell = new Cell(0, 0);
+			var crewMember = new CrewMember(cell, Alignment.Player);
+			human.crewMember = crewMember;
 			mainGrid.Controls.Add(human, 1, 0);
 
 			return mainGrid;
