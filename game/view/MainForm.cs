@@ -129,13 +129,20 @@ namespace game
 		{
 			var optionsScreen = new TableLayoutPanel();
             //TODO - generate options
-            optionsScreen.ColumnCount = 3;
-            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20));
-            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60));
-            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20));
-            optionsScreen.RowCount = 2;
-            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 20));
-            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 80));
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 91));
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 367));
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 367));
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 367));
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 92));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 60));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 70));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 65));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 65));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 65));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 65));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 244));
+
             //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
             //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 100));
             //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
@@ -147,27 +154,46 @@ namespace game
             backButton.Text = "Назад";
             backButton.Dock = DockStyle.Fill;
             backButton.Click += (e, a) => this.TransitionTo(Screen.Menu);
-            optionsScreen.Controls.Add(backButton, 2, 0);
+            optionsScreen.Controls.Add(backButton, 4, 1);
 
             var logo = new Label();
             logo.Text = "DTSb";
             logo.Dock = DockStyle.Fill;
             logo.BackColor = Color.Transparent;
             logo.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
-            optionsScreen.Controls.Add(logo, 0, 0);
+            optionsScreen.Controls.Add(logo, 0, 1);
 
             var optionsLabel = new Label();
             optionsLabel.Text = "Настройки";
             optionsLabel.Dock = DockStyle.Fill;
             optionsLabel.BackColor = Color.Transparent;
-            optionsLabel.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
-            optionsScreen.Controls.Add(optionsLabel, 1, 0);
+            optionsLabel.Font = new Font(FontFamily.GenericSerif, 40, FontStyle.Bold);
+            optionsScreen.Controls.Add(optionsLabel, 2, 1);
 
 			var optGrid = new Panel();
             optGrid.BackgroundImage = new Bitmap("images/opt.png");
+            optGrid.BackgroundImageLayout = ImageLayout.Stretch;
+            //optGrid.Size = new Size(367, 65);
+            //optGrid.Dock = DockStyle.Fill;
             //optGrid.BackColor = Color.FromArgb(230, 255, 255, 255);
             optGrid.BackColor = Color.Transparent;
-			optionsScreen.Controls.Add(optGrid, 1, 1);
+			optionsScreen.Controls.Add(optGrid, 1, 3);
+
+            var optGrid2 = new Panel();
+            optGrid2.BackgroundImage = new Bitmap("images/opt.png");
+            optGrid2.Size = new Size(367, 65);
+            //optGrid2.Dock = DockStyle.Fill;
+            //optGrid.BackColor = Color.FromArgb(230, 255, 255, 255);
+            optGrid2.BackColor = Color.Transparent;
+            optionsScreen.Controls.Add(optGrid2, 1, 4);
+
+            var optGrid3 = new Panel();
+            optGrid3.BackgroundImage = new Bitmap("images/opt.png");
+            optGrid3.Size = new Size(367, 65);
+            optGrid3.Dock = DockStyle.Fill;
+            //optGrid.BackColor = Color.FromArgb(230, 255, 255, 255);
+            optGrid3.BackColor = Color.Transparent;
+            optionsScreen.Controls.Add(optGrid3, 2, 3);
             return optionsScreen;
 		}
 
