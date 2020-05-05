@@ -20,14 +20,20 @@ namespace game
 			BackgroundImageLayout = ImageLayout.Stretch;
 			Size = new Size(20, 60);
 			BackColor = Color.Transparent;
-			//Click += (s, e) => this.Top=100;
-
+			Click += (s, a) =>
+			{
+				crewMember.CurrentHP-=10;
+				Invalidate();
+			};
 		}
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			base.OnPaint(e);
-			e.Graphics.DrawLine(new Pen(Color.Red), 0, 0, 100, 100);
+			var cl = Color.FromArgb(0, 255, 0, 0);
+			if (!(crewMember is null))
+				cl = Color.FromArgb(255-255*crewMember.CurrentHP / crewMember.MaxHP, 255, 0, 0);
+			e.Graphics.FillEllipse(new SolidBrush(cl), 1, 0, 15, 14);
 		}
 	}
 }
