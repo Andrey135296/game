@@ -225,12 +225,17 @@ namespace game
 			};
 			//ec.Invalidate();
 
-			var ship = new Titan(Alignment.Player);
-			var room = ship.SpecialRooms.Where(r => r.Type == RoomType.Engine).First();
-			var eb = new EnergyBar(room, ship) { Size = new Size(200, 30) };
-			eb.Top = 300;
-			eb.Left = 20;
-			startScreen.Controls.Add(eb);
+			var ship = new TestTitan(Alignment.Player);
+			var top = 400;
+			var left = 50;
+			foreach (var room in ship.SpecialRooms)
+			{
+				var energyBar = new EnergyBar(room, ship) { Size = new Size(200, 30) };
+				energyBar.Top = top;
+				top += 40;
+				energyBar.Left = left;
+				startScreen.Controls.Add(energyBar);
+			}
 
 			var ans = new TableLayoutPanel();
 			ans.RowCount = 1;

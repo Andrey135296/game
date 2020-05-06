@@ -17,12 +17,20 @@ namespace game
 		public int Active;
 		private List<EnergyCell> cells = new List<EnergyCell>();
 		private SpecialRoom room;
+		private Ship ship;
+		public static Dictionary<Room, List<EnergyBar>> allBars = new Dictionary<Room, List<EnergyBar>>();
 		public EnergyBar(SpecialRoom room, Ship ship)
 		{
 			InitializeComponent();
+			this.ship = ship;
+			if (!allBars.ContainsKey(room))
+				allBars[room] = new List<EnergyBar>();
+			allBars[room].Add(this);
 			Max = room.Stat.MaxEnergyLimit;
 			Unlocked = room.Stat.CurrentEnergyLimit;
 			Active = room.Stat.CurrentEnergy;
+			if (room.Type == RoomType.Generator)
+				Active = ship.Stats.FullEnergy - ship.Stats.CurrentEnergy;
 			this.room = room;
 			var t = new TableLayoutPanel();
 			t.ColumnCount = Max;
@@ -40,7 +48,8 @@ namespace game
 						PlayerCommands.TrySetRoomEnergyConsumption(room, j-1, ship);
 					else
 						PlayerCommands.TrySetRoomEnergyConsumption(room, j, ship);
-					this.Invalidate();
+					foreach (var bar in ship.SpecialRooms.SelectMany(r => allBars[r]))
+						bar.Invalidate();
 				};
 				cell.Dock = DockStyle.Fill;
 				cell.Margin = new Padding(0);
@@ -54,13 +63,15 @@ namespace game
 		{
 			Unlocked = room.Stat.CurrentEnergyLimit;
 			Active = room.Stat.CurrentEnergy;
+			if (room.Type == RoomType.Generator)
+				Active = ship.Stats.FullEnergy - ship.Stats.CurrentEnergy;
 			for (int i = 0; i < Active; i++)
 				cells[i].state = 2;
 			for (int i = Active; i < Unlocked; i++)
 				cells[i].state = 1;
 			for (int i = Unlocked; i < Max; i++)
 				cells[i].state = 0;
-			//base.OnPaint(e);
+			base.OnPaint(e);
 			foreach (var cell in cells)
 				cell.Invalidate();
 		}
