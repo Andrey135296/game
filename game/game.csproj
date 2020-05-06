@@ -113,6 +113,12 @@
     <Compile Include="Tests\TrySetEnergy_Shold.cs" />
     <Compile Include="containers\Weapon.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="view\OptionCell.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="view\OptionCell.Designer.cs">
+      <DependentUpon>OptionCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">

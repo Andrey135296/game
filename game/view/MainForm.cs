@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using game.view;
 
 namespace game
 {
@@ -39,11 +40,11 @@ namespace game
 			Controls.Add(StartGrid);
 			AllGrids.Add(StartGrid);
 
-		}
+        }
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
-		}
+        }
 
 		public TableLayoutPanel GenerateMainMenu()
 		{
@@ -123,11 +124,11 @@ namespace game
 		{
 			var optionsScreen = new TableLayoutPanel();
             //TODO - generate options
-            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 91));
-            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 367));
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 89));
             optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 367));
             optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 367));
-            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 92));
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 367));
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 90));
             optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
             optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 60));
             optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 70));
@@ -137,9 +138,16 @@ namespace game
             optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 65));
             optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 244));
 
-            //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
-            //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 100));
-            //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+            //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 3));
+            //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 9));
+            //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 18));
+            //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 9));
+            //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 9));
+            //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 9));
+            //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 9));
+            //optionsScreen.RowStyles.Add(new RowStyle(SizeType.Percent, 34));
+
+            //optionsScreen.AutoSize = true;
             optionsScreen.Dock = DockStyle.Fill;
             optionsScreen.BackgroundImage = new Bitmap("images/MenuBackground.png");
             optionsScreen.BackgroundImageLayout = ImageLayout.Stretch;
@@ -160,34 +168,23 @@ namespace game
             var optionsLabel = new Label();
             optionsLabel.Text = "Настройки";
             optionsLabel.Dock = DockStyle.Fill;
+            optionsLabel.TextAlign = ContentAlignment.MiddleCenter;
             optionsLabel.BackColor = Color.Transparent;
             optionsLabel.Font = new Font(FontFamily.GenericSerif, 40, FontStyle.Bold);
             optionsScreen.Controls.Add(optionsLabel, 2, 1);
 
-			var optGrid = new Panel();
-            optGrid.BackgroundImage = new Bitmap("images/opt.png");
-            optGrid.BackgroundImageLayout = ImageLayout.Stretch;
-            //optGrid.Size = new Size(367, 65);
-            //optGrid.Dock = DockStyle.Fill;
-            //optGrid.BackColor = Color.FromArgb(230, 255, 255, 255);
-            optGrid.BackColor = Color.Transparent;
-			optionsScreen.Controls.Add(optGrid, 1, 3);
+            var soundOpt = new OptionCell("Звук");
+            optionsScreen.Controls.Add(soundOpt, 1, 3);
 
-            var optGrid2 = new Panel();
-            optGrid2.BackgroundImage = new Bitmap("images/opt.png");
-            optGrid2.Size = new Size(367, 65);
-            //optGrid2.Dock = DockStyle.Fill;
-            //optGrid.BackColor = Color.FromArgb(230, 255, 255, 255);
-            optGrid2.BackColor = Color.Transparent;
-            optionsScreen.Controls.Add(optGrid2, 1, 4);
+            var videoOpt = new OptionCell("Видео");
+            optionsScreen.Controls.Add(videoOpt, 2, 3);
 
-            var optGrid3 = new Panel();
-            optGrid3.BackgroundImage = new Bitmap("images/opt.png");
-            optGrid3.Size = new Size(367, 65);
-            optGrid3.Dock = DockStyle.Fill;
-            //optGrid.BackColor = Color.FromArgb(230, 255, 255, 255);
-            optGrid3.BackColor = Color.Transparent;
-            optionsScreen.Controls.Add(optGrid3, 2, 3);
+            var gameOpt = new OptionCell("Игровые настройки");
+            optionsScreen.Controls.Add(gameOpt, 3, 3);
+
+            var gameOpt1 = new OptionCell("Игровые настройки");
+            optionsScreen.Controls.Add(gameOpt1, 1, 4);
+
             return optionsScreen;
 		}
 
