@@ -19,6 +19,7 @@ namespace game
 		private SpecialRoom room;
 		private Ship ship;
 		public static Dictionary<Room, List<EnergyBar>> allBars = new Dictionary<Room, List<EnergyBar>>();
+		private TableLayoutPanel table;
 		public EnergyBar(SpecialRoom room, Ship ship)
 		{
 			InitializeComponent();
@@ -33,10 +34,11 @@ namespace game
 				Active = ship.Stats.FullEnergy - ship.Stats.CurrentEnergy;
 			this.room = room;
 			var t = new TableLayoutPanel();
+			table = t;
 			//this.BackColor = Color.Transparent;
 			t.ColumnCount = Max;
 			for (int i = 0; i < Max; i++)
-				t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, (float)(1.0 / Max)));
+				t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, (float)(100.0 / Max)));
 			t.RowCount = 1;
 			t.Dock = DockStyle.Fill;
 			//t.BackColor = Color.Transparent;
@@ -74,8 +76,9 @@ namespace game
 			for (int i = Unlocked; i < Max; i++)
 				cells[i].state = 0;
 			base.OnPaint(e);
-			foreach (var cell in cells)
-				cell.Invalidate();
+			table.Invalidate(true);
+			//foreach (var cell in cells)
+			//	cell.Invalidate();
 		}
 	}
 }

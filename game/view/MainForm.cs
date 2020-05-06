@@ -230,7 +230,7 @@ namespace game
 			var left = 50;
 			foreach (var room in ship.SpecialRooms)
 			{
-				var energyBar = new EnergyBar(room, ship) { Size = new Size(200, 30) };
+				var energyBar = new EnergyBar(room, ship) { Size = new Size(300, 30) };
 				energyBar.Top = top;
 				top += 40;
 				energyBar.Left = left;
