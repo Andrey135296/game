@@ -20,6 +20,7 @@ namespace game
 		private Ship ship;
 		public static Dictionary<Room, List<EnergyBar>> allBars = new Dictionary<Room, List<EnergyBar>>();
 		private TableLayoutPanel table;
+
 		public EnergyBar(SpecialRoom room, Ship ship)
 		{
 			InitializeComponent();
@@ -38,10 +39,13 @@ namespace game
 			//this.BackColor = Color.Transparent;
 			t.ColumnCount = Max;
 			for (int i = 0; i < Max; i++)
-				t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, (float)(100.0 / Max)));
+				t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, (float)(1.0 / Max+0.1)));
 			t.RowCount = 1;
+			t.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
 			t.Dock = DockStyle.Fill;
+			//this.Padding = new Padding(0, 0, 0, 0);
 			//t.BackColor = Color.Transparent;
+			//t.BackColor = Color.Black;
 			for (int i = 0; i < Max; i++)
 			{
 				var cell = new EnergyCell();
@@ -57,9 +61,14 @@ namespace game
 				};
 				cell.Dock = DockStyle.Fill;
 				cell.Margin = new Padding(0, 0, 0, 0);
+				cell.Padding = new Padding(0, 0, 0, 0);
 				cells.Add(cell);
 				t.Controls.Add(cell, i, 0);
 			}
+			t.Margin = new Padding(0, 0, 0, 0);
+			t.Padding = new Padding(0, 0, 0, 0);
+			this.Padding = new Padding(0, 0, 0, 0);
+			this.Margin = new Padding(0, 0, 0, 0);
 			Controls.Add(t);
 		}
 
