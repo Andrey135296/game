@@ -26,7 +26,7 @@ namespace game
 			for (int i = 0; i < 4; i++)
 				t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25));
 			t.Size = new Size(300, 170);
-			for (int i = 0; i < 8; i++)
+			for (int i = 0; i < 8 && i<crew.Length; i++)
 			{
 				var panel = new Panel();
 				panel.BackColor = Color.White;
@@ -55,8 +55,9 @@ namespace game
 			t.BackColor = Color.Black;
 			this.Controls.Add(t);
 			var label2 = new Label();
-			label2.Text = "Комманда";
+			label2.Text = "Команда";
 			label2.Size = new Size(300, 30);
+			label2.Font = new Font(FontFamily.GenericSerif, 15, FontStyle.Bold);
 			label2.TextAlign = ContentAlignment.MiddleCenter;
 			this.Controls.Add(label2);
 		}
