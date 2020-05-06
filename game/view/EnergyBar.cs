@@ -33,11 +33,13 @@ namespace game
 				Active = ship.Stats.FullEnergy - ship.Stats.CurrentEnergy;
 			this.room = room;
 			var t = new TableLayoutPanel();
+			//this.BackColor = Color.Transparent;
 			t.ColumnCount = Max;
 			for (int i = 0; i < Max; i++)
 				t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, (float)(1.0 / Max)));
 			t.RowCount = 1;
 			t.Dock = DockStyle.Fill;
+			//t.BackColor = Color.Transparent;
 			for (int i = 0; i < Max; i++)
 			{
 				var cell = new EnergyCell();
@@ -52,7 +54,7 @@ namespace game
 						bar.Invalidate();
 				};
 				cell.Dock = DockStyle.Fill;
-				cell.Margin = new Padding(0);
+				cell.Margin = new Padding(0, 0, 0, 0);
 				cells.Add(cell);
 				t.Controls.Add(cell, i, 0);
 			}

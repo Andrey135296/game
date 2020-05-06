@@ -24,21 +24,24 @@ namespace game
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			base.OnPaint(e);
-			e.Graphics.DrawRectangle(new Pen(Color.FromArgb(255, 0, 0, 0), 2), 0, 0, this.Width, this.Height);
+			//this.BackColor = Color.Transparent;
+			e.Graphics.DrawRectangle(new Pen(Color.FromArgb(255, 0, 0, 0), 2), 2, 2, this.Width-4, this.Height-4);
+			Color cl;
 			switch (state)
 			{
 				case 0:
-					BackColor = Color.Gray;
+					cl = Color.Gray;
 					break;
 				case 1:
-					BackColor = Color.White;
+					cl = Color.White;
 					break;
 				case 2:
-					BackColor = Color.Green;
+					cl = Color.Green;
 					break;
 				default:
 					throw new Exception("ошибка, произошла ошибка");
 			}
+			e.Graphics.FillRectangle(new SolidBrush(cl), 2, 2, this.Width - 4, this.Height - 4);
 		}
 	}
 }
