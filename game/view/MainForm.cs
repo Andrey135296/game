@@ -178,11 +178,11 @@ namespace game
             var gameOpt = new OptionNameCell("Игровые настройки");
             optionsScreen.Controls.Add(gameOpt, 3, 3);
 
-            var gameOpt1 = new OptionCell();
+            var gameOpt1 = new OptionCell("Музыка", 50);
             optionsScreen.Controls.Add(gameOpt1, 1, 4);
 
             var gameOpt2 = new OptionNameCell("Игровые настройки");
-            optionsScreen.Controls.Add(gameOpt2, 3, 4);
+            optionsScreen.Controls.Add(gameOpt2, 1, 5);
 
             return optionsScreen;
 		}

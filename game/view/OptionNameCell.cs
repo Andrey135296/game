@@ -12,7 +12,7 @@ namespace game.view
 {
     public partial class OptionNameCell : UserControl
     {
-        public OptionNameCell(string str)
+        public OptionNameCell(string name)
         {
             InitializeComponent();
             this.Size = new Size(365, 65);
@@ -28,7 +28,7 @@ namespace game.view
 
 
             var label = new Label();
-            label.Text = str;
+            label.Text = name;
             label.Dock = DockStyle.Fill;
             label.TextAlign = ContentAlignment.MiddleCenter;
             panel.Controls.Add(label);
