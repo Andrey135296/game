@@ -207,24 +207,14 @@ namespace game
 				l.Add(new CrewMember(null, Alignment.Player));
 			}
 			var crewPanel = new CrewPanel(l);
-			crewPanel.Top = 50;
-			crewPanel.Left = 50;
+			crewPanel.Top = 5;
+			crewPanel.Left = 5;
 			startScreen.Controls.Add(crewPanel);
 
 			var ship = new TestTitan(Alignment.Player);
-			var top = 400;
-			var left = 50;
-			foreach (var room in ship.SpecialRooms)
-			{
-				var energyBar = new EnergyBar(room, ship) { Size = new Size(300, 30) };
-				energyBar.Top = top;
-				top += 40;
-				energyBar.Left = left;
-				startScreen.Controls.Add(energyBar);
-			}
-
 			var systemPanel = new SystemsPanel(ship);
-			systemPanel.Left = 400;
+			systemPanel.Left = 312;
+			systemPanel.Top = 5;
 			startScreen.Controls.Add(systemPanel);
 
 			var ans = new TableLayoutPanel();
