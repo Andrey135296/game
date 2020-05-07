@@ -12,9 +12,11 @@ namespace game.view
 {
     public partial class OptionCell : UserControl
     {
-        public OptionCell()
+        private int Value = 0;
+        public OptionCell(string name, int value)
         {
             InitializeComponent();
+            Value = value;
             this.Size = new Size(365, 65);
             this.BackColor = Color.White;
             this.Dock = DockStyle.Fill;
@@ -34,10 +36,48 @@ namespace game.view
 
 
             var label = new Label();
-            label.Text = "111";
+            label.Text = name;
             label.Dock = DockStyle.Fill;
             label.TextAlign = ContentAlignment.MiddleCenter;
             panel.Controls.Add(label);
+
+            var decreaseButton = new Button();
+            decreaseButton.Size = new Size(20, 20);
+            decreaseButton.Text = "1";
+            decreaseButton.Top = 20;
+            decreaseButton.Left = 35;
+            panel2.Controls.Add(decreaseButton);
+
+            var increaseButton = new Button();
+            increaseButton.Size = new Size(20, 20);
+            increaseButton.Text = "2";
+            increaseButton.Top = 20;
+            increaseButton.Left = 117;
+            panel2.Controls.Add(increaseButton);
+
+            var valueLabel = new Label();
+            valueLabel.Text = Value.ToString();
+            valueLabel.Dock = DockStyle.Fill;
+            valueLabel.TextAlign = ContentAlignment.MiddleCenter;
+            valueLabel.Paint += (s,e) =>
+            {
+                valueLabel.Text = Value.ToString();
+            };
+            panel2.Controls.Add(valueLabel);
+
+            decreaseButton.Click += (s, e) =>
+            {
+                Value -= 5;
+                Value = Math.Max(0, Value);
+                valueLabel.Invalidate();
+            };
+
+            increaseButton.Click += (s, e) =>
+            {
+                Value += 5;
+                Value = Math.Min(100, Value);
+                valueLabel.Invalidate();
+            };
 
             t.Controls.Add(panel,0,0);
             t.Controls.Add(panel2,1,0);
