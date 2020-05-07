@@ -21,6 +21,7 @@ namespace game
 		public TableLayoutPanel FightGrid;
 		public List<TableLayoutPanel> AllGrids = new List<TableLayoutPanel>();
 		public GameModel gameModel = null;
+		public Control Selected;
 
 		public MainForm()
 		{
@@ -39,12 +40,13 @@ namespace game
 			StartGrid = GenerateStartScreen();
 			Controls.Add(StartGrid);
 			AllGrids.Add(StartGrid);
-
         }
 
-		protected override void OnPaint(PaintEventArgs e)
+		protected override void OnClick(EventArgs e)
 		{
-        }
+			base.OnClick(e);
+			Selected = null;
+		}
 
 		public TableLayoutPanel GenerateMainMenu()
 		{
@@ -210,6 +212,17 @@ namespace game
 				l.Add(new CrewMember(null, Alignment.Player));
 			}
 			var crewPanel = new CrewPanel(l);
+			foreach (var human in crewPanel
+					.Controls.Cast<Control>()
+					.First()
+					.Controls.Cast<Control>()
+					.Where(p => p is Panel)
+					.SelectMany(p=>p.Controls.Cast<Control>().Where(h=>h is Human)))
+				human.Click += (s, e) =>
+				{
+					var h = human;
+					Selected = h;
+				};
 			crewPanel.Top = 5;
 			crewPanel.Left = 5;
 			startScreen.Controls.Add(crewPanel);
@@ -220,11 +233,12 @@ namespace game
 			systemPanel.Top = 5;
 			startScreen.Controls.Add(systemPanel);
 
-			var c = new CellControl();
-			c.Size = new Size(20, 20);
-			c.Left = 200;
-			c.Top = 500;
-			startScreen.Controls.Add(c);
+			var cell = new Cell(0, 0);
+			var cc = new CellControl(cell);
+			cc.Size = new Size(30, 30);
+			cc.Left = 200;
+			cc.Top = 500;
+			startScreen.Controls.Add(cc);
 
 			var ans = new TableLayoutPanel();
 			ans.RowCount = 1;
