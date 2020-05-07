@@ -217,6 +217,12 @@ namespace game
 			systemPanel.Top = 5;
 			startScreen.Controls.Add(systemPanel);
 
+			var c = new CellControl();
+			c.Size = new Size(20, 20);
+			c.Left = 200;
+			c.Top = 500;
+			startScreen.Controls.Add(c);
+
 			var ans = new TableLayoutPanel();
 			ans.RowCount = 1;
 			ans.ColumnCount = 1;
