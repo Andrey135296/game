@@ -21,7 +21,7 @@ namespace game
 		public TableLayoutPanel FightGrid;
 		public List<TableLayoutPanel> AllGrids = new List<TableLayoutPanel>();
 		public GameModel gameModel = null;
-		public Control Selected;
+		public Human Selected;
 
 		public MainForm()
 		{
@@ -41,12 +41,6 @@ namespace game
 			Controls.Add(StartGrid);
 			AllGrids.Add(StartGrid);
         }
-
-		protected override void OnClick(EventArgs e)
-		{
-			base.OnClick(e);
-			Selected = null;
-		}
 
 		public TableLayoutPanel GenerateMainMenu()
 		{
@@ -199,6 +193,15 @@ namespace game
 			startScreen.Dock = DockStyle.Fill;
 			startScreen.BackgroundImage = new Bitmap("images/StartBackground.jpg");
 			startScreen.BackgroundImageLayout = ImageLayout.Stretch;
+			startScreen.Click += (s, e) =>
+			{
+				if (Selected != null)
+				{
+					Selected.IsSelected = false;
+					Selected.Invalidate();
+				}
+				Selected = null;
+			};
 
 			var backButton = new Button();
 			backButton.Text = "Назад";
@@ -212,16 +215,18 @@ namespace game
 				l.Add(new CrewMember(null, Alignment.Player));
 			}
 			var crewPanel = new CrewPanel(l);
-			foreach (var human in crewPanel
-					.Controls.Cast<Control>()
-					.First()
-					.Controls.Cast<Control>()
-					.Where(p => p is Panel)
-					.SelectMany(p=>p.Controls.Cast<Control>().Where(h=>h is Human)))
+			foreach (var human in GetAll(crewPanel, typeof(Human)))
 				human.Click += (s, e) =>
 				{
-					var h = human;
+					var h = (Human)human;
+					if (Selected != null)
+					{
+						Selected.IsSelected = false;
+						Selected.Invalidate();
+					}
+					h.IsSelected = true;
 					Selected = h;
+					h.Invalidate();
 				};
 			crewPanel.Top = 5;
 			crewPanel.Left = 5;
@@ -272,6 +277,15 @@ namespace game
 				default:
 					throw new Exception("Unknown screen type");
 			}
+		}
+
+		public static IEnumerable<Control> GetAll(Control control, Type type)
+		{
+			var controls = control.Controls.Cast<Control>();
+
+			return controls.SelectMany(ctrl => GetAll(ctrl, type))
+									  .Concat(controls)
+									  .Where(c => c.GetType() == type);
 		}
 	}
 }
