@@ -16,17 +16,17 @@ namespace game
 		public SystemsPanel(Ship ship)
 		{
 			InitializeComponent();
-			Size = new Size(302, 171);
+			Size = new Size(309, 171);
 			this.ship = ship;
 			var t = new TableLayoutPanel();
 			t.ColumnCount = 4;
 			t.RowCount = 5;
 			for (int i = 0; i < 5; i++)
 				t.RowStyles.Add(new RowStyle(SizeType.Percent, 20));
-			t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10));
-			t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40));
-			t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10));
-			t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40));
+			t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12));
+			t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 38));
+			t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12));
+			t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 38));
 			t.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 
 			var label = new Label();
@@ -65,37 +65,43 @@ namespace game
 			t.Controls.Add(controlBar, 3, 3);
 
 			var generatorImage = new PictureBox();
-			SetUpControl(generatorImage);
+			//SetUpControl(generatorImage);
+			generatorImage.Dock = DockStyle.Fill;
 			generatorImage.Image = new Bitmap("images/Generator.png");
 			generatorImage.SizeMode = PictureBoxSizeMode.Zoom;
 			t.Controls.Add(generatorImage, 0, 1);
 
 			var radarImage = new PictureBox();
-			SetUpControl(radarImage);
+			//SetUpControl(radarImage);
+			radarImage.Dock = DockStyle.Fill;
 			radarImage.Image = new Bitmap("images/Radar.png");
 			radarImage.SizeMode = PictureBoxSizeMode.Zoom;
 			t.Controls.Add(radarImage, 0, 2);
 
 			var engineImage = new PictureBox();
-			SetUpControl(engineImage);
+			//SetUpControl(engineImage);
 			engineImage.Image = new Bitmap("images/Engine.png");
 			engineImage.SizeMode = PictureBoxSizeMode.Zoom;
+			engineImage.Dock = DockStyle.Fill;
 			t.Controls.Add(engineImage, 0, 3);
 
 			var livingImage = new PictureBox();
-			SetUpControl(livingImage);
+			//SetUpControl(livingImage);
+			livingImage.Dock = DockStyle.Fill;
 			livingImage.Image = new Bitmap("images/Living.jpg");
 			livingImage.SizeMode = PictureBoxSizeMode.Zoom;
 			t.Controls.Add(livingImage, 0, 4);
 
 			var weaponImage = new PictureBox();
-			SetUpControl(weaponImage);
+			//SetUpControl(weaponImage);
+			weaponImage.Dock = DockStyle.Fill;
 			weaponImage.Image = new Bitmap("images/Weapon.png");
 			weaponImage.SizeMode = PictureBoxSizeMode.Zoom;
 			t.Controls.Add(weaponImage, 2, 2);
 
 			var controlImage = new PictureBox();
-			SetUpControl(controlImage);
+			//SetUpControl(controlImage);
+			controlImage.Dock = DockStyle.Fill;
 			controlImage.Image = new Bitmap("images/Control.jpg");
 			controlImage.SizeMode = PictureBoxSizeMode.Zoom;
 			t.Controls.Add(controlImage, 2, 3);
