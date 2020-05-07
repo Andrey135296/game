@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace game.view
 {
-    public partial class OptionCell : UserControl
+    public partial class OptionNameCell : UserControl
     {
-        public OptionCell()
+        public OptionNameCell(string str)
         {
             InitializeComponent();
             this.Size = new Size(365, 65);
@@ -20,32 +20,27 @@ namespace game.view
             this.Dock = DockStyle.Fill;
 
             var t = new TableLayoutPanel();
-            t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
-            t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
             t.Size = new Size(355, 55);
             var panel = new Panel();
-            panel.Size = new Size(183, 55);
+            panel.Size = new Size(355, 55);
             panel.BackColor = Color.White;
             panel.Dock = DockStyle.Fill;
-            var panel2 = new Panel();
-            panel2.Size = new Size(183, 55);
-            panel2.BackColor = Color.White;
-            panel2.Dock = DockStyle.Fill;
 
 
             var label = new Label();
-            label.Text = "111";
+            label.Text = str;
             label.Dock = DockStyle.Fill;
             label.TextAlign = ContentAlignment.MiddleCenter;
             panel.Controls.Add(label);
 
-            t.Controls.Add(panel,0,0);
-            t.Controls.Add(panel2,1,0);
+            t.Controls.Add(panel);
             t.BackColor = Color.Black;
             t.Dock = DockStyle.Fill;
             this.Controls.Add(t);
             this.Margin = new Padding(0, 0, 0, 0);
         }
+
+
 
         protected override void OnPaint(PaintEventArgs e)
         {

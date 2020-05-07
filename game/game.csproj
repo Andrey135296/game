@@ -125,6 +125,12 @@
     <Compile Include="Tests\TrySetEnergy_Shold.cs" />
     <Compile Include="containers\Weapon.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="view\OptionNameCell.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="view\OptionNameCell.Designer.cs">
+      <DependentUpon>OptionNameCell.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\OptionCell.cs">
       <SubType>UserControl</SubType>
     </Compile>

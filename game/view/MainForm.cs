@@ -173,17 +173,20 @@ namespace game
             optionsLabel.Font = new Font(FontFamily.GenericSerif, 40, FontStyle.Bold);
             optionsScreen.Controls.Add(optionsLabel, 2, 1);
 
-            var soundOpt = new OptionCell("Звук");
+            var soundOpt = new OptionNameCell("Звук");
             optionsScreen.Controls.Add(soundOpt, 1, 3);
 
-            var videoOpt = new OptionCell("Видео");
+            var videoOpt = new OptionNameCell("Видео");
             optionsScreen.Controls.Add(videoOpt, 2, 3);
 
-            var gameOpt = new OptionCell("Игровые настройки");
+            var gameOpt = new OptionNameCell("Игровые настройки");
             optionsScreen.Controls.Add(gameOpt, 3, 3);
 
-            var gameOpt1 = new OptionCell("Игровые настройки");
+            var gameOpt1 = new OptionCell();
             optionsScreen.Controls.Add(gameOpt1, 1, 4);
+
+            var gameOpt2 = new OptionNameCell("Игровые настройки");
+            optionsScreen.Controls.Add(gameOpt2, 3, 4);
 
             return optionsScreen;
 		}
