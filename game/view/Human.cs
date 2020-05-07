@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace game
 {
-	public partial class Human : UserControl
+	public partial class Human : UserControl, ISelectable
 	{
 		public CrewMember crewMember;
-		public bool IsSelected = false;
+		public bool IsSelected { get; set; }
 		public Human()
 		{
 			InitializeComponent();

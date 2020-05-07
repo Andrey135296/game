@@ -51,6 +51,7 @@
     <Compile Include="containers\ships\TestTitanShip.cs" />
     <Compile Include="containers\ships\Titan.cs" />
     <Compile Include="containers\TestWeapons.cs" />
+    <Compile Include="ISelectable.cs" />
     <Compile Include="view\CellControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -12,7 +12,7 @@ using game.view;
 
 namespace game
 {
-	public partial class MainForm : Form
+	public partial class MainForm : Form 
 	{
 		public TableLayoutPanel MainMenuGrid;
 		public TableLayoutPanel OptionsGrid;
@@ -21,13 +21,13 @@ namespace game
 		public TableLayoutPanel FightGrid;
 		public List<TableLayoutPanel> AllGrids = new List<TableLayoutPanel>();
 		public GameModel gameModel = null;
-		public Human Selected;
+		public ISelectable Selected = null;
 
 		public MainForm()
 		{
-            DoubleBuffered = true;
-			InitializeComponent();
 
+			InitializeComponent();
+			DoubleBuffered = true;
 			MainMenuGrid = GenerateMainMenu();
 			Controls.Add(MainMenuGrid);
 			AllGrids.Add(MainMenuGrid);
@@ -218,7 +218,7 @@ namespace game
 			foreach (var human in GetAll(crewPanel, typeof(Human)))
 				human.Click += (s, e) =>
 				{
-					var h = (Human)human;
+					var h = (ISelectable)human;
 					if (Selected != null)
 					{
 						Selected.IsSelected = false;
@@ -257,6 +257,11 @@ namespace game
 		{
 			foreach (var p in AllGrids)
 				p.Visible = false;
+			if (Selected != null)
+			{
+				Selected.IsSelected = false;
+				Selected = null;
+			}
 			switch (screen)
 			{
 				case Screen.Menu:
@@ -277,6 +282,7 @@ namespace game
 				default:
 					throw new Exception("Unknown screen type");
 			}
+			
 		}
 
 		public static IEnumerable<Control> GetAll(Control control, Type type)
