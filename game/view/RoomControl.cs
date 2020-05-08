@@ -38,6 +38,7 @@ namespace game
 			foreach (var cellControl in Cells)
 			{
 				cellControl.Dock = DockStyle.Fill;
+				cellControl.Margin = new Padding(0, 0, 0, 0);
 				t.Controls.Add(cellControl, cellControl.cell.Coordinates.X - MinX, cellControl.cell.Coordinates.Y - MinY);
 			}
 
