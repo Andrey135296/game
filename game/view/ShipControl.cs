@@ -14,6 +14,7 @@ namespace game
 	{
 		public Ship Ship;
 		public List<RoomControl> Rooms;
+		public int MaxX, MaxY, MinX, MinY;
 		public ShipControl(Ship ship)
 		{
 			InitializeComponent();
@@ -25,6 +26,10 @@ namespace game
 				BackgroundImageLayout = ImageLayout.Stretch;
 			}
 			BackColor = Color.Transparent;
+			MaxX = Rooms.Max(r => r.MaxX);
+			MinX = Rooms.Min(r => r.MinX);
+			MaxY = Rooms.Max(r => r.MaxY);
+			MinY = Rooms.Min(r => r.MinY);
 
 			var bt = new TableLayoutPanel();
 			bt.Dock = DockStyle.Fill;
@@ -38,6 +43,19 @@ namespace game
 			bt.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16));
 			bt.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 78));
 			bt.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6));
+
+			var t = new TableLayoutPanel();
+			t.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+			t.Dock = DockStyle.Fill;
+			t.Margin = new Padding(0, 0, 0, 0);
+			t.ColumnCount = MaxX - MinX + 1;
+			t.RowCount = MaxY - MinY + 1;
+			for (int i = 0; i < t.RowCount; i++)
+				t.RowStyles.Add(new RowStyle(SizeType.Percent, 1.0f / t.RowCount));
+			for (int i = 0; i < t.ColumnCount; i++)
+				t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1.0f / t.ColumnCount));
+
+			bt.Controls.Add(t, 1, 1);
 
 
 			Controls.Add(bt);
