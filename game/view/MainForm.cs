@@ -238,6 +238,15 @@ namespace game
 			backButton.Click += (e, a) => this.TransitionTo(Screen.Menu);
 			startScreen.Controls.Add(backButton);
 
+			var mapButton = new Button();
+			mapButton.Text = "Карта";
+			mapButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular,
+							GraphicsUnit.Point, ((byte)(204)));
+			mapButton.Left = 900;
+			mapButton.Top = 100;
+			mapButton.Click += (e, a) => this.TransitionTo(Screen.Map);
+			startScreen.Controls.Add(mapButton);
+
 			var l = new List<CrewMember>();
 			for (int i = 0; i < 7; i++)
 			{
