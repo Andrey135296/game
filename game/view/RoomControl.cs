@@ -22,7 +22,7 @@ namespace game
 			var minx = Room.Cells.Min(c => c.Coordinates.X);
 			var maxx = Room.Cells.Max(c => c.Coordinates.X);
 			var miny = Room.Cells.Min(c => c.Coordinates.Y);
-			var maxy = Room.Cells.Min(c => c.Coordinates.Y);
+			var maxy = Room.Cells.Max(c => c.Coordinates.Y);
 
 			var t = new TableLayoutPanel();
 			t.Dock = DockStyle.Fill;

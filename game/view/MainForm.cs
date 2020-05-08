@@ -246,6 +246,7 @@ namespace game
 			startScreen.Controls.Add(cc);
 
 			var room = new RoomControl(ship.SpecialRooms[0]);
+			//var room = new RoomControl(new Room(new List<Cell> { ship.Cells[0], ship.Cells[1], ship.Cells[2], ship.Cells[3] }));
 			room.Size = new Size(100, 50);
 			room.Left = 300;
 			room.Top = 500;
