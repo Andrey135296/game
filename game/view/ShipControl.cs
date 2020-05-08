@@ -32,12 +32,12 @@ namespace game
 			bt.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 			bt.RowCount = 3;
 			bt.ColumnCount = 3;
-			bt.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
-			bt.RowStyles.Add(new RowStyle(SizeType.Percent, 80));
-			bt.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
-			bt.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10));
-			bt.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80));
-			bt.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10));
+			bt.RowStyles.Add(new RowStyle(SizeType.Percent, 22));
+			bt.RowStyles.Add(new RowStyle(SizeType.Percent, 48));
+			bt.RowStyles.Add(new RowStyle(SizeType.Percent, 30));
+			bt.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16));
+			bt.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 78));
+			bt.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6));
 
 
 			Controls.Add(bt);
