@@ -36,11 +36,6 @@ namespace game
 				var human = new Human(crew[i]);
 				human.Size = new Size(20, 50);
 				human.Left = 25;
-				human.Click += (s, e) =>
-				{
-					human.crewMember.CurrentHP -= 10;
-					human.Invalidate();
-				};
 				panel.Controls.Add(human);
 
 				var label = new Label();
