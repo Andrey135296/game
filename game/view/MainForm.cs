@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using game.view;
+using System.Media;
 
 namespace game
 {
@@ -40,6 +41,9 @@ namespace game
 			StartGrid = GenerateStartScreen();
 			Controls.Add(StartGrid);
 			AllGrids.Add(StartGrid);
+
+            SoundPlayer sp = new SoundPlayer("music/testsound.wav");
+            sp.Play();
         }
 
 		public TableLayoutPanel GenerateMainMenu()
