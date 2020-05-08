@@ -29,6 +29,8 @@ namespace game.view
 
             var label = new Label();
             label.Text = name;
+            label.Font = new Font("Segoe UI", 18F, FontStyle.Regular,
+                GraphicsUnit.Point, ((byte)(204)));
             label.Dock = DockStyle.Fill;
             label.TextAlign = ContentAlignment.MiddleCenter;
             panel.Controls.Add(label);

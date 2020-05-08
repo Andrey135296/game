@@ -37,6 +37,8 @@ namespace game.view
 
             var label = new Label();
             label.Text = name;
+            label.Font = new Font("Segoe UI", 12F, FontStyle.Regular,
+                        GraphicsUnit.Point, ((byte)(204)));
             label.Dock = DockStyle.Fill;
             label.TextAlign = ContentAlignment.MiddleCenter;
             panel.Controls.Add(label);
@@ -59,6 +61,8 @@ namespace game.view
 
             var valueLabel = new Label();
             valueLabel.Text = Value.ToString();
+            valueLabel.Font = new Font("Segoe UI", 10F, FontStyle.Regular,
+                    GraphicsUnit.Point, ((byte)(204)));
             valueLabel.Dock = DockStyle.Fill;
             valueLabel.TextAlign = ContentAlignment.MiddleCenter;
             valueLabel.Paint += (s,e) =>
