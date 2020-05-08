@@ -17,8 +17,6 @@ namespace game
 		{
 			InitializeComponent();
 			Size = new Size(20, 30);
-
-			//Invalidate();
 		}
 
 		protected override void OnPaint(PaintEventArgs e)

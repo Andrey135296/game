@@ -245,6 +245,12 @@ namespace game
 			cc.Top = 500;
 			startScreen.Controls.Add(cc);
 
+			var room = new RoomControl(ship.SpecialRooms[0]);
+			room.Size = new Size(100, 50);
+			room.Left = 300;
+			room.Top = 500;
+			startScreen.Controls.Add(room);
+
 			var ans = new TableLayoutPanel();
 			ans.RowCount = 1;
 			ans.ColumnCount = 1;
