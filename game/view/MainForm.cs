@@ -43,7 +43,7 @@ namespace game
 			AllGrids.Add(StartGrid);
 
             SoundPlayer sp = new SoundPlayer("music/testsound.wav");
-            sp.Play();
+            //sp.Play();
         }
 
 		public TableLayoutPanel GenerateMainMenu()
@@ -272,6 +272,26 @@ namespace game
 			shipControl.Top = 350;
 			shipControl.Size = new Size(750, 300);
 			startScreen.Controls.Add(shipControl);
+
+			var wp = new WeaponControl(ship.Weapons[0]);
+			wp.Top = 200;
+			wp.Height = 100;
+			wp.Width = 190;
+			startScreen.Controls.Add(wp);
+
+			foreach (var weap in GetAll(startScreen, typeof(WeaponControl)))
+				weap.Click += (s, e) =>
+				{
+					var w = (ISelectable)weap;
+					if (Selected != null)
+					{
+						Selected.IsSelected = false;
+						Selected.Invalidate();
+					}
+					w.IsSelected = true;
+					Selected = w;
+					w.Invalidate();
+				};
 
 			var ans = new TableLayoutPanel();
 			ans.RowCount = 1;
