@@ -42,15 +42,17 @@ namespace game.view
             panel.Controls.Add(label);
 
             var decreaseButton = new Button();
-            decreaseButton.Size = new Size(20, 20);
-            decreaseButton.Text = "1";
+            decreaseButton.Size = new Size(20, 23);
+            //decreaseButton.Text = "1";
+            decreaseButton.Image = new Bitmap("images/arrow-left.png");
             decreaseButton.Top = 20;
             decreaseButton.Left = 35;
             panel2.Controls.Add(decreaseButton);
 
             var increaseButton = new Button();
-            increaseButton.Size = new Size(20, 20);
-            increaseButton.Text = "2";
+            increaseButton.Size = new Size(20, 23);
+            //increaseButton.Text = "2";
+            increaseButton.Image = new Bitmap("images/arrow-right.png");
             increaseButton.Top = 20;
             increaseButton.Left = 117;
             panel2.Controls.Add(increaseButton);
