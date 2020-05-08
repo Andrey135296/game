@@ -178,11 +178,24 @@ namespace game
             var gameOpt = new OptionNameCell("Игровые настройки");
             optionsScreen.Controls.Add(gameOpt, 3, 3);
 
-            var gameOpt1 = new OptionCell("Музыка", 50);
-            optionsScreen.Controls.Add(gameOpt1, 1, 4);
+            var musicOpt = new OptionCell("Музыка", 50);
+            optionsScreen.Controls.Add(musicOpt, 1, 4);
 
-            var gameOpt2 = new OptionNameCell("Игровые настройки");
-            optionsScreen.Controls.Add(gameOpt2, 1, 5);
+            var effectOpt = new OptionCell("Эффекты", 50);
+            optionsScreen.Controls.Add(effectOpt, 1, 5);
+
+            var allSoundsOpt = new OptionCell("Общая громкость", 50);
+            optionsScreen.Controls.Add(allSoundsOpt, 1, 6);
+
+            var fullSceen = new OptionCell("Яркость", 50);
+            optionsScreen.Controls.Add(fullSceen, 2, 4);
+
+            var autoPause = new OptionCell("Автопауза", 50);
+            optionsScreen.Controls.Add(autoPause, 3, 4);
+
+            var buffer = new Label();
+            buffer.BackColor = Color.Transparent;
+            optionsScreen.Controls.Add(buffer, 1, 7);
 
             return optionsScreen;
 		}
