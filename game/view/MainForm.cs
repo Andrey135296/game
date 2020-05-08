@@ -77,13 +77,17 @@ namespace game
 
 			var continueButton = new Button();
 			continueButton.Text = "Продолжить";
-			continueButton.Dock = DockStyle.Fill;
+            continueButton.Font = new Font("Segoe UI", 16F, FontStyle.Regular,
+                                    GraphicsUnit.Point, ((byte)(204)));
+            continueButton.Dock = DockStyle.Fill;
 			continueButton.Enabled = false;
 			playGrid.Controls.Add(continueButton, 0, 0);
 
 			var newGameButton = new Button();
 			newGameButton.Text = "Новая Игра";
-			newGameButton.Dock = DockStyle.Fill;
+            newGameButton.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular,
+                        GraphicsUnit.Point, ((byte)(204)));
+            newGameButton.Dock = DockStyle.Fill;
 			newGameButton.Click += (e, a) => TransitionTo(Screen.Start);
 			playGrid.Controls.Add(newGameButton, 0, 1);
 
@@ -99,13 +103,17 @@ namespace game
 
 			var optionsButton = new Button();
 			optionsButton.Text = "Настройки";
-			optionsButton.Dock = DockStyle.Fill;
+            optionsButton.Font = new Font("Segoe UI", 16F, FontStyle.Regular,
+                        GraphicsUnit.Point, ((byte)(204)));
+            optionsButton.Dock = DockStyle.Fill;
 			optionsButton.Click += (e, a) => this.TransitionTo(Screen.Options);
 			otherGrid.Controls.Add(optionsButton, 0, 0);
 
 			var exitButton = new Button();
 			exitButton.Text = "Выход";
-			exitButton.Dock = DockStyle.Fill;
+            exitButton.Font = new Font("Segoe UI", 16F, FontStyle.Regular,
+                        GraphicsUnit.Point, ((byte)(204)));
+            exitButton.Dock = DockStyle.Fill;
             exitButton.Click += (s, e) =>
             {
                 var result = MessageBox.Show("Вы действительно хотите выйти?", "", MessageBoxButtons.YesNo);
