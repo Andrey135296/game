@@ -34,7 +34,7 @@ namespace game
 			var bt = new TableLayoutPanel();
 			bt.Dock = DockStyle.Fill;
 			bt.BackColor = Color.Transparent;
-			bt.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+			//bt.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 			bt.RowCount = 3;
 			bt.ColumnCount = 3;
 			bt.RowStyles.Add(new RowStyle(SizeType.Percent, 22));
@@ -45,7 +45,7 @@ namespace game
 			bt.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6));
 
 			var t = new TableLayoutPanel();
-			t.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+			//t.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 			t.Dock = DockStyle.Fill;
 			t.Margin = new Padding(0, 0, 0, 0);
 			t.ColumnCount = MaxX - MinX + 1;
@@ -55,9 +55,17 @@ namespace game
 			for (int i = 0; i < t.ColumnCount; i++)
 				t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1.0f / t.ColumnCount));
 
+			foreach (var room in Rooms)
+			{
+				room.Margin = new Padding(0, 0, 0, 0);
+				room.BackColor = Color.LightGray;
+				room.Dock = DockStyle.Fill;
+				t.Controls.Add(room, room.MinX, room.MinY);
+				t.SetColumnSpan(room, room.MaxX - room.MinX + 1);
+				t.SetRowSpan(room, room.MaxY - room.MinY + 1);
+			}
+
 			bt.Controls.Add(t, 1, 1);
-
-
 			Controls.Add(bt);
 		}
 	}

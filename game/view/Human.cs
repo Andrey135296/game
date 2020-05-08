@@ -37,9 +37,7 @@ namespace game
 				cl = Color.FromArgb(255-255*crewMember.CurrentHP / crewMember.MaxHP, 255, 0, 0);
 			e.Graphics.FillEllipse(new SolidBrush(cl), (int)(Size.Width*1.5/20), 0, Size.Width*15/20, Size.Height*14/60);
 			if (IsSelected)
-			{
 				e.Graphics.DrawRectangle(new Pen(Color.Red), 0, 0, Width-1, Height-1);
-			}
 		}
 	}
 }

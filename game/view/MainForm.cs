@@ -43,8 +43,7 @@ namespace game
 			AllGrids.Add(StartGrid);
 
             SoundPlayer sp = new SoundPlayer("music/testsound.wav");
-            sp.Play();
-            //var wmp = windows
+            //sp.Play();
         }
 
 		public TableLayoutPanel GenerateMainMenu()
@@ -235,7 +234,7 @@ namespace game
 			backButton.Text = "Назад";
             backButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular,
                             GraphicsUnit.Point, ((byte)(204)));
-            backButton.Dock = DockStyle.Right;
+			backButton.Left = 900;
 			backButton.Click += (e, a) => this.TransitionTo(Screen.Menu);
 			startScreen.Controls.Add(backButton);
 
@@ -268,25 +267,31 @@ namespace game
 			systemPanel.Top = 5;
 			startScreen.Controls.Add(systemPanel);
 
-			var cell = new Cell(0, 0);
-			var cc = new CellControl(cell);
-			cc.Size = new Size(30, 30);
-			cc.Left = 200;
-			cc.Top = 500;
-			startScreen.Controls.Add(cc);
-
-			var room = new RoomControl(ship.SpecialRooms[0]);
-			//var room = new RoomControl(new Room(new List<Cell> { ship.Cells[0], ship.Cells[1], ship.Cells[2], ship.Cells[3] }));
-			room.Size = new Size(100, 50);
-			room.Left = 300;
-			room.Top = 500;
-			startScreen.Controls.Add(room);
-
 			var shipControl = new ShipControl(ship);
-			shipControl.Left = 500;
-			shipControl.Top = 400;
-			shipControl.Size = new Size(500, 200);
+			shipControl.Left = 150;
+			shipControl.Top = 350;
+			shipControl.Size = new Size(750, 300);
 			startScreen.Controls.Add(shipControl);
+
+			var wp = new WeaponControl(ship.Weapons[0]);
+			wp.Top = 200;
+			wp.Height = 100;
+			wp.Width = 190;
+			startScreen.Controls.Add(wp);
+
+			foreach (var weap in GetAll(startScreen, typeof(WeaponControl)))
+				weap.Click += (s, e) =>
+				{
+					var w = (ISelectable)weap;
+					if (Selected != null)
+					{
+						Selected.IsSelected = false;
+						Selected.Invalidate();
+					}
+					w.IsSelected = true;
+					Selected = w;
+					w.Invalidate();
+				};
 
 			var ans = new TableLayoutPanel();
 			ans.RowCount = 1;
