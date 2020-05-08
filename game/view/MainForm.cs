@@ -301,7 +301,83 @@ namespace game
 			return ans;
 		}
 
-		public void TransitionTo(Screen screen)
+        public TableLayoutPanel GenerateMapScreen()
+        {
+            var mainMapGrid = new TableLayoutPanel();
+            mainMapGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 86));
+            mainMapGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 14));
+            mainMapGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
+            mainMapGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 90));
+            mainMapGrid.Dock = DockStyle.Fill;
+            mainMapGrid.BackgroundImage = new Bitmap("images/MapBackground.png");
+            mainMapGrid.BackgroundImageLayout = ImageLayout.Stretch;
+
+            //var logo = new Label();
+            //logo.Text = "DTSb";
+            //logo.Dock = DockStyle.Fill;
+            //logo.BackColor = Color.Transparent;
+            //logo.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
+            //mainMapGrid.Controls.Add(logo, 0, 0);
+
+            var playGrid = new TableLayoutPanel();
+            playGrid.Dock = DockStyle.Fill;
+            playGrid.ColumnCount = 1;
+            playGrid.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            playGrid.RowCount = 2;
+            playGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+            playGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+            mainMapGrid.Controls.Add(playGrid, 1, 1);
+
+            //var continueButton = new Button();
+            //continueButton.Text = "Продолжить";
+            //continueButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
+            //                        GraphicsUnit.Point, ((byte)(204)));
+            //continueButton.Dock = DockStyle.Fill;
+            //continueButton.Enabled = false;
+            //playGrid.Controls.Add(continueButton, 0, 0);
+
+            //var newGameButton = new Button();
+            //newGameButton.Text = "Новая Игра";
+            //newGameButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
+            //            GraphicsUnit.Point, ((byte)(204)));
+            //newGameButton.Dock = DockStyle.Fill;
+            //newGameButton.Click += (e, a) => TransitionTo(Screen.Start);
+            //playGrid.Controls.Add(newGameButton, 0, 1);
+
+
+            var otherGrid = new TableLayoutPanel();
+            otherGrid.Dock = DockStyle.Fill;
+            otherGrid.ColumnCount = 1;
+            otherGrid.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            otherGrid.RowCount = 2;
+            otherGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+            otherGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+            mainMapGrid.Controls.Add(otherGrid, 1, 3);
+
+            var optionsButton = new Button();
+            optionsButton.Text = "Настройки";
+            optionsButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
+                        GraphicsUnit.Point, ((byte)(204)));
+            optionsButton.Dock = DockStyle.Fill;
+            optionsButton.Click += (e, a) => this.TransitionTo(Screen.Options);
+            otherGrid.Controls.Add(optionsButton, 0, 0);
+
+            var exitButton = new Button();
+            exitButton.Text = "Выход";
+            exitButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
+                        GraphicsUnit.Point, ((byte)(204)));
+            exitButton.Dock = DockStyle.Fill;
+            exitButton.Click += (s, e) =>
+            {
+                var result = MessageBox.Show("Вы действительно хотите выйти?", "", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes) Application.Exit();
+            };
+            otherGrid.Controls.Add(exitButton, 0, 1);
+
+            return mainMapGrid;
+        }
+
+        public void TransitionTo(Screen screen)
 		{
 			foreach (var p in AllGrids)
 				p.Visible = false;
