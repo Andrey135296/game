@@ -85,7 +85,7 @@ namespace game
 
 			var newGameButton = new Button();
 			newGameButton.Text = "Новая Игра";
-            newGameButton.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular,
+            newGameButton.Font = new Font("Segoe UI", 16F, FontStyle.Regular,
                         GraphicsUnit.Point, ((byte)(204)));
             newGameButton.Dock = DockStyle.Fill;
 			newGameButton.Click += (e, a) => TransitionTo(Screen.Start);
