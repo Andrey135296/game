@@ -77,7 +77,7 @@ namespace game
 
 			var continueButton = new Button();
 			continueButton.Text = "Продолжить";
-            continueButton.Font = new Font("Segoe UI", 16F, FontStyle.Regular,
+            continueButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
                                     GraphicsUnit.Point, ((byte)(204)));
             continueButton.Dock = DockStyle.Fill;
 			continueButton.Enabled = false;
@@ -85,7 +85,7 @@ namespace game
 
 			var newGameButton = new Button();
 			newGameButton.Text = "Новая Игра";
-            newGameButton.Font = new Font("Segoe UI", 16F, FontStyle.Regular,
+            newGameButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
                         GraphicsUnit.Point, ((byte)(204)));
             newGameButton.Dock = DockStyle.Fill;
 			newGameButton.Click += (e, a) => TransitionTo(Screen.Start);
@@ -103,7 +103,7 @@ namespace game
 
 			var optionsButton = new Button();
 			optionsButton.Text = "Настройки";
-            optionsButton.Font = new Font("Segoe UI", 16F, FontStyle.Regular,
+            optionsButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
                         GraphicsUnit.Point, ((byte)(204)));
             optionsButton.Dock = DockStyle.Fill;
 			optionsButton.Click += (e, a) => this.TransitionTo(Screen.Options);
@@ -111,7 +111,7 @@ namespace game
 
 			var exitButton = new Button();
 			exitButton.Text = "Выход";
-            exitButton.Font = new Font("Segoe UI", 16F, FontStyle.Regular,
+            exitButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
                         GraphicsUnit.Point, ((byte)(204)));
             exitButton.Dock = DockStyle.Fill;
             exitButton.Click += (s, e) =>
@@ -158,6 +158,8 @@ namespace game
 
             var backButton = new Button();
             backButton.Text = "Назад";
+            backButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular,
+                            GraphicsUnit.Point, ((byte)(204)));
             backButton.Dock = DockStyle.Fill;
             backButton.Click += (e, a) => this.TransitionTo(Screen.Menu);
             optionsScreen.Controls.Add(backButton, 4, 1);
@@ -167,7 +169,7 @@ namespace game
             logo.Dock = DockStyle.Fill;
             logo.BackColor = Color.Transparent;
             logo.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
-            optionsScreen.Controls.Add(logo, 0, 1);
+            optionsScreen.Controls.Add(logo, 0, 0);
 
             var optionsLabel = new Label();
             optionsLabel.Text = "Настройки";
@@ -226,7 +228,9 @@ namespace game
 
 			var backButton = new Button();
 			backButton.Text = "Назад";
-			backButton.Dock = DockStyle.Right;
+            backButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular,
+                            GraphicsUnit.Point, ((byte)(204)));
+            backButton.Dock = DockStyle.Right;
 			backButton.Click += (e, a) => this.TransitionTo(Screen.Menu);
 			startScreen.Controls.Add(backButton);
 
