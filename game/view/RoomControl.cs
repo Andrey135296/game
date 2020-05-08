@@ -14,20 +14,21 @@ namespace game
 	{
 		public List<CellControl> Cells = new List<CellControl>();
 		public Room Room;
+		public int MaxX, MaxY, MinX, MinY;
 		public RoomControl(Room room)
 		{
 			InitializeComponent();
 			Room = room;
 			Cells = Room.Cells.Select(c => new CellControl(c)).ToList();
-			var minx = Room.Cells.Min(c => c.Coordinates.X);
-			var maxx = Room.Cells.Max(c => c.Coordinates.X);
-			var miny = Room.Cells.Min(c => c.Coordinates.Y);
-			var maxy = Room.Cells.Max(c => c.Coordinates.Y);
+			MinX = Room.Cells.Min(c => c.Coordinates.X);
+			MaxX = Room.Cells.Max(c => c.Coordinates.X);
+			MinY = Room.Cells.Min(c => c.Coordinates.Y);
+			MaxY = Room.Cells.Max(c => c.Coordinates.Y);
 
 			var t = new TableLayoutPanel();
 			t.Dock = DockStyle.Fill;
-			t.RowCount = maxy - miny + 1;
-			t.ColumnCount = maxx - minx + 1;
+			t.RowCount = MaxY - MinY + 1;
+			t.ColumnCount = MaxX - MinX + 1;
 			t.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 			for (int i = 0; i < t.RowCount; i++)
 				t.RowStyles.Add(new RowStyle(SizeType.Percent, 1.0f / t.RowCount));
@@ -37,7 +38,7 @@ namespace game
 			foreach (var cellControl in Cells)
 			{
 				cellControl.Dock = DockStyle.Fill;
-				t.Controls.Add(cellControl, cellControl.cell.Coordinates.X - minx, cellControl.cell.Coordinates.Y - miny);
+				t.Controls.Add(cellControl, cellControl.cell.Coordinates.X - MinX, cellControl.cell.Coordinates.Y - MinY);
 			}
 
 			Controls.Add(t);
