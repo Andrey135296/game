@@ -276,7 +276,7 @@ namespace game
 			var shipControl = new ShipControl(ship);
 			shipControl.Left = 500;
 			shipControl.Top = 400;
-			shipControl.Size = new Size(400, 200);
+			shipControl.Size = new Size(500, 200);
 			startScreen.Controls.Add(shipControl);
 
 			var ans = new TableLayoutPanel();

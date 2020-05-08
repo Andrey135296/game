@@ -25,6 +25,22 @@ namespace game
 				BackgroundImageLayout = ImageLayout.Stretch;
 			}
 			BackColor = Color.Transparent;
+
+			var bt = new TableLayoutPanel();
+			bt.Dock = DockStyle.Fill;
+			bt.BackColor = Color.Transparent;
+			bt.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+			bt.RowCount = 3;
+			bt.ColumnCount = 3;
+			bt.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
+			bt.RowStyles.Add(new RowStyle(SizeType.Percent, 80));
+			bt.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
+			bt.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10));
+			bt.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80));
+			bt.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10));
+
+
+			Controls.Add(bt);
 		}
 	}
 }
