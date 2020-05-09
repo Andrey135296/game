@@ -94,7 +94,9 @@ namespace game
 
             Assert.IsTrue(ship.Weapons.All(c => c.IsOnline == false));
 
-            PlayerCommands.TryChangeWeaponState(ship.Weapons[2], ship);
+			PlayerCommands.TryChangeWeaponState(ship.Weapons[0], ship);
+			PlayerCommands.TryChangeWeaponState(ship.Weapons[1], ship);
+			PlayerCommands.TryChangeWeaponState(ship.Weapons[2], ship);
             Assert.AreEqual(false, ship.Weapons[2].IsOnline);
         }
 
@@ -108,8 +110,11 @@ namespace game
             PlayerCommands.TryChangeWeaponState(ship.Weapons[0], ship);
             Assert.AreEqual(true, ship.Weapons[0].IsOnline);
 
-            PlayerCommands.TryChangeWeaponState(ship.Weapons[1], ship);
-            Assert.AreEqual(false, ship.Weapons[1].IsOnline);
+			PlayerCommands.TryChangeWeaponState(ship.Weapons[1], ship);
+			Assert.AreEqual(true, ship.Weapons[1].IsOnline);
+
+			PlayerCommands.TryChangeWeaponState(ship.Weapons[2], ship);
+            Assert.AreEqual(false, ship.Weapons[2].IsOnline);
         }
 
         [Test]

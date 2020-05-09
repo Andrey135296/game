@@ -288,6 +288,8 @@ namespace game
 			wp.Width = 190;
 			startScreen.Controls.Add(wp);
 
+			var we = new WeaponReload(ship.Weapons[0]);
+
 			foreach (var weap in GetAll(startScreen, typeof(WeaponControl)))
 				weap.Click += (s, e) =>
 				{

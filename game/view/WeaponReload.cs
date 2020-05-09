@@ -10,13 +10,19 @@ using System.Windows.Forms;
 
 namespace game
 {
-	public partial class WeaponPanel : UserControl
+	public partial class WeaponReload : UserControl
 	{
-		//Ship ship
-		public WeaponPanel()
+		public Weapon Weapon;
+		public int Max;
+		public WeaponReload(Weapon weapon)
 		{
 			InitializeComponent();
+			
+		}
 
+		protected override void OnPaint(PaintEventArgs e)
+		{
+			base.OnPaint(e);
 		}
 	}
 }

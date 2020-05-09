@@ -162,11 +162,11 @@
     <Compile Include="view\WeaponPanel.Designer.cs">
       <DependentUpon>WeaponPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\WeaponEnergy.cs">
+    <Compile Include="view\WeaponReload.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="view\WeaponEnergy.Designer.cs">
-      <DependentUpon>WeaponEnergy.cs</DependentUpon>
+    <Compile Include="view\WeaponReload.Designer.cs">
+      <DependentUpon>WeaponReload.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

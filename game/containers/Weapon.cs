@@ -20,7 +20,7 @@ namespace game
 		public int TimeLeftToCoolDown;
 		public string Name;
 		public bool IsOnline;
-		public int EnergyPrice;
+		//public int EnergyPrice;
 		public int Price;
 	}
 
@@ -33,7 +33,7 @@ namespace game
 			this.TimeLeftToCoolDown = this.CoolDownTime;
 			this.Name = "LaserM0";
 			this.IsOnline = false;
-			this.EnergyPrice = 1;
+			//this.EnergyPrice = 1;
 			this.Price = 25;
 		}
 	}
@@ -47,7 +47,7 @@ namespace game
 			this.TimeLeftToCoolDown = this.CoolDownTime;
 			this.Name = "LaserM1";
 			this.IsOnline = false;
-			this.EnergyPrice = 2;
+			//this.EnergyPrice = 2;
 			this.Price = 75;
 		}
 	}
@@ -61,7 +61,7 @@ namespace game
 			this.TimeLeftToCoolDown = this.CoolDownTime;
 			this.Name = "LaserM2";
 			this.IsOnline = false;
-			this.EnergyPrice = 3;
+			//this.EnergyPrice = 3;
 			this.Price = 200;
 		}
 	}
