@@ -168,6 +168,12 @@
     <Compile Include="view\WeaponReload.Designer.cs">
       <DependentUpon>WeaponReload.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\WeaponCell.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="view\WeaponCell.Designer.cs">
+      <DependentUpon>WeaponCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">

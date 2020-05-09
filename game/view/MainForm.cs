@@ -220,6 +220,7 @@ namespace game
 			startScreen.Dock = DockStyle.Fill;
 			startScreen.BackgroundImage = new Bitmap("images/StartBackground.jpg");
 			startScreen.BackgroundImageLayout = ImageLayout.Stretch;
+			startScreen.Margin = new Padding(0, 0, 0, 0);
 			startScreen.Click += (s, e) =>
 			{
 				if (Selected != null)
@@ -271,6 +272,7 @@ namespace game
 			startScreen.Controls.Add(crewPanel);
 
 			var ship = new TestTitan(Alignment.Player);
+
 			var systemPanel = new SystemsPanel(ship);
 			systemPanel.Left = 312;
 			systemPanel.Top = 5;
@@ -282,13 +284,12 @@ namespace game
 			shipControl.Size = new Size(750, 300);
 			startScreen.Controls.Add(shipControl);
 
-			var wp = new WeaponControl(ship.Weapons[0]);
-			wp.Top = 200;
-			wp.Height = 100;
-			wp.Width = 190;
-			startScreen.Controls.Add(wp);
+			var weaponPanel = new WeaponPanel(ship);
+			weaponPanel.Top = 5;
+			weaponPanel.Left = 626;
+			startScreen.Controls.Add(weaponPanel);
 
-			var we = new WeaponReload(ship.Weapons[0]);
+
 
 			foreach (var weap in GetAll(startScreen, typeof(WeaponControl)))
 				weap.Click += (s, e) =>
@@ -309,6 +310,7 @@ namespace game
 			ans.ColumnCount = 1;
 			ans.Dock = DockStyle.Fill;
 			ans.Controls.Add(startScreen);
+			ans.Margin = new Padding(0, 0, 0, 0);
 			return ans;
 		}
 
