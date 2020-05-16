@@ -42,6 +42,10 @@ namespace game
 			Controls.Add(StartGrid);
 			AllGrids.Add(StartGrid);
 
+            MapGrid = GenerateMapScreen();
+            Controls.Add(MapGrid);
+            AllGrids.Add(MapGrid);
+
             SoundPlayer sp = new SoundPlayer("music/testsound.wav");
             //sp.Play();
         }
@@ -313,10 +317,10 @@ namespace game
         public TableLayoutPanel GenerateMapScreen()
         {
             var mainMapGrid = new TableLayoutPanel();
-            mainMapGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 86));
-            mainMapGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 14));
-            mainMapGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
-            mainMapGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 90));
+            mainMapGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 84));
+            mainMapGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16));
+            mainMapGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 14));
+            mainMapGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 86));
             mainMapGrid.Dock = DockStyle.Fill;
             mainMapGrid.BackgroundImage = new Bitmap("images/MapBackground.png");
             mainMapGrid.BackgroundImageLayout = ImageLayout.Stretch;
@@ -327,6 +331,14 @@ namespace game
             //logo.BackColor = Color.Transparent;
             //logo.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
             //mainMapGrid.Controls.Add(logo, 0, 0);
+
+            var backButton = new Button();
+            backButton.Text = "Назад";
+            backButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular,
+                            GraphicsUnit.Point, ((byte)(204)));
+            backButton.Dock = DockStyle.Fill;
+            backButton.Click += (e, a) => this.TransitionTo(Screen.Menu);
+            mainMapGrid.Controls.Add(backButton, 1, 0);
 
             var playGrid = new TableLayoutPanel();
             playGrid.Dock = DockStyle.Fill;
@@ -361,7 +373,7 @@ namespace game
             otherGrid.RowCount = 2;
             otherGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
             otherGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
-            mainMapGrid.Controls.Add(otherGrid, 1, 3);
+            //mainMapGrid.Controls.Add(otherGrid, 1, 3);
 
             var optionsButton = new Button();
             optionsButton.Text = "Настройки";
@@ -369,7 +381,7 @@ namespace game
                         GraphicsUnit.Point, ((byte)(204)));
             optionsButton.Dock = DockStyle.Fill;
             optionsButton.Click += (e, a) => this.TransitionTo(Screen.Options);
-            otherGrid.Controls.Add(optionsButton, 0, 0);
+            //otherGrid.Controls.Add(optionsButton, 0, 0);
 
             var exitButton = new Button();
             exitButton.Text = "Выход";
@@ -381,7 +393,7 @@ namespace game
                 var result = MessageBox.Show("Вы действительно хотите выйти?", "", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes) Application.Exit();
             };
-            otherGrid.Controls.Add(exitButton, 0, 1);
+            //otherGrid.Controls.Add(exitButton, 0, 1);
 
             return mainMapGrid;
         }
