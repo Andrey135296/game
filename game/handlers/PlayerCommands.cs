@@ -42,8 +42,8 @@ namespace game
 			else
 			{
 				var weaponRoom = ship.SpecialRooms.First(r => r.Type == RoomType.Weapon);
-				var spaceUsed = ship.Weapons.Sum(w => w.IsOnline ? w.EnergyPrice : 0);
-				if (weapon.EnergyPrice <= weaponRoom.Stat.CurrentEnergyLimit - spaceUsed)
+				var spaceUsed = ship.Weapons.Sum(w => w.IsOnline ? 1 : 0);
+				if (1 + weaponRoom.Stat.CurrentEnergyLimit/2 - spaceUsed>0)
 					weapon.IsOnline = true;
 			}
 		}

@@ -1,6 +1,6 @@
 ﻿namespace game
 {
-	partial class WeaponEnergy
+	partial class WeaponReload
 	{
 		/// <summary> 
 		/// Required designer variable.
