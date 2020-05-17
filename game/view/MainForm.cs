@@ -387,17 +387,6 @@ namespace game
             optionsButton.Click += (e, a) => this.TransitionTo(Screen.Options);
             //otherGrid.Controls.Add(optionsButton, 0, 0);
 
-            var exitButton = new Button();
-            exitButton.Text = "Выход";
-            exitButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
-                        GraphicsUnit.Point, ((byte)(204)));
-            exitButton.Dock = DockStyle.Fill;
-            exitButton.Click += (s, e) =>
-            {
-                var result = MessageBox.Show("Вы действительно хотите выйти?", "", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes) Application.Exit();
-            };
-            //otherGrid.Controls.Add(exitButton, 0, 1);
 
             return mainMapGrid;
         }
