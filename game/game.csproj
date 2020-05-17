@@ -51,6 +51,18 @@
     <Compile Include="containers\ships\TestTitanShip.cs" />
     <Compile Include="containers\ships\Titan.cs" />
     <Compile Include="containers\TestWeapons.cs" />
+    <Compile Include="view\ResourcePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="view\ResourcePanel.Designer.cs">
+      <DependentUpon>ResourcePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\ResourceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="view\ResourceControl.Designer.cs">
+      <DependentUpon>ResourceControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\ShipControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -195,6 +207,9 @@
     <Content Include="images\Engine.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\Fuel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\Generator.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -211,6 +226,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="images\MenuBackground.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\Money.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="images\Radar.png">
