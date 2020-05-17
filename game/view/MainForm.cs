@@ -421,6 +421,16 @@ namespace game
             return mainMapGrid;
         }
 
+		public TableLayoutPanel GenerateFightScreen()
+		{
+			var t = new TableLayoutPanel { Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0) };
+
+
+
+
+			return t;
+		}
+
         public void TransitionTo(Screen screen)
 		{
 			foreach (var p in AllGrids)
