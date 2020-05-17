@@ -15,14 +15,19 @@ namespace game
 		public Ship Ship;
 		public List<RoomControl> Rooms;
 		public int MaxX, MaxY, MinX, MinY;
-		public ShipControl(Ship ship)
+		public bool Mirrored;
+		public ShipControl(Ship ship, bool mirrored = false)
 		{
 			InitializeComponent();
 			Ship = ship;
+			Mirrored = mirrored;
 			Rooms = Ship.Rooms.Select(r => new RoomControl(r)).ToList();
 			if (Ship is Titan || Ship is TestTitan)
 			{
-				BackgroundImage = new Bitmap("images/Titan.png");
+				var bmp = new Bitmap("images/Titan.png");
+				if (Mirrored)
+					bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
+				BackgroundImage = bmp;
 				BackgroundImageLayout = ImageLayout.Stretch;
 			}
 			BackColor = Color.Transparent;
@@ -67,6 +72,9 @@ namespace game
 
 			bt.Controls.Add(t, 1, 1);
 			Controls.Add(bt);
+
+			if (Mirrored)
+				RightToLeft = RightToLeft.Yes;
 		}
 	}
 }
