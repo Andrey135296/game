@@ -28,6 +28,7 @@ namespace game
 		{
 
 			InitializeComponent();
+			gameModel = new GameModel(new Titan(Alignment.Player), Map.LoadFromFile("maps/map1.txt"));
 			DoubleBuffered = true;
 			MainMenuGrid = GenerateMainMenu();
 			Controls.Add(MainMenuGrid);
@@ -37,6 +38,7 @@ namespace game
 			Controls.Add(OptionsGrid);
 			AllGrids.Add(OptionsGrid);
 			Size = new Size(1280, 720);
+			//client size: 1264, 681
 
 			StartGrid = GenerateStartScreen();
 			Controls.Add(StartGrid);
@@ -233,18 +235,23 @@ namespace game
 
 			var backButton = new Button();
 			backButton.Text = "Назад";
-            backButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular,
+            backButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
                             GraphicsUnit.Point, ((byte)(204)));
-			backButton.Left = 900;
+			backButton.Left = 1059;
+			backButton.Height = 50;
+			backButton.Width = 200;
+			backButton.Top = 5;
 			backButton.Click += (e, a) => this.TransitionTo(Screen.Menu);
 			startScreen.Controls.Add(backButton);
 
 			var mapButton = new Button();
-			mapButton.Text = "Карта";
-			mapButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular,
+			mapButton.Text = "Старт";
+			mapButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
 							GraphicsUnit.Point, ((byte)(204)));
-			mapButton.Left = 900;
+			mapButton.Left = 1059;
 			mapButton.Top = 100;
+			mapButton.Height = 50;
+			mapButton.Width = 200;
 			mapButton.Click += (e, a) => this.TransitionTo(Screen.Map);
 			startScreen.Controls.Add(mapButton);
 
@@ -288,6 +295,12 @@ namespace game
 			weaponPanel.Top = 5;
 			weaponPanel.Left = 626;
 			startScreen.Controls.Add(weaponPanel);
+
+			var resourcePanel = new ResourcePanel(gameModel);
+			resourcePanel.Left = 800;
+			resourcePanel.Top = 5;
+			resourcePanel.Size = new Size(150, 100);
+			startScreen.Controls.Add(resourcePanel);
 
 
 
