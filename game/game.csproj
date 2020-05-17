@@ -162,6 +162,12 @@
     <Compile Include="view\OptionCell.Designer.cs">
       <DependentUpon>OptionCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\MapControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="view\MapControl.Designer.cs">
+      <DependentUpon>MapControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\WeaponControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
