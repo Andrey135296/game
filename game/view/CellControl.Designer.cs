@@ -1,6 +1,6 @@
 ﻿namespace game
-{
-	partial class MapControl
+{ 
+	partial class CellControl
 	{
 		/// <summary> 
 		/// Required designer variable.
