@@ -137,7 +137,6 @@ namespace game
 		public TableLayoutPanel GenerateOptionsMenu()
 		{
 			var optionsScreen = new TableLayoutPanel();
-            //TODO - generate options
             optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 89));
             optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 367));
             optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 367));
@@ -289,7 +288,7 @@ namespace game
 			systemPanel.Top = 5;
 			startScreen.Controls.Add(systemPanel);
 
-			var shipControl = new ShipControl(ship);
+			var shipControl = new ShipControl(ship, true);
 			shipControl.Left = 150;
 			shipControl.Top = 350;
 			shipControl.Size = new Size(750, 300);
@@ -421,6 +420,16 @@ namespace game
 
             return mainMapGrid;
         }
+
+		public TableLayoutPanel GenerateFightScreen()
+		{
+			var t = new TableLayoutPanel { Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0) };
+
+
+
+
+			return t;
+		}
 
         public void TransitionTo(Screen screen)
 		{
