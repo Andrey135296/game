@@ -334,8 +334,8 @@ namespace game
         public TableLayoutPanel GenerateMapScreen()
         {
             var mainMapGrid = new TableLayoutPanel();
-            mainMapGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 84));
-            mainMapGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16));
+            mainMapGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 87));
+            mainMapGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 13));
             mainMapGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 14));
             mainMapGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 86));
             mainMapGrid.Dock = DockStyle.Fill;
@@ -364,7 +364,12 @@ namespace game
             playGrid.RowCount = 2;
             playGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
             playGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+            playGrid.BackColor = Color.Transparent;
             mainMapGrid.Controls.Add(playGrid, 1, 1);
+
+            var resorsePanel = new ResourcePanel(gameModel);
+            playGrid.Controls.Add(resorsePanel, 0, 0);
+            resorsePanel.BackColor = Color.White;
 
             //var continueButton = new Button();
             //continueButton.Text = "Продолжить";
@@ -386,11 +391,24 @@ namespace game
             var otherGrid = new TableLayoutPanel();
             otherGrid.Dock = DockStyle.Fill;
             otherGrid.ColumnCount = 1;
-            otherGrid.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            playGrid.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
             otherGrid.RowCount = 2;
-            otherGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
-            otherGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
-            //mainMapGrid.Controls.Add(otherGrid, 1, 3);
+            otherGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40));
+            otherGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+            otherGrid.BackColor = Color.Transparent;
+            mainMapGrid.Controls.Add(otherGrid, 0, 1);
+
+            var label = new Label();
+            label.Text = "Карта уровня";
+            label.Dock = DockStyle.Fill;
+            label.Height = 35;
+            label.TextAlign = ContentAlignment.MiddleCenter;
+            label.BackColor = Color.Transparent;
+            label.ForeColor = Color.White;
+            //label.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
+            label.Font = new Font("Segoe UI", 20, FontStyle.Bold,
+                                    GraphicsUnit.Point, ((byte)(204)));
+            otherGrid.Controls.Add(label, 0, 0);
 
             var optionsButton = new Button();
             optionsButton.Text = "Настройки";
