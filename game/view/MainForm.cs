@@ -253,7 +253,7 @@ namespace game
 			mapButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
 							GraphicsUnit.Point, ((byte)(204)));
 			mapButton.Left = 1059;
-			mapButton.Top = 100;
+			mapButton.Top = 60;
 			mapButton.Height = 50;
 			mapButton.Width = 200;
 			mapButton.Click += (e, a) => this.TransitionTo(Screen.Map);
@@ -301,7 +301,7 @@ namespace game
 			startScreen.Controls.Add(weaponPanel);
 
 			var resourcePanel = new ResourcePanel(gameModel);
-			resourcePanel.Left = 800;
+			resourcePanel.Left = 781;
 			resourcePanel.Top = 5;
 			resourcePanel.Size = new Size(150, 100);
 			startScreen.Controls.Add(resourcePanel);

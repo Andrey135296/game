@@ -88,7 +88,7 @@ namespace game
 			var livingImage = new PictureBox();
 			//SetUpControl(livingImage);
 			livingImage.Dock = DockStyle.Fill;
-			livingImage.Image = new Bitmap("images/Living.jpg");
+			livingImage.Image = new Bitmap("images/Living.png");
 			livingImage.SizeMode = PictureBoxSizeMode.Zoom;
 			t.Controls.Add(livingImage, 0, 4);
 
@@ -102,7 +102,7 @@ namespace game
 			var controlImage = new PictureBox();
 			//SetUpControl(controlImage);
 			controlImage.Dock = DockStyle.Fill;
-			controlImage.Image = new Bitmap("images/Control.jpg");
+			controlImage.Image = new Bitmap("images/Control.png");
 			controlImage.SizeMode = PictureBoxSizeMode.Zoom;
 			t.Controls.Add(controlImage, 2, 3);
 

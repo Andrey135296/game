@@ -35,6 +35,30 @@ namespace game
 			for (int i = 0; i < t.ColumnCount; i++)
 				t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1.0f / t.ColumnCount));
 
+			t.BackgroundImageLayout = ImageLayout.Zoom;
+			if (Room is SpecialRoom)
+				switch (Room.Type)
+				{
+					case RoomType.Control:
+						t.BackgroundImage = new Bitmap("images/Control.png");
+						break;
+					case RoomType.Engine:
+						t.BackgroundImage = new Bitmap("images/Engine.png");
+						break;
+					case RoomType.Generator:
+						t.BackgroundImage = new Bitmap("images/Generator.png");
+						break;
+					case RoomType.Living:
+						t.BackgroundImage = new Bitmap("images/Living.png");
+						break;
+					case RoomType.Radar:
+						t.BackgroundImage = new Bitmap("images/Radar.png");
+						break;
+					case RoomType.Weapon:
+						t.BackgroundImage = new Bitmap("images/Weapon.png");
+						break;
+				}
+
 			foreach (var cellControl in Cells)
 			{
 				cellControl.Dock = DockStyle.Fill;
