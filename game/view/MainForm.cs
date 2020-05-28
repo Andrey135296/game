@@ -53,8 +53,27 @@ namespace game
 			AllGrids.Add(FightGrid);
 
             SoundPlayer sp = new SoundPlayer("music/testsound.wav");
-            //sp.Play();
-        }
+			//sp.Play();
+
+			foreach (var control in GetAll(this, typeof(Human)))
+				control.Click += (s, e) =>
+				{
+					var selectable = (ISelectable)control;
+					DropSelection();
+					selectable.IsSelected = true;
+					Selected = selectable;
+					selectable.Invalidate();
+				};
+			foreach (var control in GetAll(this, typeof(WeaponControl)))
+				control.Click += (s, e) =>
+				{
+					var selectable = (ISelectable)control;
+					DropSelection();
+					selectable.IsSelected = true;
+					Selected = selectable;
+					selectable.Invalidate();
+				};
+		}
 
 		public TableLayoutPanel GenerateMainMenu()
 		{
@@ -94,7 +113,9 @@ namespace game
             continueButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
                                     GraphicsUnit.Point, ((byte)(204)));
             continueButton.Dock = DockStyle.Fill;
-			continueButton.Enabled = false;
+			//continueButton.Enabled = false;
+			continueButton.Click += (e, a) => TransitionTo(Screen.Fight);
+			//
 			playGrid.Controls.Add(continueButton, 0, 0);
 
 			var newGameButton = new Button();
@@ -230,15 +251,7 @@ namespace game
 			startScreen.BackgroundImage = new Bitmap("images/StartBackground.jpg");
 			startScreen.BackgroundImageLayout = ImageLayout.Stretch;
 			startScreen.Margin = new Padding(0, 0, 0, 0);
-			startScreen.Click += (s, e) =>
-			{
-				if (Selected != null)
-				{
-					Selected.IsSelected = false;
-					Selected.Invalidate();
-				}
-				Selected = null;
-			};
+			startScreen.Click += (s, e) => DropSelection();
 
 			var backButton = new Button();
 			backButton.Text = "Назад";
@@ -262,45 +275,25 @@ namespace game
 			mapButton.Click += (e, a) => this.TransitionTo(Screen.Map);
 			startScreen.Controls.Add(mapButton);
 
-			var l = new List<CrewMember>();
-			for (int i = 0; i < 7; i++)
-			{
-				l.Add(new CrewMember(null, Alignment.Player));
-			}
-			var crewPanel = new CrewPanel(l);
-			foreach (var human in GetAll(crewPanel, typeof(Human)))
-				human.Click += (s, e) =>
-				{
-					var h = (ISelectable)human;
-					if (Selected != null)
-					{
-						Selected.IsSelected = false;
-						Selected.Invalidate();
-					}
-					h.IsSelected = true;
-					Selected = h;
-					h.Invalidate();
-				};
+			var crewPanel = new CrewPanel(gameModel.PlayerShip.Crew);
 			crewPanel.Top = 5;
 			crewPanel.Left = 5;
 			startScreen.Controls.Add(crewPanel);
 
-			var ship = new TestTitan(Alignment.Player);
-
-			var systemPanel = new SystemsPanel(ship);
-			systemPanel.Left = 312;
+			var systemPanel = new SystemsPanel(gameModel.PlayerShip);
+			systemPanel.Left = 230;
 			systemPanel.Top = 5;
 			startScreen.Controls.Add(systemPanel);
 
-			var shipControl = new ShipControl(ship, true);
+			var shipControl = new ShipControl(gameModel.PlayerShip, false);
 			shipControl.Left = 150;
 			shipControl.Top = 350;
 			shipControl.Size = new Size(750, 300);
 			startScreen.Controls.Add(shipControl);
 
-			var weaponPanel = new WeaponPanel(ship);
+			var weaponPanel = new WeaponPanel(gameModel.PlayerShip);
 			weaponPanel.Top = 5;
-			weaponPanel.Left = 626;
+			weaponPanel.Left = 544;
 			startScreen.Controls.Add(weaponPanel);
 
 			var resourcePanel = new ResourcePanel(gameModel);
@@ -308,22 +301,6 @@ namespace game
 			resourcePanel.Top = 5;
 			resourcePanel.Size = new Size(150, 100);
 			startScreen.Controls.Add(resourcePanel);
-
-
-
-			foreach (var weap in GetAll(startScreen, typeof(WeaponControl)))
-				weap.Click += (s, e) =>
-				{
-					var w = (ISelectable)weap;
-					if (Selected != null)
-					{
-						Selected.IsSelected = false;
-						Selected.Invalidate();
-					}
-					w.IsSelected = true;
-					Selected = w;
-					w.Invalidate();
-				};
 
 			var ans = new TableLayoutPanel();
 			ans.RowCount = 1;
@@ -432,9 +409,18 @@ namespace game
 		{
 			var t = new TableLayoutPanel { Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0) };
 			var screen = new Panel { Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0) };
+			screen.BackgroundImage = new Bitmap("images/BattleBackground.jpg");
+			screen.Click += (s, e) => DropSelection();
 			t.Controls.Add(screen);
 
-			screen.BackColor = Color.Black;
+			var weaponPanel = new WeaponPanel(gameModel.PlayerShip) { Left = 0, Top = 510 };
+			screen.Controls.Add(weaponPanel);
+
+			var systemsPanel = new SystemsPanel(gameModel.PlayerShip) { Left = 149, Top = 510};
+			screen.Controls.Add(systemsPanel);
+
+			var crewPanel = new CrewPanel(gameModel.PlayerShip.Crew) { Left = 457, Top = 510};
+			screen.Controls.Add(crewPanel);
 
 			return t;
 		}
@@ -443,11 +429,7 @@ namespace game
 		{
 			foreach (var p in AllGrids)
 				p.Visible = false;
-			if (Selected != null)
-			{
-				Selected.IsSelected = false;
-				Selected = null;
-			}
+			DropSelection();
 			switch (screen)
 			{
 				case Screen.Menu:
@@ -468,7 +450,6 @@ namespace game
 				default:
 					throw new Exception("Unknown screen type");
 			}
-			
 		}
 
 		public static IEnumerable<Control> GetAll(Control control, Type type)
@@ -478,6 +459,16 @@ namespace game
 			return controls.SelectMany(ctrl => GetAll(ctrl, type))
 									  .Concat(controls)
 									  .Where(c => c.GetType() == type);
+		}
+
+		private void DropSelection()
+		{
+			if (Selected != null)
+			{
+				Selected.IsSelected = false;
+				Selected.Invalidate();
+			}
+			Selected = null;
 		}
 	}
 }

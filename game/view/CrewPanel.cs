@@ -15,13 +15,13 @@ namespace game
 		public CrewPanel(CrewMember[] crew)
 		{
 			InitializeComponent();
-			this.Size = new Size(302, 171);
+			this.Size = new Size(220, 171);
 			
 			var t = new TableLayoutPanel();
 			t.RowCount = 3;
-			t.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
+			t.RowStyles.Add(new RowStyle(SizeType.Percent, 20));
 			for (int i = 0; i < 2; i++)
-				t.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+				t.RowStyles.Add(new RowStyle(SizeType.Percent, 40));
 			t.ColumnCount = 4;
 			for (int i = 0; i < 4; i++)
 				t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25));
@@ -34,13 +34,13 @@ namespace game
 				panel.Dock = DockStyle.Fill;
 
 				var human = new Human(crew[i]);
-				human.Size = new Size(20, 50);
-				human.Left = 25;
+				human.Size = new Size(18, 47);
+				human.Left = 15;
 				panel.Controls.Add(human);
 
 				var label = new Label();
 				label.Text = crew[i].Name;
-				label.Size = new Size(60, 20);
+				label.Size = new Size(45, 20);
 				label.Top = 45;
 				label.TextAlign = ContentAlignment.MiddleCenter;
 				panel.Controls.Add(label);
