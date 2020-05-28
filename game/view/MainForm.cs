@@ -48,6 +48,10 @@ namespace game
             Controls.Add(MapGrid);
             AllGrids.Add(MapGrid);
 
+			FightGrid = GenerateFightScreen();
+			Controls.Add(FightGrid);
+			AllGrids.Add(FightGrid);
+
             SoundPlayer sp = new SoundPlayer("music/testsound.wav");
             //sp.Play();
         }
@@ -415,8 +419,11 @@ namespace game
                         GraphicsUnit.Point, ((byte)(204)));
             optionsButton.Dock = DockStyle.Fill;
             optionsButton.Click += (e, a) => this.TransitionTo(Screen.Options);
-            //otherGrid.Controls.Add(optionsButton, 0, 0);
+			//otherGrid.Controls.Add(optionsButton, 0, 0);
 
+			var fight = new Button();
+			fight.Click += (e, a) => this.TransitionTo(Screen.Fight);
+			mainMapGrid.Controls.Add(fight);
 
             return mainMapGrid;
         }
@@ -424,9 +431,10 @@ namespace game
 		public TableLayoutPanel GenerateFightScreen()
 		{
 			var t = new TableLayoutPanel { Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0) };
+			var screen = new Panel { Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0) };
+			t.Controls.Add(screen);
 
-
-
+			screen.BackColor = Color.Black;
 
 			return t;
 		}
