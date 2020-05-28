@@ -29,6 +29,10 @@ namespace game
 
 			InitializeComponent();
 			gameModel = new GameModel(new Titan(Alignment.Player), Map.LoadFromFile("maps/map1.txt"));
+			//
+			gameModel.OtherShip = new Titan(Alignment.Enemy);
+			//
+
 			DoubleBuffered = true;
 			MainMenuGrid = GenerateMainMenu();
 			Controls.Add(MainMenuGrid);
@@ -421,6 +425,17 @@ namespace game
 
 			var crewPanel = new CrewPanel(gameModel.PlayerShip.Crew) { Left = 457, Top = 510};
 			screen.Controls.Add(crewPanel);
+
+			var playerShip = new ShipControl(gameModel.PlayerShip){ Width = 540, Height = 216, Top = 200, Left = 30};
+			screen.Controls.Add(playerShip);
+
+			if (gameModel.OtherShip != null)
+			{
+				var otherShip = new ShipControl(gameModel.OtherShip, true) { Width = 540, Height = 216,
+					Top = 200, Left = 694 };
+				screen.Controls.Add(otherShip);
+			}
+
 
 			return t;
 		}
