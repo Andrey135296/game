@@ -426,10 +426,28 @@ namespace game
 			var crewPanel = new CrewPanel(gameModel.PlayerShip.Crew) { Left = 457, Top = 510};
 			screen.Controls.Add(crewPanel);
 
+			var resourcePanel = new ResourcePanel(gameModel) { Top = 50, Size = new Size(150, 100)};
+			screen.Controls.Add(resourcePanel);
+
 			var playerShip = new ShipControl(gameModel.PlayerShip){ Width = 540, Height = 216, Top = 200, Left = 30};
 			screen.Controls.Add(playerShip);
 
+			foreach (var cell in GetAll(playerShip, typeof(CellControl)))
+			{
+				cell.Click += (s, e) =>
+				  {
+					  if (Selected is Human)
+					  {
+						  var h = (Human)Selected;
+						  var c = (CellControl)cell;
+						  PlayerCommands.MoveCrewMember(h.crewMember, c.cell, playerShip.Ship);
+					  }
+				  };
+			}
+
+			//
 			gameModel.PlayerShip.Stats.CurrentHP = 1500;
+			//
 
 			var playerHpBar = new HPBar(gameModel.PlayerShip) { Width = 630, Height = 30};
 			screen.Controls.Add(playerHpBar);
@@ -440,8 +458,33 @@ namespace game
 				var otherShip = new ShipControl(gameModel.OtherShip, true) { Width = 540, Height = 216,
 					Top = 200, Left = 694 };
 				screen.Controls.Add(otherShip);
+
+				var enemyHPBar = new HPBar(gameModel.OtherShip) { Width = 630, Height = 30, Left = 634 };
+				screen.Controls.Add(enemyHPBar);
+
+				foreach (var cell in GetAll(otherShip, typeof(CellControl)))
+				{
+					cell.Click += (s, e) =>
+					{
+						if (Selected is WeaponControl)
+						{
+							var w = ((WeaponControl)Selected).Weapon;
+							var c = ((CellControl)cell).cell;
+							var room = otherShip.Ship.Rooms.First(r => r.Cells.Contains(c));
+							PlayerCommands.TargetWeapon(w, room, playerShip.Ship, otherShip.Ship);
+						}
+					};
+				}
 			}
 
+			var progressButton = new Button() { Left = 200, Top = 50 };
+			progressButton.Text = "run";
+			gameModel.IsRunning = true;
+			progressButton.Click += (s, e) =>
+			{
+				GameTick.Tick(gameModel);
+			};
+			screen.Controls.Add(progressButton);
 
 			return t;
 		}

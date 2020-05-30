@@ -18,6 +18,7 @@ namespace game
 		{
 			InitializeComponent();
 			this.gameModel = gameModel;
+			Size = new Size(150, 100);
 			fuel = new ResourceControl(new Bitmap("images/Fuel.png"), gameModel.Fuel);
 			fuel.Dock = DockStyle.Fill;
 			money = new ResourceControl(new Bitmap("images/Money.png"), gameModel.Fuel);
