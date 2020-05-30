@@ -51,6 +51,12 @@
     <Compile Include="containers\ships\TestTitanShip.cs" />
     <Compile Include="containers\ships\Titan.cs" />
     <Compile Include="containers\TestWeapons.cs" />
+    <Compile Include="view\HPBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="view\HPBar.Designer.cs">
+      <DependentUpon>HPBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\ResourcePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

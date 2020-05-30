@@ -35,10 +35,10 @@ namespace game
 					weapon.TimeLeftToCoolDown += weapon.CoolDownTime;
 					continue;
 				}
-				attackedShip.Stats.HP -= (int)(weapon.Damage*damageMultiplier);
-				attackedShip.Stats.HP = Math.Max(0, attackedShip.Stats.HP);
+				attackedShip.Stats.CurrentHP -= (int)(weapon.Damage*damageMultiplier);
+				attackedShip.Stats.CurrentHP = Math.Max(0, attackedShip.Stats.CurrentHP);
 				weapon.TimeLeftToCoolDown += weapon.CoolDownTime;
-				if (attackedShip.Stats.HP == 0)
+				if (attackedShip.Stats.CurrentHP == 0)
 					attackedShip.Alignment = Alignment.Wrekage;
 				if (attackedShip.SpecialRooms.Contains(weapon.Target))
 				{

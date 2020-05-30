@@ -12,13 +12,15 @@ namespace game
 		public int Radar = 0;
 		public double DamageMultiplier = 1.0;
 		public int Heal = 0;
-		public int HP;
+		public int CurrentHP;
+		public int MaxHP;
 		public int FullEnergy;
 		public int CurrentEnergy;
 
 		public ShipStat(int hp)
 		{
-			this.HP = hp;
+			this.CurrentHP = hp;
+			this.MaxHP = hp;
 			this.FullEnergy = 0;
 			this.CurrentEnergy = FullEnergy;
 		}

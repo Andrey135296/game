@@ -429,6 +429,12 @@ namespace game
 			var playerShip = new ShipControl(gameModel.PlayerShip){ Width = 540, Height = 216, Top = 200, Left = 30};
 			screen.Controls.Add(playerShip);
 
+			gameModel.PlayerShip.Stats.CurrentHP = 1500;
+
+			var playerHpBar = new HPBar(gameModel.PlayerShip) { Width = 630, Height = 30};
+			screen.Controls.Add(playerHpBar);
+			
+
 			if (gameModel.OtherShip != null)
 			{
 				var otherShip = new ShipControl(gameModel.OtherShip, true) { Width = 540, Height = 216,

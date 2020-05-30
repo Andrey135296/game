@@ -49,7 +49,7 @@ namespace game
 
             Assert.AreEqual(100, enemyShip.Rooms[0].CurrentDurability);
             Assert.AreEqual(100, enemyShip.SpecialRooms[0].CurrentDurability);
-            Assert.AreEqual(200, enemyShip.Stats.HP);
+            Assert.AreEqual(200, enemyShip.Stats.CurrentHP);
             Assert.AreEqual(100, enemyShip.Crew[0].CurrentHP);
             Assert.AreEqual(100, enemyShip.Crew[1].CurrentHP);
             Assert.AreEqual(2000, ship.Weapons[0].TimeLeftToCoolDown);
@@ -57,7 +57,7 @@ namespace game
             WeaponsHandler.Tick(ship, enemyShip, 1000);
             Assert.AreEqual(100, enemyShip.Rooms[0].CurrentDurability);
             Assert.AreEqual(100, enemyShip.SpecialRooms[0].CurrentDurability);
-            Assert.AreEqual(200, enemyShip.Stats.HP);
+            Assert.AreEqual(200, enemyShip.Stats.CurrentHP);
             Assert.AreEqual(100, enemyShip.Crew[0].CurrentHP);
             Assert.AreEqual(100, enemyShip.Crew[1].CurrentHP);
             Assert.AreEqual(1000, ship.Weapons[0].TimeLeftToCoolDown);
@@ -65,7 +65,7 @@ namespace game
             WeaponsHandler.Tick(ship, enemyShip, 1000);
             Assert.AreEqual(90, enemyShip.Rooms[0].CurrentDurability);
             Assert.AreEqual(90, enemyShip.SpecialRooms[0].CurrentDurability);
-            Assert.AreEqual(190, enemyShip.Stats.HP);
+            Assert.AreEqual(190, enemyShip.Stats.CurrentHP);
             Assert.AreEqual(90, enemyShip.Crew[0].CurrentHP);
             Assert.AreEqual(90, enemyShip.Crew[1].CurrentHP);
             Assert.AreEqual(2000, ship.Weapons[0].TimeLeftToCoolDown);
@@ -85,7 +85,7 @@ namespace game
             WeaponsHandler.Tick(ship, enemyShip, 2001);
             Assert.AreEqual(90, enemyShip.Rooms[0].CurrentDurability);
             Assert.AreEqual(90, enemyShip.SpecialRooms[0].CurrentDurability);
-            Assert.AreEqual(190, enemyShip.Stats.HP);
+            Assert.AreEqual(190, enemyShip.Stats.CurrentHP);
             Assert.AreEqual(1999, ship.Weapons[0].TimeLeftToCoolDown);
         }
 
@@ -99,14 +99,14 @@ namespace game
 
             PlayerCommands.TryChangeWeaponState(ship.Weapons[0], ship);
             enemyShip.Rooms[0].CurrentDurability = 5;
-            enemyShip.Stats.HP = 5;
+            enemyShip.Stats.CurrentHP = 5;
             enemyShip.Crew[0].CurrentHP = 5;
             enemyShip.Crew[1].CurrentHP = 15;
 
             WeaponsHandler.Tick(ship, enemyShip, 2000);
             Assert.AreEqual(0, enemyShip.Rooms[0].CurrentDurability);
             Assert.AreEqual(0, enemyShip.SpecialRooms[0].CurrentDurability);
-            Assert.AreEqual(0, enemyShip.Stats.HP);
+            Assert.AreEqual(0, enemyShip.Stats.CurrentHP);
             Assert.AreEqual(0, enemyShip.Crew[0].CurrentHP);
             Assert.AreEqual(5, enemyShip.Crew[1].CurrentHP);
             Assert.AreEqual(2000, ship.Weapons[0].TimeLeftToCoolDown);
@@ -123,7 +123,7 @@ namespace game
             WeaponsHandler.Tick(ship, enemyShip, 2000);
             Assert.AreEqual(100, enemyShip.Rooms[0].CurrentDurability);
             Assert.AreEqual(100, enemyShip.SpecialRooms[0].CurrentDurability);
-            Assert.AreEqual(200, enemyShip.Stats.HP);
+            Assert.AreEqual(200, enemyShip.Stats.CurrentHP);
             Assert.AreEqual(2000, ship.Weapons[0].TimeLeftToCoolDown);
         }
 
@@ -138,13 +138,13 @@ namespace game
             WeaponsHandler.Tick(ship, enemyShip, 1000);
             Assert.AreEqual(100, enemyShip.Rooms[0].CurrentDurability);
             Assert.AreEqual(100, enemyShip.SpecialRooms[0].CurrentDurability);
-            Assert.AreEqual(200, enemyShip.Stats.HP);
+            Assert.AreEqual(200, enemyShip.Stats.CurrentHP);
             Assert.AreEqual(1000, ship.Weapons[0].TimeLeftToCoolDown);
 
             WeaponsHandler.Tick(ship, enemyShip, 1000);
             Assert.AreEqual(100, enemyShip.Rooms[0].CurrentDurability);
             Assert.AreEqual(100, enemyShip.SpecialRooms[0].CurrentDurability);
-            Assert.AreEqual(200, enemyShip.Stats.HP);
+            Assert.AreEqual(200, enemyShip.Stats.CurrentHP);
             Assert.AreEqual(0, ship.Weapons[0].TimeLeftToCoolDown);
         }
 
@@ -157,13 +157,13 @@ namespace game
             WeaponsHandler.Tick(ship, enemyShip, 1000);
             Assert.AreEqual(100, enemyShip.Rooms[0].CurrentDurability);
             Assert.AreEqual(100, enemyShip.SpecialRooms[0].CurrentDurability);
-            Assert.AreEqual(200, enemyShip.Stats.HP);
+            Assert.AreEqual(200, enemyShip.Stats.CurrentHP);
             Assert.AreEqual(2000, ship.Weapons[0].TimeLeftToCoolDown);
 
             WeaponsHandler.Tick(ship, enemyShip, 1000);
             Assert.AreEqual(100, enemyShip.Rooms[0].CurrentDurability);
             Assert.AreEqual(100, enemyShip.SpecialRooms[0].CurrentDurability);
-            Assert.AreEqual(200, enemyShip.Stats.HP);
+            Assert.AreEqual(200, enemyShip.Stats.CurrentHP);
             Assert.AreEqual(2000, ship.Weapons[0].TimeLeftToCoolDown);
         }
 
@@ -178,7 +178,7 @@ namespace game
             WeaponsHandler.Tick(ship, enemyShip, 3000);
             Assert.AreEqual(100, enemyShip.Rooms[0].CurrentDurability);
             Assert.AreEqual(100, enemyShip.SpecialRooms[0].CurrentDurability);
-            Assert.AreEqual(200, enemyShip.Stats.HP);
+            Assert.AreEqual(200, enemyShip.Stats.CurrentHP);
             Assert.AreEqual(-1000, ship.Weapons[0].TimeLeftToCoolDown);
         }
     }
