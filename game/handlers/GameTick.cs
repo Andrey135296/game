@@ -29,7 +29,8 @@ namespace game
 
 		public static void Tick(GameModel gameModel)
 		{
-			OnTick.Invoke(gameModel);
+			if (gameModel.IsRunning)
+				OnTick.Invoke(gameModel);
 		}
 	}
 }

@@ -24,11 +24,11 @@ namespace game
 		public GameModel gameModel = null;
 		public ISelectable Selected = null;
 
-		public MainForm()
+		public MainForm(GameModel gameModel)
 		{
-
 			InitializeComponent();
-			gameModel = new GameModel(new Titan(Alignment.Player), Map.LoadFromFile("maps/map1.txt"));
+			//gameModel = new GameModel(new Titan(Alignment.Player), Map.LoadFromFile("maps/map1.txt"));
+			this.gameModel = gameModel;
 			//
 			gameModel.OtherShip = new Titan(Alignment.Enemy);
 			//
@@ -459,6 +459,12 @@ namespace game
 			screen.Controls.Add(playerHpBar);
 			GameTick.OnTick += gm => playerHpBar.Invalidate();
 
+			var humanOnBoard = new HumanOnBoard(crewPanel.Humans[0]) { Top = 100, Left = 400 };
+			screen.Controls.Add(humanOnBoard);
+			//
+			crewPanel.Humans[0].crewMember.CurrentHP -= 70;
+			//
+
 
 			if (gameModel.OtherShip != null)
 			{
@@ -488,7 +494,6 @@ namespace game
 
 			var progressButton = new Button() { Left = 200, Top = 50 };
 			progressButton.Text = "run";
-			gameModel.IsRunning = true;
 			progressButton.Click += (s, e) =>
 			{
 				GameTick.Tick(gameModel);
@@ -500,6 +505,7 @@ namespace game
 
         public void TransitionTo(Screen screen)
 		{
+			gameModel.IsRunning = false;
 			foreach (var p in AllGrids)
 				p.Visible = false;
 			DropSelection();
@@ -519,6 +525,7 @@ namespace game
 					break;
 				case Screen.Fight:
 					FightGrid.Visible = true;
+					gameModel.IsRunning = true;
 					break;
 				default:
 					throw new Exception("Unknown screen type");

@@ -14,18 +14,14 @@ namespace game
     {
         static void Main(string[] args)
         {
-			//var map = Map.LoadFromFile(@"maps\map1.txt");
-			//var g = new GameModel(new Titan(Alignment.Player), map);
-			//var t = new Timer();
-			//t.Interval = g.TickLength;
-			//t.Elapsed += new ElapsedEventHandler((s, e)=>GameTick.Tick(g));
-			//int i = 0;
-			//t.Elapsed += new ElapsedEventHandler((s, e) => Console.WriteLine(i++));
-			//t.AutoReset = true;
-			//t.Start();
-			//GC.KeepAlive(t);
-			//Console.ReadLine();
-			var mf = new MainForm();
+			var map = Map.LoadFromFile(@"maps\map1.txt");
+			var g = new GameModel(new Titan(Alignment.Player), map);
+			var t = new System.Timers.Timer();
+			t.Interval = g.TickLength;
+			t.Elapsed += new ElapsedEventHandler((s, e) => GameTick.Tick(g));
+			t.AutoReset = true;
+			t.Start();
+			var mf = new MainForm(g);
 			Application.Run(mf);
 		}
     }

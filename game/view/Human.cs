@@ -13,7 +13,17 @@ namespace game
 	public partial class Human : UserControl, ISelectable
 	{
 		public CrewMember crewMember;
-		public bool IsSelected { get; set; }
+		public event Action OnGraphicalChanges;
+		private bool isSelected;
+		public bool IsSelected 
+		{
+			get { return isSelected; }
+			set 
+			{ 
+				isSelected = value;
+				Invalidate();
+			}
+		}
 		public Human()
 		{
 			InitializeComponent();
@@ -38,6 +48,8 @@ namespace game
 			e.Graphics.FillEllipse(new SolidBrush(cl), (int)(Size.Width*1.5/20), 0, Size.Width*15/20, Size.Height*14/60);
 			if (IsSelected)
 				e.Graphics.DrawRectangle(new Pen(Color.Red), 0, 0, Width-1, Height-1);
+			if (OnGraphicalChanges != null)
+				OnGraphicalChanges.Invoke();
 		}
 	}
 }

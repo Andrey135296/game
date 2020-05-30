@@ -12,9 +12,12 @@ namespace game
 {
 	public partial class CrewPanel : UserControl
 	{
+		public CrewMember[] Crew;
+		public List<Human> Humans = new List<Human>();
 		public CrewPanel(CrewMember[] crew)
 		{
 			InitializeComponent();
+			Crew = crew;
 			this.Size = new Size(220, 171);
 			
 			var t = new TableLayoutPanel();
@@ -36,6 +39,7 @@ namespace game
 				var human = new Human(crew[i]);
 				human.Size = new Size(18, 47);
 				human.Left = 15;
+				Humans.Add(human);
 				panel.Controls.Add(human);
 
 				var label = new Label();
