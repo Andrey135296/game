@@ -10,7 +10,18 @@ namespace game
     {
         public List<Cell> Cells;
         public List<CrewMember> CrewMembers;
-        public int CurrentDurability;
+		private int currentDurability;
+        public int CurrentDurability 
+		{ 
+			get { return currentDurability; }
+			set 
+			{ 
+				currentDurability = value; 
+				if (OnDurabilityChange != null) 
+					OnDurabilityChange.Invoke(); 
+			}
+		}
+		public event Action OnDurabilityChange;
         public int MaxDurability;
         public bool IsIntact;
         public RoomType Type;

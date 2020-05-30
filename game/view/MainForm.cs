@@ -449,14 +449,11 @@ namespace game
 						  var h = (Human)Selected;
 						  var c = (CellControl)cell;
 						  PlayerCommands.MoveCrewMember(h.crewMember, c.cell, playerShip.Ship);
+						  DropSelection();
 					  }
 				  };
 			}
 
-
-			//
-			gameModel.PlayerShip.Stats.CurrentHP = 1500;
-			//
 
 			var playerHpBar = new HPBar(gameModel.PlayerShip) { Width = 630, Height = 30};
 			screen.Controls.Add(playerHpBar);
@@ -483,6 +480,7 @@ namespace game
 							var c = ((CellControl)cell).cell;
 							var room = otherShip.Ship.Rooms.First(r => r.Cells.Contains(c));
 							PlayerCommands.TargetWeapon(w, room, playerShip.Ship, otherShip.Ship);
+							DropSelection();
 						}
 					};
 				}

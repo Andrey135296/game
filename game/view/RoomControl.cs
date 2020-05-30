@@ -19,6 +19,7 @@ namespace game
 		{
 			InitializeComponent();
 			Room = room;
+			Room.OnDurabilityChange += () => this.Invalidate();
 			Cells = Room.Cells.Select(c => new CellControl(c)).ToList();
 			MinX = Room.Cells.Min(c => c.Coordinates.X);
 			MaxX = Room.Cells.Max(c => c.Coordinates.X);
@@ -73,6 +74,8 @@ namespace game
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			base.OnPaint(e);
+			var durable = 1.0f * Room.CurrentDurability / Room.MaxDurability;
+			BackColor = Color.FromArgb(200+(int)(55*(1.0f-durable)), (int)(200*durable), (int)(200*durable));
 			e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 0, 0, Width - 1, Height - 1);
 		}
 	}
