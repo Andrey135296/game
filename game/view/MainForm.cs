@@ -420,6 +420,9 @@ namespace game
 			var weaponPanel = new WeaponPanel(gameModel.PlayerShip) { Left = 0, Top = 510 };
 			screen.Controls.Add(weaponPanel);
 
+			foreach (var weaponReload in GetAll(weaponPanel, typeof(WeaponReload)))
+				GameTick.OnTick += gm => weaponReload.Invalidate();
+
 			var systemsPanel = new SystemsPanel(gameModel.PlayerShip) { Left = 149, Top = 510};
 			screen.Controls.Add(systemsPanel);
 
@@ -431,6 +434,11 @@ namespace game
 
 			var playerShip = new ShipControl(gameModel.PlayerShip){ Width = 540, Height = 216, Top = 200, Left = 30};
 			screen.Controls.Add(playerShip);
+
+			//
+			foreach (var w in playerShip.Ship.Weapons)
+				w.IsOnline = true;
+			//
 
 			foreach (var cell in GetAll(playerShip, typeof(CellControl)))
 			{
@@ -445,13 +453,15 @@ namespace game
 				  };
 			}
 
+
 			//
 			gameModel.PlayerShip.Stats.CurrentHP = 1500;
 			//
 
 			var playerHpBar = new HPBar(gameModel.PlayerShip) { Width = 630, Height = 30};
 			screen.Controls.Add(playerHpBar);
-			
+			GameTick.OnTick += gm => playerHpBar.Invalidate();
+
 
 			if (gameModel.OtherShip != null)
 			{
@@ -461,6 +471,7 @@ namespace game
 
 				var enemyHPBar = new HPBar(gameModel.OtherShip) { Width = 630, Height = 30, Left = 634 };
 				screen.Controls.Add(enemyHPBar);
+				GameTick.OnTick += gm => enemyHPBar.Invalidate();
 
 				foreach (var cell in GetAll(otherShip, typeof(CellControl)))
 				{

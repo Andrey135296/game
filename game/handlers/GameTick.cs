@@ -8,7 +8,8 @@ namespace game
 {
 	public static class GameTick
 	{
-		public static void Tick(GameModel gameModel)
+		public static event Action<GameModel> OnTick = StdTick;
+		private static void StdTick(GameModel gameModel)
 		{
 			if (gameModel.IsRunning)
 			{
@@ -24,6 +25,11 @@ namespace game
 				SpecialRoomBonusCalculator.Recalculate(gameModel.PlayerShip);
 				SpecialRoomBonusCalculator.Recalculate(gameModel.OtherShip);
 			}
+		}
+
+		public static void Tick(GameModel gameModel)
+		{
+			OnTick.Invoke(gameModel);
 		}
 	}
 }
