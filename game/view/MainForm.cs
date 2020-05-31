@@ -542,7 +542,7 @@ namespace game
 			{
 				resourcePanel.Invalidate();
 				MessageBox.Show(
-					String.Format("You Win! \n +{1} Money, +{0} Fuel", GameTick.LastFuelReward, GameTick.LastMoneyReward), 
+					String.Format("Победа! \n +{1} Денег, +{0} Топлива", GameTick.LastFuelReward, GameTick.LastMoneyReward), 
 					"", MessageBoxButtons.OK);
 
 				gameModel.Map.CurrentNode.Alignment = Alignment.Player;
@@ -552,6 +552,13 @@ namespace game
 				Sp.Stop();
 				Sp = new SoundPlayer("music/peaceTheme.wav");
 				Sp.Play();
+			};
+
+			GameTick.OnLose += () =>
+			{
+				MessageBox.Show(
+					String.Format("Поражение((((( \n Много сообщений - чтобы добить", GameTick.LastFuelReward, GameTick.LastMoneyReward),
+					"", MessageBoxButtons.OK);
 			};
 
 			foreach (var control in GetAll(screen, typeof(Human)))
