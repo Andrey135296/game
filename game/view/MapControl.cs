@@ -22,7 +22,7 @@ namespace game.view
             var map = gameModel.Map;
             foreach (var i in map.Nodes)
             {
-                MapPoint point = new MapPoint(i);
+                MapPoint point = new MapPoint(i, map);
                 this.Controls.Add(point);
                 point.Left = (i.Coordinates.X) * this.Width / 100;
                 point.Top = (i.Coordinates.Y) * this.Height / 100;
