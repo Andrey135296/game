@@ -40,13 +40,6 @@ namespace game
 				weapon.TimeLeftToCoolDown += weapon.CoolDownTime;
 				if (attackedShip.Stats.CurrentHP == 0)
 					attackedShip.Alignment = Alignment.Wrekage;
-					
-				//if (attackedShip.SpecialRooms.Contains(weapon.Target))
-				//{
-				//	var specialRoom = (SpecialRoom)weapon.Target;
-				//	specialRoom.CurrentDurability = 
-				//		Math.Max(0, specialRoom.CurrentDurability - (int)(weapon.Damage * damageMultiplier));
-				//}
 				var room = weapon.Target;
 				room.CurrentDurability =
 					Math.Max(0, room.CurrentDurability - (int)(weapon.Damage * damageMultiplier));
