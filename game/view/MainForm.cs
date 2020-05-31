@@ -423,6 +423,7 @@ namespace game
 					{
 						var cnd = gameModel.Map.CurrentNode;
 						PlayerCommands.MoveOnMap(gameModel, mp.PointNode);
+						mapPanel.Invalidate(true);
 						if (gameModel.Map.CurrentNode !=cnd && gameModel.Map.CurrentNode.Alignment == Alignment.Enemy)
 							TransitionTo(Screen.Fight);
 					}
