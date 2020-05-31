@@ -23,7 +23,7 @@ namespace game
 		public List<TableLayoutPanel> AllGrids = new List<TableLayoutPanel>();
 		public GameModel gameModel = null;
 		public ISelectable Selected = null;
-        public SoundPlayer Sp;
+        public SoundPlayer Sp = new SoundPlayer("music/mainTheme.wav");
 		private Random random = new Random();
 
 		public MainForm(GameModel gameModel)
@@ -59,7 +59,7 @@ namespace game
 			//Controls.Add(FightGrid);
 			//AllGrids.Add(FightGrid);
 
-            SoundPlayer Sp = new SoundPlayer("music/mainTheme.wav");
+            //SoundPlayer Sp = new SoundPlayer("music/mainTheme.wav");
 			Sp.Play();
 
 			foreach (var control in GetAll(this, typeof(Human)))
