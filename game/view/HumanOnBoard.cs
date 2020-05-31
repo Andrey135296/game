@@ -57,12 +57,18 @@ namespace game
 					break;
 			}
 			var health = 1.0f * crewMember.CurrentHP / crewMember.MaxHP;
-			//e.Graphics.FillPie(new SolidBrush(cl), 0, 0, Width-1, Height-1, 90 - 360 * health/2, 360 * health);
-			e.Graphics.FillPie(new SolidBrush(cl), 0, 0, Width - 1, Height - 1, -90, 360 * health);
-			e.Graphics.DrawEllipse(new Pen(cl), 0, 0, Width - 1, Height - 1);
-			if (this.Human.IsSelected)
-				e.Graphics.DrawRectangle(new Pen(Color.Red), 0, 0, Width - 1, Height - 1);
-			
+			if (crewMember.IsAlive)
+			{
+				try
+				{
+					//e.Graphics.FillPie(new SolidBrush(cl), 0, 0, Width-1, Height-1, 90 - 360 * health/2, 360 * health);
+					e.Graphics.FillPie(new SolidBrush(cl), 0, 0, Width - 1, Height - 1, -90, 360 * health);
+					e.Graphics.DrawEllipse(new Pen(cl), 0, 0, Width - 1, Height - 1);
+					if (this.Human.IsSelected)
+						e.Graphics.DrawRectangle(new Pen(Color.Red), 0, 0, Width - 1, Height - 1);
+				}
+				catch { };
+			}
 		}
 	}
 }
