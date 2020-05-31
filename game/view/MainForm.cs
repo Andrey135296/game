@@ -20,6 +20,7 @@ namespace game
 		public TableLayoutPanel StartGrid;
 		public TableLayoutPanel MapGrid;
 		public TableLayoutPanel FightGrid;
+		public TableLayoutPanel HelpGrid;
 		public List<TableLayoutPanel> AllGrids = new List<TableLayoutPanel>();
 		public GameModel gameModel = null;
 		public ISelectable Selected = null;
@@ -31,12 +32,15 @@ namespace game
 			InitializeComponent();
 			//gameModel = new GameModel(new Titan(Alignment.Player), Map.LoadFromFile("maps/map1.txt"));
 			StartPosition = FormStartPosition.CenterScreen;
+			this.MinimizeBox = false;
+			this.MaximizeBox = false;
 			this.gameModel = gameModel;
 			//
 			gameModel.OtherShip = new Titan(Alignment.Enemy);
 			//
 
 			DoubleBuffered = true;
+
 			MainMenuGrid = GenerateMainMenu();
 			Controls.Add(MainMenuGrid);
 			AllGrids.Add(MainMenuGrid);
@@ -55,11 +59,15 @@ namespace game
             Controls.Add(MapGrid);
             AllGrids.Add(MapGrid);
 
+			HelpGrid = GenerateHelpScreen();
+			Controls.Add(HelpGrid);
+			AllGrids.Add(HelpGrid);
+
 			//FightGrid = GenerateFightScreen();
 			//Controls.Add(FightGrid);
 			//AllGrids.Add(FightGrid);
 
-            //SoundPlayer Sp = new SoundPlayer("music/mainTheme.wav");
+			//SoundPlayer Sp = new SoundPlayer("music/mainTheme.wav");
 			Sp.Play();
 
 			foreach (var control in GetAll(this, typeof(Human)))
@@ -133,7 +141,7 @@ namespace game
             continueButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
                                     GraphicsUnit.Point, ((byte)(204)));
             continueButton.Dock = DockStyle.Fill;
-			//continueButton.Enabled = false;
+			continueButton.Enabled = false;
 			continueButton.Click += (e, a) => TransitionTo(Screen.Fight);
 			//
 			playGrid.Controls.Add(continueButton, 0, 0);
@@ -175,6 +183,11 @@ namespace game
                 if (result == DialogResult.Yes) Application.Exit();
             };
             otherGrid.Controls.Add(exitButton, 0, 1);
+
+			var helpButton = new Button() { Text = "Помощь" , Size = new Size(100, 30)};
+			helpButton.Anchor = AnchorStyles.Top;
+			helpButton.Click += (s, e) => TransitionTo(Screen.Help);
+			mainGrid.Controls.Add(helpButton, 2, 0);
 
 			return mainGrid;
 		}
@@ -542,7 +555,7 @@ namespace game
 			{
 				resourcePanel.Invalidate();
 				MessageBox.Show(
-					String.Format("You Win! \n +{1} Money, +{0} Fuel", GameTick.LastFuelReward, GameTick.LastMoneyReward), 
+					String.Format("Победа! \n +{1} Денег, +{0} Топлива", GameTick.LastFuelReward, GameTick.LastMoneyReward), 
 					"", MessageBoxButtons.OK);
 
 				gameModel.Map.CurrentNode.Alignment = Alignment.Player;
@@ -552,6 +565,13 @@ namespace game
 				Sp.Stop();
 				Sp = new SoundPlayer("music/peaceTheme.wav");
 				Sp.Play();
+			};
+
+			GameTick.OnLose += () =>
+			{
+				MessageBox.Show(
+					String.Format("Поражение((((( \n Много сообщений - чтобы добить", GameTick.LastFuelReward, GameTick.LastMoneyReward),
+					"", MessageBoxButtons.OK);
 			};
 
 			foreach (var control in GetAll(screen, typeof(Human)))
@@ -589,7 +609,15 @@ namespace game
 			return t;
 		}
 
-        public void TransitionTo(Screen screen)
+		public TableLayoutPanel GenerateHelpScreen()
+		{
+			var t = new TableLayoutPanel() { Dock = DockStyle.Fill };
+			//t.BackgroundImage = new Bitmap("");
+			return t;
+		}
+
+
+		public void TransitionTo(Screen screen)
 		{
 			gameModel.IsRunning = false;
 			foreach (var p in AllGrids)
@@ -622,6 +650,9 @@ namespace game
 					break;
 				case Screen.Start:
 					StartGrid.Visible = true;
+					break;
+				case Screen.Help:
+					HelpGrid.Visible = true;
 					break;
 				case Screen.Map:
                     Sp.Stop();

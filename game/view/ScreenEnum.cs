@@ -6,6 +6,7 @@
 		Options,
 		Start,
 		Map,
-		Fight
+		Fight,
+		Help
 	}
 }

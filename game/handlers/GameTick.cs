@@ -10,6 +10,7 @@ namespace game
 	{
 		public static event Action<GameModel> OnTick = StdTick;
 		public static Action OnWin;
+		public static Action OnLose;
 		public static int LastMoneyReward = 0;
 		public static int LastFuelReward = 0;
 		private static Random random = new Random();
@@ -18,7 +19,7 @@ namespace game
 			if (gameModel.IsRunning)
 			{
 				if (gameModel.PlayerShip.Alignment != Alignment.Player)
-					throw new Exception("You are a looooooser!!!!!!");
+					OnLose.Invoke();
 				CrewActionsHandler.TickCrew(gameModel.PlayerShip);
 				CrewActionsHandler.TickCrew(gameModel.OtherShip);
 				if (gameModel.OtherShip != null && gameModel.OtherShip.Alignment == Alignment.Enemy)
