@@ -93,14 +93,6 @@ namespace game
 					Selected = selectable;
 					selectable.Invalidate();
 				};
-
-            GameTick.OnWin += () =>
-            {
-                Sp.Stop();
-                Sp = new SoundPlayer();
-                Sp.Play();
-            };
-
 		}
 
 		public TableLayoutPanel GenerateMainMenu()
@@ -548,9 +540,14 @@ namespace game
 				MessageBox.Show(
 					String.Format("You Win! \n +{1} Money, +{0} Fuel", GameTick.LastFuelReward, GameTick.LastMoneyReward), 
 					"", MessageBoxButtons.OK);
+
 				gameModel.Map.CurrentNode.Alignment = Alignment.Player;
 				foreach (var mapPoint in GetAll(this, typeof(MapPoint)))
 					mapPoint.Invalidate();
+
+				Sp.Stop();
+				Sp = new SoundPlayer();
+				Sp.Play();
 			};
 
 			foreach (var control in GetAll(screen, typeof(Human)))
