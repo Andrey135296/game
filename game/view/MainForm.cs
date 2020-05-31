@@ -366,10 +366,10 @@ namespace game
             otherGrid.Dock = DockStyle.Fill;
             otherGrid.ColumnCount = 1;
             playGrid.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-            otherGrid.RowCount = 2;
-            otherGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40));
-            otherGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
-            //otherGrid.BackColor = Color.Transparent;
+            //otherGrid.RowCount = 2;
+            otherGrid.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+            otherGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+            otherGrid.BackColor = Color.Transparent;
             mainMapGrid.Controls.Add(otherGrid, 0, 1);
 
             var label = new Label();
@@ -377,7 +377,7 @@ namespace game
             label.Dock = DockStyle.Fill;
             label.Height = 35;
             label.TextAlign = ContentAlignment.MiddleCenter;
-            //label.BackColor = Color.Transparent;
+            label.BackColor = Color.Transparent;
             label.ForeColor = Color.White;
             label.Font = new Font("Segoe UI", 20, FontStyle.Bold,
                                     GraphicsUnit.Point, ((byte)(204)));

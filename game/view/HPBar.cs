@@ -26,9 +26,10 @@ namespace game
 		{
 			base.OnPaint(e);
 			var max = this.Ship.Stats.MaxHP;
-			var cur = this.Ship.Stats.CurrentHP;
-			label.Text = cur.ToString() + " / " + max.ToString();
-			e.Graphics.FillRectangle(new SolidBrush(Color.Green), 0, 0, 1.0f*Width * cur / max, Height);
+            var cur = this.Ship.Stats.CurrentHP;
+            var greenColor = Color.FromArgb(255, 0, 202, 44);
+            label.Text = cur.ToString() + " / " + max.ToString();
+			e.Graphics.FillRectangle(new SolidBrush(greenColor), 0, 0, 1.0f*Width * cur / max, Height);
 			e.Graphics.FillRectangle(new SolidBrush(Color.Red), Width * cur / max, 0,
 				Width * (1 - 1.0f * cur / max), Height);
 		}
