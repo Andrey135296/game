@@ -372,7 +372,7 @@ namespace game
             menuButton.Click += (e, a) => this.TransitionTo(Screen.Start);
             mainMapGrid.Controls.Add(menuButton, 1, 0);
 
-            var hpBar = new HPBar(gameModel.PlayerShip) { Width = 630, Height = 30 };
+            var hpBar = new HPBar(gameModel.PlayerShip) { Width = 1150, Height = 30 };
             mainMapGrid.Controls.Add(hpBar, 0, 0);
 
             var playGrid = new TableLayoutPanel();
@@ -611,10 +611,54 @@ namespace game
 
 		public TableLayoutPanel GenerateHelpScreen()
 		{
-			var t = new TableLayoutPanel() { Dock = DockStyle.Fill };
-			//t.BackgroundImage = new Bitmap("");
-			return t;
-		}
+            var optionsScreen = new TableLayoutPanel();
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 89));
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 367));
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 367));
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 367));
+            optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 90));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 25));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 60));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 70));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 65));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 65));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 65));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 65));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 244));
+
+            optionsScreen.Dock = DockStyle.Fill;
+            optionsScreen.BackgroundImage = new Bitmap("images/MenuBackground.png");
+            optionsScreen.BackgroundImageLayout = ImageLayout.Stretch;
+
+            var backButton = new Button();
+            backButton.Text = "Назад";
+            backButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular,
+                            GraphicsUnit.Point, ((byte)(204)));
+            backButton.Dock = DockStyle.Fill;
+            backButton.Click += (e, a) => this.TransitionTo(Screen.Menu);
+            optionsScreen.Controls.Add(backButton, 4, 1);
+
+            var logo = new Label();
+            logo.Text = "DTSb";
+            logo.Dock = DockStyle.Fill;
+            logo.BackColor = Color.Transparent;
+            logo.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
+            optionsScreen.Controls.Add(logo, 0, 0);
+
+            var optionsLabel = new Label();
+            optionsLabel.Text = "Справка";
+            optionsLabel.Dock = DockStyle.Fill;
+            optionsLabel.TextAlign = ContentAlignment.MiddleCenter;
+            optionsLabel.BackColor = Color.Transparent;
+            optionsLabel.Font = new Font(FontFamily.GenericSerif, 40, FontStyle.Bold);
+            optionsScreen.Controls.Add(optionsLabel, 2, 1);
+
+            var buffer = new Label();
+            buffer.BackColor = Color.Transparent;
+            optionsScreen.Controls.Add(buffer, 1, 7);
+
+            return optionsScreen;
+        }
 
 
 		public void TransitionTo(Screen screen)
