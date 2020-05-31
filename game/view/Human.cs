@@ -36,6 +36,7 @@ namespace game
 		public Human(CrewMember crewMember) : this()
 		{
 			this.crewMember = crewMember;
+			crewMember.OnChange += () => this.Invalidate();
 		}
 
 

@@ -10,7 +10,21 @@ namespace game
 	public class CrewMember
 	{
         public int Speed;
-        public Cell Cell;
+		private Cell cell;
+        public Cell Cell 
+		{
+			get { return cell; }
+			set 
+			{
+				if (cell != value)
+				{
+					cell = value;
+					if (OnMove != null)
+						OnMove.Invoke();
+				}
+			}
+		}
+		public event Action OnMove;
         public string Name;
         public int MaxHP;
 		private int currentHP;

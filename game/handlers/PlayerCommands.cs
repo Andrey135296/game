@@ -11,7 +11,8 @@ namespace game
 		public static void MoveCrewMember(CrewMember crewMember, Cell cell, Ship ship)
 		{
 			if (crewMember.Alignment == Alignment.Player)
-				if (!ship.Crew.Any(c => c.Destination == cell) && cell.Stationed == null)
+				//if (!ship.Crew.Any(c => c.Destination == cell) && cell.Stationed == null)
+				if (!ship.Crew.Any(c => c.Destination == cell || c.Cell == cell))
 				{
 					if (crewMember.Action == CrewAction.Working)
 					{

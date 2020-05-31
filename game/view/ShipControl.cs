@@ -14,6 +14,7 @@ namespace game
 	{
 		public Ship Ship;
 		public List<RoomControl> Rooms;
+		public Dictionary<Cell, CellControl> CellsDict = new Dictionary<Cell, CellControl>();
 		public int MaxX, MaxY, MinX, MinY;
 		public bool Mirrored;
 		public ShipControl(Ship ship, bool mirrored = false)
@@ -21,7 +22,7 @@ namespace game
 			InitializeComponent();
 			Ship = ship;
 			Mirrored = mirrored;
-			Rooms = Ship.Rooms.Select(r => new RoomControl(r)).ToList();
+			Rooms = Ship.Rooms.Select(r => new RoomControl(r, CellsDict)).ToList();
 			if (Ship is Titan || Ship is TestTitan)
 			{
 				var bmp = new Bitmap("images/Titan.png");

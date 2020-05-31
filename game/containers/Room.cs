@@ -16,9 +16,12 @@ namespace game
 			get { return currentDurability; }
 			set 
 			{ 
-				currentDurability = value; 
-				if (OnDurabilityChange != null) 
-					OnDurabilityChange.Invoke(); 
+				if (currentDurability != value)
+				{
+					currentDurability = value;
+					if (OnDurabilityChange != null)
+						OnDurabilityChange.Invoke();
+				}
 			}
 		}
 		public event Action OnDurabilityChange;

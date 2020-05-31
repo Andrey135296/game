@@ -28,6 +28,7 @@ namespace game
 		{
 			InitializeComponent();
 			//gameModel = new GameModel(new Titan(Alignment.Player), Map.LoadFromFile("maps/map1.txt"));
+			StartPosition = FormStartPosition.CenterScreen;
 			this.gameModel = gameModel;
 			//
 			gameModel.OtherShip = new Titan(Alignment.Enemy);
@@ -63,6 +64,15 @@ namespace game
 				control.Click += (s, e) =>
 				{
 					var selectable = (ISelectable)control;
+					DropSelection();
+					selectable.IsSelected = true;
+					Selected = selectable;
+					selectable.Invalidate();
+				};
+			foreach (var control in GetAll(this, typeof(HumanOnBoard)))
+				control.Click += (s, e) =>
+				{
+					var selectable = (ISelectable)(((HumanOnBoard)control).Human);
 					DropSelection();
 					selectable.IsSelected = true;
 					Selected = selectable;
@@ -459,8 +469,12 @@ namespace game
 			screen.Controls.Add(playerHpBar);
 			GameTick.OnTick += gm => playerHpBar.Invalidate();
 
-			var humanOnBoard = new HumanOnBoard(crewPanel.Humans[0]) { Top = 100, Left = 400 };
-			screen.Controls.Add(humanOnBoard);
+			foreach (var human in crewPanel.Humans)
+			{
+				var humanOnBoard = new HumanOnBoard(human, playerShip);
+				screen.Controls.Add(humanOnBoard);
+			}
+
 			//
 			crewPanel.Humans[0].crewMember.CurrentHP -= 70;
 			//

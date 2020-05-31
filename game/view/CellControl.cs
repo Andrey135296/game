@@ -22,7 +22,8 @@ namespace game
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
-			//e.Graphics.DrawRectangle(new Pen(Color.Gray, 3), 4, 4, Width-9, Height-9);
+			base.OnPaint(e);
+			e.Graphics.DrawRectangle(new Pen(Color.Gray, 3), 4, 4, Width-9, Height-9);
 		}
 	}
 }

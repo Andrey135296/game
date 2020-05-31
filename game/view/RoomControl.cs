@@ -15,12 +15,18 @@ namespace game
 		public List<CellControl> Cells = new List<CellControl>();
 		public Room Room;
 		public int MaxX, MaxY, MinX, MinY;
-		public RoomControl(Room room)
+		public RoomControl(Room room, Dictionary<Cell, CellControl> dict)
 		{
 			InitializeComponent();
 			Room = room;
 			Room.OnDurabilityChange += () => this.Invalidate();
-			Cells = Room.Cells.Select(c => new CellControl(c)).ToList();
+			Cells = Room.Cells.Select(c => 
+			{
+				var cc = new CellControl(c);
+				dict[c] = cc;
+				return cc; 
+			})
+			.ToList();
 			MinX = Room.Cells.Min(c => c.Coordinates.X);
 			MaxX = Room.Cells.Max(c => c.Coordinates.X);
 			MinY = Room.Cells.Min(c => c.Coordinates.Y);
