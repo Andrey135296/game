@@ -10,6 +10,9 @@ namespace game
 	{
 		public static event Action<GameModel> OnTick = StdTick;
 		public static Action OnWin;
+		public static int LastMoneyReward = 0;
+		public static int LastFuelReward = 0;
+		private static Random random = new Random();
 		private static void StdTick(GameModel gameModel)
 		{
 			if (gameModel.IsRunning)
@@ -26,6 +29,10 @@ namespace game
 					{
 						foreach (var weapon in gameModel.PlayerShip.Weapons)
 							weapon.TimeLeftToCoolDown = weapon.CoolDownTime;
+						LastFuelReward = random.Next(0, 4);
+						LastMoneyReward = random.Next(10, 31);
+						gameModel.Fuel += LastFuelReward;
+						gameModel.Money += LastMoneyReward;
 						if (OnWin != null)
 							OnWin.Invoke();
 					}

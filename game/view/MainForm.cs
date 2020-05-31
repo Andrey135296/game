@@ -23,6 +23,7 @@ namespace game
 		public List<TableLayoutPanel> AllGrids = new List<TableLayoutPanel>();
 		public GameModel gameModel = null;
 		public ISelectable Selected = null;
+		private Random random = new Random();
 
 		public MainForm(GameModel gameModel)
 		{
@@ -491,7 +492,24 @@ namespace game
 				foreach (var human in otherShip.Ship.Crew.Select(cm => new Human(cm)))
 				{
 					var humanOnBoard = new HumanOnBoard(human, otherShip);
+					humanOnBoard.Click += (s, e) =>
+					{
+						if (Selected is WeaponControl)
+						{
+							var w = ((WeaponControl)Selected).Weapon;
+							var c = human.crewMember.Cell;
+							var room = otherShip.Ship.Rooms.First(r => r.Cells.Contains(c));
+							PlayerCommands.TargetWeapon(w, room, playerShip.Ship, otherShip.Ship);
+							DropSelection();
+						}
+					};
 					screen.Controls.Add(humanOnBoard);
+				}
+
+				foreach (var weapon in gameModel.OtherShip.Weapons)
+				{
+					weapon.IsOnline = true;
+					weapon.Target = gameModel.PlayerShip.Rooms[random.Next(0, gameModel.PlayerShip.Rooms.Count)];
 				}
 			}
 
@@ -503,7 +521,10 @@ namespace game
 
 			GameTick.OnWin += () =>
 			{
-				MessageBox.Show("You Win!", "", MessageBoxButtons.OK);
+				resourcePanel.Invalidate();
+				MessageBox.Show(
+					String.Format("You Win! \n +{1} Money, +{0} Fuel", GameTick.LastFuelReward, GameTick.LastMoneyReward), 
+					"", MessageBoxButtons.OK);
 			};
 
 			foreach (var control in GetAll(screen, typeof(Human)))
@@ -549,6 +570,11 @@ namespace game
 			DropSelection();
 			if (FightGrid != null)
 			{
+				foreach (var weapon in gameModel.PlayerShip.Weapons)
+				{
+					weapon.Target = null;
+					weapon.TimeLeftToCoolDown = weapon.CoolDownTime;
+				}
 				AllGrids.Remove(FightGrid);
 				this.Controls.Remove(FightGrid);
 				FightGrid.Dispose();
@@ -571,6 +597,7 @@ namespace game
 					MapGrid.Visible = true;
 					break;
 				case Screen.Fight:
+					gameModel.OtherShip = new Titan(Alignment.Enemy);
 					FightGrid = GenerateFightScreen();
 					FightGrid.Visible = true;
 					AllGrids.Add(FightGrid);
