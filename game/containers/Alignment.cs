@@ -6,6 +6,8 @@
 		Ally,
 		Enemy,
 		Neutral,
-		Wrekage
+		Wrekage,
+        Down,
+        Up
 	}
 }

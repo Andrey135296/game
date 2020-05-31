@@ -12,24 +12,48 @@ namespace game.view
 {
     public partial class MapControl : UserControl
     {
-        //public GameModel gameModel;
+
+        public List<MapPoint> MapNodes = new List<MapPoint>();
+
         public MapControl(GameModel gameModel)
         {
             InitializeComponent();
-            var mapPanel = new TableLayoutPanel();
-            var rowColomnNumber = 100;
-            for (var i = 0; i < rowColomnNumber; i++)
-            {
-                mapPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100/rowColomnNumber));
-                mapPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100/rowColomnNumber));
-            }
-
-            foreach (var i in gameModel.Map.Nodes)
+            this.Dock = DockStyle.Fill;
+            var map = gameModel.Map;
+            foreach (var i in map.Nodes)
             {
                 MapPoint point = new MapPoint(i);
-                mapPanel.Controls.Add(point,i.Coordinates.X, i.Coordinates.Y);
+                this.Controls.Add(point);
+                point.Left = (i.Coordinates.X) * this.Width / 100;
+                point.Top = (i.Coordinates.Y) * this.Height / 100;
+                MapNodes.Add(point);
+                //point.Click += (s, e) =>
+                //{
+                //    if (point.PointNode == map.CurrentNode)
+                //        return;
+                //    if (point.PointNode)
+                //};
             }
+        }
 
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            //base.OnPaint(e);
+            foreach (var node in MapNodes)
+            {
+                node.Left = (node.PointNode.Coordinates.X) * this.Width / 100;
+                node.Top = (node.PointNode.Coordinates.Y) * this.Height / 100;
+            }
+            foreach (var node in MapNodes)
+            {
+                foreach (var neib in MapNodes)
+                {
+                    if (node.PointNode.Neighbors.Contains(neib.PointNode))
+                        e.Graphics.DrawLine(new Pen(Color.FromArgb(255, 108, 246, 255)),
+                            node.Left + (node.PointSize / 2), node.Top + (node.PointSize / 2),
+                            neib.Left + (neib.PointSize / 2), neib.Top + (neib.PointSize / 2));
+                }
+            }
         }
     }
 }
