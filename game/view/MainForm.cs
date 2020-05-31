@@ -409,7 +409,12 @@ namespace game
 			var t = new TableLayoutPanel { Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0) };
 			var screen = new Panel { Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0) };
 			screen.BackgroundImage = new Bitmap("images/BattleBackground.jpg");
-			screen.Click += (s, e) => DropSelection();
+			screen.Click += (s, e) =>
+			{
+				if (Selected is WeaponControl)
+					((WeaponControl)Selected).Weapon.Target = null;
+				DropSelection();
+			};
 			t.Controls.Add(screen);
 
 			var weaponPanel = new WeaponPanel(gameModel.PlayerShip) { Left = 0, Top = 510 };
@@ -449,7 +454,6 @@ namespace game
 				  };
 			}
 
-
 			var playerHpBar = new HPBar(gameModel.PlayerShip) { Width = 630, Height = 30};
 			screen.Controls.Add(playerHpBar);
 			GameTick.OnTick += gm => playerHpBar.Invalidate();
@@ -459,11 +463,6 @@ namespace game
 				var humanOnBoard = new HumanOnBoard(human, playerShip);
 				screen.Controls.Add(humanOnBoard);
 			}
-
-			//
-			crewPanel.Humans[0].crewMember.CurrentHP -= 70;
-			//
-
 
 			if (gameModel.OtherShip != null)
 			{
@@ -497,13 +496,13 @@ namespace game
 				}
 			}
 
-			var progressButton = new Button() { Left = 200, Top = 50 };
-			progressButton.Text = "run";
-			progressButton.Click += (s, e) =>
-			{
-				GameTick.Tick(gameModel);
-			};
-			screen.Controls.Add(progressButton);
+			//var progressButton = new Button() { Left = 200, Top = 50 };
+			//progressButton.Text = "run";
+			//progressButton.Click += (s, e) =>
+			//{
+			//	GameTick.Tick(gameModel);
+			//};
+			//screen.Controls.Add(progressButton);
 
 			return t;
 		}

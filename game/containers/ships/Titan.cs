@@ -11,7 +11,7 @@ namespace game
 		public Titan(Alignment alignment)
 		{
 			this.Alignment = alignment;
-			Stats = new ShipStat(2000);
+			Stats = new ShipStat(500);
 			GenerateCells();
 			GenerateCrew();
 			GenerateRooms();
