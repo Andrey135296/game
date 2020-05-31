@@ -529,7 +529,11 @@ namespace game
 			}
 
 			var mapButton = new Button() { Top = 38, Left = 1101, Height = 50, Width = 160, Text = "На карту" };
-			mapButton.Click += (s, e) => TransitionTo(Screen.Map);
+			mapButton.Click += (s, e) =>
+			{
+				PlayerCommands.MoveOnMap(gameModel, gameModel.Map.LastNode);
+				TransitionTo(Screen.Map);
+			};
 			mapButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
 									GraphicsUnit.Point, ((byte)(204)));
 			screen.Controls.Add(mapButton);

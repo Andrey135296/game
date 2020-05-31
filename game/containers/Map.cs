@@ -11,6 +11,7 @@ namespace game
 	public class Map
 	{
 		public Node CurrentNode;
+		public Node LastNode;
 		public List<Node> Nodes;
 
 
@@ -46,6 +47,7 @@ namespace game
 				}
 			}
 			CurrentNode = Nodes[0];
+			LastNode = CurrentNode;
 		}
 
 		public static Map LoadFromFile(string filename)

@@ -78,6 +78,7 @@ namespace game
 		{
 			if (gameModel.Map.CurrentNode.Neighbors.Contains(destination))
 			{
+				gameModel.Map.LastNode = gameModel.Map.CurrentNode;
 				gameModel.Map.CurrentNode = destination;
 				if (destination.Type == NodeType.Fight)
 				{
