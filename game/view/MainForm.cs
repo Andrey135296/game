@@ -365,7 +365,7 @@ namespace game
             otherGrid.RowCount = 2;
             otherGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40));
             otherGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
-            otherGrid.BackColor = Color.Transparent;
+            //otherGrid.BackColor = Color.Transparent;
             mainMapGrid.Controls.Add(otherGrid, 0, 1);
 
             var label = new Label();
@@ -373,16 +373,15 @@ namespace game
             label.Dock = DockStyle.Fill;
             label.Height = 35;
             label.TextAlign = ContentAlignment.MiddleCenter;
-            label.BackColor = Color.Transparent;
+            //label.BackColor = Color.Transparent;
             label.ForeColor = Color.White;
-            //label.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
             label.Font = new Font("Segoe UI", 20, FontStyle.Bold,
                                     GraphicsUnit.Point, ((byte)(204)));
             otherGrid.Controls.Add(label, 0, 0);
 
             var mapPanel = new MapControl(gameModel);
             mapPanel.Dock = DockStyle.Fill;
-            mapPanel.BackColor = Color.White;
+            //mapPanel.BackColor = Color.White;
             otherGrid.Controls.Add(mapPanel, 0, 1);
 
             var optionsButton = new Button();

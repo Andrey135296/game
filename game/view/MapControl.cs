@@ -17,7 +17,10 @@ namespace game.view
         {
             InitializeComponent();
             var mapPanel = new TableLayoutPanel();
-            var rowColomnNumber = 100;
+            var rowColomnNumber = 30;
+            mapPanel.RowCount = 30;
+            mapPanel.ColumnCount = 30;
+            mapPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
             for (var i = 0; i < rowColomnNumber; i++)
             {
                 mapPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100/rowColomnNumber));

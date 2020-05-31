@@ -17,7 +17,7 @@ namespace game.view
         {
             InitializeComponent();
             var button = new Button();
-            button.Size = new Size(new Point(10,10));
+            //button.Size = new Size(new Point(10,10));
             PointNode = node;
         }
     }
