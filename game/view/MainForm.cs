@@ -369,7 +369,7 @@ namespace game
             menuButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular,
                             GraphicsUnit.Point, ((byte)(204)));
             //backButton.Dock = DockStyle.Fill;
-            menuButton.Click += (e, a) => this.TransitionTo(Screen.Start);
+            menuButton.Click += (e, a) => this.TransitionTo(Screen.Menu);
             mainMapGrid.Controls.Add(menuButton, 1, 0);
 
             var hpBar = new HPBar(gameModel.PlayerShip) { Width = 1150, Height = 30 };
