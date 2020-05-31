@@ -400,6 +400,21 @@ namespace game
             mapPanel.Dock = DockStyle.Fill;
             otherGrid.Controls.Add(mapPanel, 0, 1);
 
+			foreach (var control in GetAll(mainMapGrid, typeof(MapPoint)))
+			{
+				var mp = (MapPoint)control;
+				mp.Click += (s, e) =>
+				{
+					if (mp.PointNode.Neighbors.Contains(gameModel.Map.CurrentNode))
+					{
+						var cnd = gameModel.Map.CurrentNode;
+						PlayerCommands.MoveOnMap(gameModel, mp.PointNode);
+						if (gameModel.Map.CurrentNode !=cnd && gameModel.Map.CurrentNode.Alignment == Alignment.Enemy)
+							TransitionTo(Screen.Fight);
+					}
+				};
+			}
+
             return mainMapGrid;
         }
 
@@ -524,6 +539,9 @@ namespace game
 				MessageBox.Show(
 					String.Format("You Win! \n +{1} Money, +{0} Fuel", GameTick.LastFuelReward, GameTick.LastMoneyReward), 
 					"", MessageBoxButtons.OK);
+				gameModel.Map.CurrentNode.Alignment = Alignment.Player;
+				foreach (var mapPoint in GetAll(this, typeof(MapPoint)))
+					mapPoint.Invalidate();
 			};
 
 			foreach (var control in GetAll(screen, typeof(Human)))
