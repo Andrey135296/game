@@ -335,19 +335,31 @@ namespace game
             var mainMapGrid = new TableLayoutPanel();
             mainMapGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 87));
             mainMapGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 13));
-            mainMapGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 14));
-            mainMapGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 86));
+            mainMapGrid.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
+            mainMapGrid.RowStyles.Add(new RowStyle(SizeType.Absolute, 55));
+            mainMapGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
             mainMapGrid.Dock = DockStyle.Fill;
             mainMapGrid.BackgroundImage = new Bitmap("images/MapBackground.png");
             mainMapGrid.BackgroundImageLayout = ImageLayout.Stretch;
 
-            var backButton = new Button();
+            var backButton = new Button() { Height = 50, Width = 200 };
             backButton.Text = "Назад";
             backButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular,
                             GraphicsUnit.Point, ((byte)(204)));
-            backButton.Dock = DockStyle.Fill;
-            backButton.Click += (e, a) => this.TransitionTo(Screen.Menu);
-            mainMapGrid.Controls.Add(backButton, 1, 0);
+            //backButton.Dock = DockStyle.Fill;
+            backButton.Click += (e, a) => this.TransitionTo(Screen.Fight);
+            mainMapGrid.Controls.Add(backButton, 1, 1);
+
+            var menuButton = new Button() { Height = 30, Width = 200 };
+            menuButton.Text = "В меню";
+            menuButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular,
+                            GraphicsUnit.Point, ((byte)(204)));
+            //backButton.Dock = DockStyle.Fill;
+            menuButton.Click += (e, a) => this.TransitionTo(Screen.Start);
+            mainMapGrid.Controls.Add(menuButton, 1, 0);
+
+            var hpBar = new HPBar(gameModel.PlayerShip) { Width = 630, Height = 30 };
+            mainMapGrid.Controls.Add(hpBar, 0, 0);
 
             var playGrid = new TableLayoutPanel();
             playGrid.Dock = DockStyle.Fill;
@@ -357,7 +369,7 @@ namespace game
             playGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
             playGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
             playGrid.BackColor = Color.Transparent;
-            mainMapGrid.Controls.Add(playGrid, 1, 1);
+            mainMapGrid.Controls.Add(playGrid, 1, 2);
 
             var resorsePanel = new ResourcePanel(gameModel);
             playGrid.Controls.Add(resorsePanel, 0, 0);
@@ -371,7 +383,7 @@ namespace game
             otherGrid.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
             otherGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
             otherGrid.BackColor = Color.Transparent;
-            mainMapGrid.Controls.Add(otherGrid, 0, 1);
+            mainMapGrid.Controls.Add(otherGrid, 0, 2);
 
             var label = new Label();
             label.Text = "Карта уровня";
@@ -386,20 +398,7 @@ namespace game
 
             var mapPanel = new MapControl(gameModel);
             mapPanel.Dock = DockStyle.Fill;
-            //mapPanel.BackColor = Color.White;
             otherGrid.Controls.Add(mapPanel, 0, 1);
-
-            var optionsButton = new Button();
-            optionsButton.Text = "Настройки";
-            optionsButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
-                        GraphicsUnit.Point, ((byte)(204)));
-            optionsButton.Dock = DockStyle.Fill;
-            optionsButton.Click += (e, a) => this.TransitionTo(Screen.Options);
-			//otherGrid.Controls.Add(optionsButton, 0, 0);
-
-			var fight = new Button();
-			fight.Click += (e, a) => this.TransitionTo(Screen.Fight);
-			mainMapGrid.Controls.Add(fight);
 
             return mainMapGrid;
         }
@@ -417,19 +416,19 @@ namespace game
 			};
 			t.Controls.Add(screen);
 
-			var weaponPanel = new WeaponPanel(gameModel.PlayerShip) { Left = 0, Top = 510 };
+			var weaponPanel = new WeaponPanel(gameModel.PlayerShip) { Left = 3, Top = 507 };
 			screen.Controls.Add(weaponPanel);
 
 			foreach (var weaponReload in GetAll(weaponPanel, typeof(WeaponReload)))
 				GameTick.OnTick += gm => weaponReload.Invalidate();
 
-			var systemsPanel = new SystemsPanel(gameModel.PlayerShip) { Left = 149, Top = 510};
+			var systemsPanel = new SystemsPanel(gameModel.PlayerShip) { Left = 152, Top = 507};
 			screen.Controls.Add(systemsPanel);
 
-			var crewPanel = new CrewPanel(gameModel.PlayerShip.Crew) { Left = 457, Top = 510};
+			var crewPanel = new CrewPanel(gameModel.PlayerShip.Crew) { Left = 460, Top = 507};
 			screen.Controls.Add(crewPanel);
 
-			var resourcePanel = new ResourcePanel(gameModel) { Top = 50, Size = new Size(150, 100)};
+			var resourcePanel = new ResourcePanel(gameModel) { Left = 3, Top = 38, Size = new Size(150, 100)};
 			screen.Controls.Add(resourcePanel);
 
 			var playerShip = new ShipControl(gameModel.PlayerShip){ Width = 540, Height = 216, Top = 200, Left = 30};
@@ -454,7 +453,7 @@ namespace game
 				  };
 			}
 
-			var playerHpBar = new HPBar(gameModel.PlayerShip) { Width = 630, Height = 30};
+			var playerHpBar = new HPBar(gameModel.PlayerShip) { Left = 3, Top = 3, Width = 626, Height = 30};
 			screen.Controls.Add(playerHpBar);
 			GameTick.OnTick += gm => playerHpBar.Invalidate();
 
@@ -470,7 +469,7 @@ namespace game
 					Top = 200, Left = 694 };
 				screen.Controls.Add(otherShip);
 
-				var enemyHPBar = new HPBar(gameModel.OtherShip) { Width = 630, Height = 30, Left = 634 };
+				var enemyHPBar = new HPBar(gameModel.OtherShip) { Width = 626, Top = 3, Height = 30, Left = 634 };
 				screen.Controls.Add(enemyHPBar);
 				GameTick.OnTick += gm => enemyHPBar.Invalidate();
 
@@ -513,7 +512,7 @@ namespace game
 				}
 			}
 
-			var mapButton = new Button() { Top = 35, Left = 1064, Height = 50, Width = 200, Text = "На карту" };
+			var mapButton = new Button() { Top = 38, Left = 1101, Height = 50, Width = 160, Text = "На карту" };
 			mapButton.Click += (s, e) => TransitionTo(Screen.Map);
 			mapButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
 									GraphicsUnit.Point, ((byte)(204)));
