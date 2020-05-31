@@ -70,14 +70,18 @@ namespace game
 					selectable.Invalidate();
 				};
 			foreach (var control in GetAll(this, typeof(HumanOnBoard)))
+			{
+				var Human = ((HumanOnBoard)control).Human;
+				if (Human.crewMember.Alignment != Alignment.Player)
+					continue;
 				control.Click += (s, e) =>
 				{
-					var selectable = (ISelectable)(((HumanOnBoard)control).Human);
 					DropSelection();
-					selectable.IsSelected = true;
-					Selected = selectable;
-					selectable.Invalidate();
+					Human.IsSelected = true;
+					Selected = Human;
+					Human.Invalidate();
 				};
+			}
 			foreach (var control in GetAll(this, typeof(WeaponControl)))
 				control.Click += (s, e) =>
 				{
@@ -503,6 +507,12 @@ namespace game
 							DropSelection();
 						}
 					};
+				}
+
+				foreach (var human in otherShip.Ship.Crew.Select(cm => new Human(cm)))
+				{
+					var humanOnBoard = new HumanOnBoard(human, otherShip);
+					screen.Controls.Add(humanOnBoard);
 				}
 			}
 
