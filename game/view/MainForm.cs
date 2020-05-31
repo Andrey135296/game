@@ -627,7 +627,7 @@ namespace game
             optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 244));
 
             optionsScreen.Dock = DockStyle.Fill;
-            optionsScreen.BackgroundImage = new Bitmap("images/MenuBackground.png");
+            optionsScreen.BackgroundImage = new Bitmap("images/Help.png");
             optionsScreen.BackgroundImageLayout = ImageLayout.Stretch;
 
             var backButton = new Button();
