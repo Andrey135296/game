@@ -93,6 +93,14 @@ namespace game
 					Selected = selectable;
 					selectable.Invalidate();
 				};
+
+            GameTick.OnWin += () =>
+            {
+                Sp.Stop();
+                Sp = new SoundPlayer();
+                Sp.Play();
+            };
+
 		}
 
 		public TableLayoutPanel GenerateMainMenu()
@@ -620,6 +628,8 @@ namespace game
 					break;
 				case Screen.Fight:
                     Sp.Stop();
+                    Sp = new SoundPlayer();
+                    Sp.Play();
                     FightGrid = GenerateFightScreen();
 					gameModel.OtherShip = new Titan(Alignment.Enemy);
 					FightGrid = GenerateFightScreen();
