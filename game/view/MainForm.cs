@@ -53,9 +53,9 @@ namespace game
             Controls.Add(MapGrid);
             AllGrids.Add(MapGrid);
 
-			FightGrid = GenerateFightScreen();
-			Controls.Add(FightGrid);
-			AllGrids.Add(FightGrid);
+			//FightGrid = GenerateFightScreen();
+			//Controls.Add(FightGrid);
+			//AllGrids.Add(FightGrid);
 
             SoundPlayer sp = new SoundPlayer("music/testsound.wav");
 			//sp.Play();
@@ -495,13 +495,48 @@ namespace game
 				}
 			}
 
-			//var progressButton = new Button() { Left = 200, Top = 50 };
-			//progressButton.Text = "run";
-			//progressButton.Click += (s, e) =>
-			//{
-			//	GameTick.Tick(gameModel);
-			//};
-			//screen.Controls.Add(progressButton);
+			var mapButton = new Button() { Top = 35, Left = 1064, Height = 50, Width = 200, Text = "На карту" };
+			mapButton.Click += (s, e) => TransitionTo(Screen.Map);
+			mapButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
+									GraphicsUnit.Point, ((byte)(204)));
+			screen.Controls.Add(mapButton);
+
+			GameTick.OnWin += () =>
+			{
+				MessageBox.Show("You Win!", "", MessageBoxButtons.OK);
+			};
+
+			foreach (var control in GetAll(screen, typeof(Human)))
+				control.Click += (s, e) =>
+				{
+					var selectable = (ISelectable)control;
+					DropSelection();
+					selectable.IsSelected = true;
+					Selected = selectable;
+					selectable.Invalidate();
+				};
+			foreach (var control in GetAll(screen, typeof(HumanOnBoard)))
+			{
+				var Human = ((HumanOnBoard)control).Human;
+				if (Human.crewMember.Alignment != Alignment.Player)
+					continue;
+				control.Click += (s, e) =>
+				{
+					DropSelection();
+					Human.IsSelected = true;
+					Selected = Human;
+					Human.Invalidate();
+				};
+			}
+			foreach (var control in GetAll(screen, typeof(WeaponControl)))
+				control.Click += (s, e) =>
+				{
+					var selectable = (ISelectable)control;
+					DropSelection();
+					selectable.IsSelected = true;
+					Selected = selectable;
+					selectable.Invalidate();
+				};
 
 			return t;
 		}
@@ -512,6 +547,15 @@ namespace game
 			foreach (var p in AllGrids)
 				p.Visible = false;
 			DropSelection();
+			if (FightGrid != null)
+			{
+				AllGrids.Remove(FightGrid);
+				this.Controls.Remove(FightGrid);
+				FightGrid.Dispose();
+				FightGrid = null;
+				GameTick.OnWin = null;
+				GC.Collect();
+			}
 			switch (screen)
 			{
 				case Screen.Menu:
@@ -527,7 +571,10 @@ namespace game
 					MapGrid.Visible = true;
 					break;
 				case Screen.Fight:
+					FightGrid = GenerateFightScreen();
 					FightGrid.Visible = true;
+					AllGrids.Add(FightGrid);
+					this.Controls.Add(FightGrid);
 					gameModel.IsRunning = true;
 					break;
 				default:
