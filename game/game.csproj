@@ -180,6 +180,12 @@
     <Compile Include="view\MapControl.Designer.cs">
       <DependentUpon>MapControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\MapPoint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="view\MapPoint.Designer.cs">
+      <DependentUpon>MapPoint.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\WeaponControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

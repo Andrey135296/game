@@ -336,13 +336,6 @@ namespace game
             mainMapGrid.BackgroundImage = new Bitmap("images/MapBackground.png");
             mainMapGrid.BackgroundImageLayout = ImageLayout.Stretch;
 
-            //var logo = new Label();
-            //logo.Text = "DTSb";
-            //logo.Dock = DockStyle.Fill;
-            //logo.BackColor = Color.Transparent;
-            //logo.Font = new Font(FontFamily.GenericSerif, 20, FontStyle.Bold);
-            //mainMapGrid.Controls.Add(logo, 0, 0);
-
             var backButton = new Button();
             backButton.Text = "Назад";
             backButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular,
@@ -365,23 +358,6 @@ namespace game
             playGrid.Controls.Add(resorsePanel, 0, 0);
             resorsePanel.BackColor = Color.White;
 
-            //var continueButton = new Button();
-            //continueButton.Text = "Продолжить";
-            //continueButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
-            //                        GraphicsUnit.Point, ((byte)(204)));
-            //continueButton.Dock = DockStyle.Fill;
-            //continueButton.Enabled = false;
-            //playGrid.Controls.Add(continueButton, 0, 0);
-
-            //var newGameButton = new Button();
-            //newGameButton.Text = "Новая Игра";
-            //newGameButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
-            //            GraphicsUnit.Point, ((byte)(204)));
-            //newGameButton.Dock = DockStyle.Fill;
-            //newGameButton.Click += (e, a) => TransitionTo(Screen.Start);
-            //playGrid.Controls.Add(newGameButton, 0, 1);
-
-
             var otherGrid = new TableLayoutPanel();
             otherGrid.Dock = DockStyle.Fill;
             otherGrid.ColumnCount = 1;
@@ -403,6 +379,11 @@ namespace game
             label.Font = new Font("Segoe UI", 20, FontStyle.Bold,
                                     GraphicsUnit.Point, ((byte)(204)));
             otherGrid.Controls.Add(label, 0, 0);
+
+            var mapPanel = new MapControl(gameModel);
+            mapPanel.Dock = DockStyle.Fill;
+            mapPanel.BackColor = Color.White;
+            otherGrid.Controls.Add(mapPanel, 0, 1);
 
             var optionsButton = new Button();
             optionsButton.Text = "Настройки";
