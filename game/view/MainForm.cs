@@ -187,7 +187,7 @@ namespace game
             optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 367));
             optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 367));
             optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 90));
-            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
+            optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 25));
             optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 60));
             optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 70));
             optionsScreen.RowStyles.Add(new RowStyle(SizeType.Absolute, 65));
