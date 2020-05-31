@@ -31,7 +31,8 @@ namespace game.view
                 {
                     if (point.PointNode == map.CurrentNode)
                         return;
-                    if (map.CurrentNode.Neighbors.Contains(point.PointNode))
+                    if (map.CurrentNode.Neighbors.Contains(point.PointNode)) 
+                        return;
 
 
 
