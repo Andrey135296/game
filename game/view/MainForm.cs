@@ -23,6 +23,7 @@ namespace game
 		public List<TableLayoutPanel> AllGrids = new List<TableLayoutPanel>();
 		public GameModel gameModel = null;
 		public ISelectable Selected = null;
+        public SoundPlayer Sp = new SoundPlayer("music/mainTheme.wav");
 		private Random random = new Random();
 
 		public MainForm(GameModel gameModel)
@@ -58,8 +59,8 @@ namespace game
 			//Controls.Add(FightGrid);
 			//AllGrids.Add(FightGrid);
 
-            SoundPlayer sp = new SoundPlayer("music/testsound.wav");
-			//sp.Play();
+            //SoundPlayer sp = new SoundPlayer("music/mainTheme.wav");
+			Sp.Play();
 
 			foreach (var control in GetAll(this, typeof(Human)))
 				control.Click += (s, e) =>
@@ -602,6 +603,9 @@ namespace game
 			switch (screen)
 			{
 				case Screen.Menu:
+                    Sp.Stop();
+                    Sp = new SoundPlayer("music/mainTheme.wav");
+                    Sp.Play();
 					MainMenuGrid.Visible = true;
 					break;
 				case Screen.Options:
@@ -611,9 +615,12 @@ namespace game
 					StartGrid.Visible = true;
 					break;
 				case Screen.Map:
-					MapGrid.Visible = true;
+                    Sp.Stop();
+                    MapGrid.Visible = true;
 					break;
 				case Screen.Fight:
+                    Sp.Stop();
+                    FightGrid = GenerateFightScreen();
 					gameModel.OtherShip = new Titan(Alignment.Enemy);
 					FightGrid = GenerateFightScreen();
 					FightGrid.Visible = true;
