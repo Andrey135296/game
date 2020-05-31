@@ -550,7 +550,7 @@ namespace game
 					mapPoint.Invalidate();
 
 				Sp.Stop();
-				Sp = new SoundPlayer();
+				Sp = new SoundPlayer("music/peaceTheme.wav");
 				Sp.Play();
 			};
 
@@ -625,11 +625,13 @@ namespace game
 					break;
 				case Screen.Map:
                     Sp.Stop();
+                    Sp = new SoundPlayer("music/peaceTheme.wav");
+                    Sp.Play();
                     MapGrid.Visible = true;
 					break;
 				case Screen.Fight:
                     Sp.Stop();
-                    Sp = new SoundPlayer();
+                    Sp = new SoundPlayer("music/battleTheme.wav");
                     Sp.Play();
                     FightGrid = GenerateFightScreen();
 					gameModel.OtherShip = new Titan(Alignment.Enemy);
