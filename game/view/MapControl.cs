@@ -47,6 +47,7 @@ namespace game.view
             {
                 node.Left = (node.PointNode.Coordinates.X) * this.Width / 100;
                 node.Top = (node.PointNode.Coordinates.Y) * this.Height / 100;
+				//node.Invalidate();
             }
             foreach (var node in MapNodes)
             {

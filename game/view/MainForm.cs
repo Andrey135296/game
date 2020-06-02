@@ -425,9 +425,11 @@ namespace game
                         if (gameModel.Fuel > 0)
                         {
                             var cnd = gameModel.Map.CurrentNode;
-							mapPanel.Invalidate(true);
                             PlayerCommands.MoveOnMap(gameModel, mp.PointNode);
-                            if (gameModel.Map.CurrentNode != cnd && gameModel.Map.CurrentNode.Alignment == Alignment.Enemy)
+							//mapPanel.Invalidate();
+							foreach (var node in mapPanel.MapNodes)
+								node.Invalidate();
+							if (gameModel.Map.CurrentNode != cnd && gameModel.Map.CurrentNode.Alignment == Alignment.Enemy)
                                 TransitionTo(Screen.Fight);
                             if (gameModel.Map.CurrentNode != cnd && gameModel.Map.CurrentNode.Alignment == Alignment.Player)
                                 TransitionTo(Screen.Peace);
@@ -558,7 +560,8 @@ namespace game
 			var mapButton = new Button() { Top = 38, Left = 1101, Height = 50, Width = 160, Text = "На карту" };
 			mapButton.Click += (s, e) =>
 			{
-				PlayerCommands.MoveOnMap(gameModel, gameModel.Map.LastNode);
+				if (gameModel.OtherShip.Stats.CurrentHP > 0)
+					PlayerCommands.MoveOnMap(gameModel, gameModel.Map.LastNode);
                 resourcePanel.Invalidate();
 				TransitionTo(Screen.Map);
 			};
@@ -690,7 +693,6 @@ namespace game
             var mapButton = new Button() { Top = 38, Left = 1101, Height = 50, Width = 160, Text = "На карту" };
             mapButton.Click += (s, e) =>
             {
-                PlayerCommands.MoveOnMap(gameModel, gameModel.Map.LastNode);
                 resourcePanel.Invalidate();
                 TransitionTo(Screen.Map);
             };
@@ -835,7 +837,6 @@ namespace game
                     Sp.Play();
                     FightGrid = GenerateFightScreen();
 					gameModel.OtherShip = new Titan(Alignment.Enemy);
-					FightGrid = GenerateFightScreen();
 					FightGrid.Visible = true;
 					AllGrids.Add(FightGrid);
 					this.Controls.Add(FightGrid);
@@ -847,6 +848,8 @@ namespace game
                     Sp.Play();
                     PeaceGrid = GeneratePeaceScreen();
                     PeaceGrid.Visible = true;
+					AllGrids.Add(PeaceGrid);
+					this.Controls.Add(PeaceGrid);
                     gameModel.IsRunning = true;
                     break;
                 default:
