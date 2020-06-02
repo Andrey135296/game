@@ -7,6 +7,7 @@
 		Start,
 		Map,
 		Fight,
+        Peace,
 		Help
 	}
 }

@@ -27,16 +27,16 @@ namespace game.view
                 point.Left = (i.Coordinates.X) * this.Width / 100;
                 point.Top = (i.Coordinates.Y) * this.Height / 100;
                 MapNodes.Add(point);
-                point.Click += (s, e) =>
-                {
-                    if (point.PointNode == map.CurrentNode)
-                        return;
-                    if (map.CurrentNode.Neighbors.Contains(point.PointNode)) 
-                        return;
+                //point.Click += (s, e) =>
+                //{
+                //    if (point.PointNode == map.CurrentNode)
+                //        return;
+                //    if (map.CurrentNode.Neighbors.Contains(point.PointNode)) 
+                //        return;
 
 
 
-                };
+                //};
             }
         }
 

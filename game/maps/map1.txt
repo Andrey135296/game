@@ -1,8 +1,8 @@
 ﻿Player-Empty-10,10
 Enemy-Fight-45,20
-Enemy-Fight-15,70
+Player-Fight-15,70
 Enemy-Fight-45,90
-Enemy-Fight-55,55
+Player-Fight-55,55
 Enemy-Fight-90,60
 #
 0-1

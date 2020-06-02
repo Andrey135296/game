@@ -21,6 +21,7 @@ namespace game
 		public TableLayoutPanel MapGrid;
 		public TableLayoutPanel FightGrid;
 		public TableLayoutPanel HelpGrid;
+        public TableLayoutPanel PeaceGrid;
 		public List<TableLayoutPanel> AllGrids = new List<TableLayoutPanel>();
 		public GameModel gameModel = null;
 		public ISelectable Selected = null;
@@ -421,11 +422,23 @@ namespace game
 				{
 					if (mp.PointNode.Neighbors.Contains(gameModel.Map.CurrentNode))
 					{
-						var cnd = gameModel.Map.CurrentNode;
-						PlayerCommands.MoveOnMap(gameModel, mp.PointNode);
-						if (gameModel.Map.CurrentNode !=cnd && gameModel.Map.CurrentNode.Alignment == Alignment.Enemy)
-							TransitionTo(Screen.Fight);
-					}
+                        if (gameModel.Fuel > 0)
+                        {
+                            var cnd = gameModel.Map.CurrentNode;
+                            PlayerCommands.MoveOnMap(gameModel, mp.PointNode);
+                            if (gameModel.Map.CurrentNode != cnd && gameModel.Map.CurrentNode.Alignment == Alignment.Enemy)
+                                TransitionTo(Screen.Fight);
+                            if (gameModel.Map.CurrentNode != cnd && gameModel.Map.CurrentNode.Alignment == Alignment.Player)
+                                TransitionTo(Screen.Peace);
+                            resorsePanel.Invalidate();
+                        }
+                        else
+                        {
+                            MessageBox.Show(
+                                String.Format("Топливо закончилось! Игра окончена!"),"", MessageBoxButtons.OK);
+                            TransitionTo(Screen.Menu);
+                        }
+                    }
 				};
 			}
 
@@ -545,6 +558,7 @@ namespace game
 			mapButton.Click += (s, e) =>
 			{
 				PlayerCommands.MoveOnMap(gameModel, gameModel.Map.LastNode);
+                resourcePanel.Invalidate();
 				TransitionTo(Screen.Map);
 			};
 			mapButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
@@ -561,17 +575,18 @@ namespace game
 				gameModel.Map.CurrentNode.Alignment = Alignment.Player;
 				foreach (var mapPoint in GetAll(this, typeof(MapPoint)))
 					mapPoint.Invalidate();
-
-				Sp.Stop();
-				Sp = new SoundPlayer("music/peaceTheme.wav");
-				Sp.Play();
+                TransitionTo(Screen.Peace);
+				//Sp.Stop();
+				//Sp = new SoundPlayer("music/peaceTheme.wav");
+				//Sp.Play();
 			};
 
 			GameTick.OnLose += () =>
 			{
 				MessageBox.Show(
-					String.Format("Поражение((((( \n Много сообщений - чтобы добить", GameTick.LastFuelReward, GameTick.LastMoneyReward),
+					String.Format("Корабль уничтожен! Вы проиграли!"),
 					"", MessageBoxButtons.OK);
+                TransitionTo(Screen.Menu);
 			};
 
 			foreach (var control in GetAll(screen, typeof(Human)))
@@ -609,7 +624,116 @@ namespace game
 			return t;
 		}
 
-		public TableLayoutPanel GenerateHelpScreen()
+        public TableLayoutPanel GeneratePeaceScreen()
+        {
+            var t = new TableLayoutPanel { Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0) };
+            var screen = new Panel { Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0) };
+            screen.BackgroundImage = new Bitmap("images/BattleBackground.jpg");
+            screen.Click += (s, e) =>
+            {
+                if (Selected is WeaponControl)
+                    ((WeaponControl)Selected).Weapon.Target = null;
+                DropSelection();
+            };
+            t.Controls.Add(screen);
+
+            var weaponPanel = new WeaponPanel(gameModel.PlayerShip) { Left = 3, Top = 507 };
+            screen.Controls.Add(weaponPanel);
+
+            foreach (var weaponReload in GetAll(weaponPanel, typeof(WeaponReload)))
+                GameTick.OnTick += gm => weaponReload.Invalidate();
+
+            var systemsPanel = new SystemsPanel(gameModel.PlayerShip) { Left = 152, Top = 507 };
+            screen.Controls.Add(systemsPanel);
+
+            var crewPanel = new CrewPanel(gameModel.PlayerShip.Crew) { Left = 460, Top = 507 };
+            screen.Controls.Add(crewPanel);
+
+            var resourcePanel = new ResourcePanel(gameModel) { Left = 3, Top = 38, Size = new Size(150, 100) };
+            screen.Controls.Add(resourcePanel);
+
+            var playerShip = new ShipControl(gameModel.PlayerShip) { Width = 540, Height = 216, Top = 200, Left = 30 };
+            screen.Controls.Add(playerShip);
+
+            //
+            foreach (var w in playerShip.Ship.Weapons)
+                w.IsOnline = true;
+            //
+
+            foreach (var cell in GetAll(playerShip, typeof(CellControl)))
+            {
+                cell.Click += (s, e) =>
+                {
+                    if (Selected is Human)
+                    {
+                        var h = (Human)Selected;
+                        var c = (CellControl)cell;
+                        PlayerCommands.MoveCrewMember(h.crewMember, c.cell, playerShip.Ship);
+                        DropSelection();
+                    }
+                };
+            }
+
+            var playerHpBar = new HPBar(gameModel.PlayerShip) { Left = 3, Top = 3, Width = 626, Height = 30 };
+            screen.Controls.Add(playerHpBar);
+            GameTick.OnTick += gm => playerHpBar.Invalidate();
+
+            foreach (var human in crewPanel.Humans)
+            {
+                var humanOnBoard = new HumanOnBoard(human, playerShip);
+                screen.Controls.Add(humanOnBoard);
+            }
+
+            ////////
+
+            var mapButton = new Button() { Top = 38, Left = 1101, Height = 50, Width = 160, Text = "На карту" };
+            mapButton.Click += (s, e) =>
+            {
+                PlayerCommands.MoveOnMap(gameModel, gameModel.Map.LastNode);
+                resourcePanel.Invalidate();
+                TransitionTo(Screen.Map);
+            };
+            mapButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular,
+                                    GraphicsUnit.Point, ((byte)(204)));
+            screen.Controls.Add(mapButton);
+
+            foreach (var control in GetAll(screen, typeof(Human)))
+                control.Click += (s, e) =>
+                {
+                    var selectable = (ISelectable)control;
+                    DropSelection();
+                    selectable.IsSelected = true;
+                    Selected = selectable;
+                    selectable.Invalidate();
+                };
+
+            foreach (var control in GetAll(screen, typeof(HumanOnBoard)))
+            {
+                var Human = ((HumanOnBoard)control).Human;
+                if (Human.crewMember.Alignment != Alignment.Player)
+                    continue;
+                control.Click += (s, e) =>
+                {
+                    DropSelection();
+                    Human.IsSelected = true;
+                    Selected = Human;
+                    Human.Invalidate();
+                };
+            }
+            foreach (var control in GetAll(screen, typeof(WeaponControl)))
+                control.Click += (s, e) =>
+                {
+                    var selectable = (ISelectable)control;
+                    DropSelection();
+                    selectable.IsSelected = true;
+                    Selected = selectable;
+                    selectable.Invalidate();
+                };
+
+            return t;
+        }
+
+        public TableLayoutPanel GenerateHelpScreen()
 		{
             var optionsScreen = new TableLayoutPanel();
             optionsScreen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 89));
@@ -716,7 +840,15 @@ namespace game
 					this.Controls.Add(FightGrid);
 					gameModel.IsRunning = true;
 					break;
-				default:
+                case Screen.Peace:
+                    Sp.Stop();
+                    Sp = new SoundPlayer("music/peaceTheme.wav");
+                    Sp.Play();
+                    PeaceGrid = GeneratePeaceScreen();
+                    PeaceGrid.Visible = true;
+                    gameModel.IsRunning = true;
+                    break;
+                default:
 					throw new Exception("Unknown screen type");
 			}
 		}

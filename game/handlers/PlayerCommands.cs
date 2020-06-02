@@ -84,6 +84,7 @@ namespace game
 				{
 					gameModel.OtherShip = new Titan(destination.Alignment);
 				}
+                gameModel.Fuel--;
 			}
 		}
 	}
