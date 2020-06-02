@@ -450,6 +450,9 @@ namespace game
 
 		public TableLayoutPanel GenerateFightScreen()
 		{
+			//
+			//gameModel.OtherShip = new Titan(Alignment.Enemy);
+			//
 			var t = new TableLayoutPanel { Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0) };
 			var screen = new Panel { Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0) };
 			screen.BackgroundImage = new Bitmap("images/BattleBackground.jpg");
@@ -836,7 +839,7 @@ namespace game
                     Sp = new SoundPlayer("music/battleTheme.wav");
                     Sp.Play();
                     FightGrid = GenerateFightScreen();
-					gameModel.OtherShip = new Titan(Alignment.Enemy);
+					//gameModel.OtherShip = new Titan(Alignment.Enemy);
 					FightGrid.Visible = true;
 					AllGrids.Add(FightGrid);
 					this.Controls.Add(FightGrid);
