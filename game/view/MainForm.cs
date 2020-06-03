@@ -692,6 +692,18 @@ namespace game
             }
 
             ////////
+            var brShip = new Panel()
+            {
+                Width = 592,
+                Height = 237,
+                Top = 185,
+                Left = 672
+            };
+            brShip.BackgroundImage = new Bitmap("images/BrokenTitan.png");
+            brShip.BackColor = Color.Transparent;
+            screen.Controls.Add(brShip);
+           //var otherShip = new ShipControl(gameModel.OtherShip, true) { Width = 540, Height = 216,
+           // Top = 200, Left = 694 };
 
             var mapButton = new Button() { Top = 38, Left = 1101, Height = 50, Width = 160, Text = "На карту" };
             mapButton.Click += (s, e) =>

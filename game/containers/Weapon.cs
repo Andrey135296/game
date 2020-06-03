@@ -29,7 +29,7 @@ namespace game
 		public LaserM0()
 		{
 			this.Damage = 10;
-			this.CoolDownTime = 2000;
+			this.CoolDownTime = 6000;
 			this.TimeLeftToCoolDown = this.CoolDownTime;
 			this.Name = "LaserM0";
 			this.IsOnline = false;
@@ -42,8 +42,8 @@ namespace game
 	{
 		public LaserM1()
 		{
-			this.Damage = 10;
-			this.CoolDownTime = 1000;
+			this.Damage = 20;
+			this.CoolDownTime = 10000;
 			this.TimeLeftToCoolDown = this.CoolDownTime;
 			this.Name = "LaserM1";
 			this.IsOnline = false;
@@ -56,8 +56,8 @@ namespace game
 	{
 		public LaserM2()
 		{
-			this.Damage = 20;
-			this.CoolDownTime = 1000;
+			this.Damage = 30;
+			this.CoolDownTime = 15000;
 			this.TimeLeftToCoolDown = this.CoolDownTime;
 			this.Name = "LaserM2";
 			this.IsOnline = false;
